@@ -1,0 +1,60 @@
+header{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 1rem 0;
+    width: 80%;
+}
+
+.header-menu ul{
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+header-checkout-button
+slider-image
+slider-title
+slider-description
+slider-button
+feature-title
+feature-description
+feature-content
+feature-content-item
+feature-content-item-logo
+feature-content-item-title
+feature-content-item-description
+details
+details-title
+details-items
+details-item
+details-item-icon
+details-item-text
+details-item-text-title
+details-item-text-description
+details-image
+team-title
+team-description
+team-items
+team-item
+team-item-social-networks
+team-item-picture
+team-item-name
+team-item-description
+contact-title
+contact-map
+contact-flipbox
+contact-flipbox-front
+contact-flipbox-title
+contact-flipbox-item
+contact-flipbox-item-icon
+contact-flipbox-item-description
+contact-flipbox-front-button
+contact-flipbox-back
+contact-flipbox-form
+contact-flipbox-send-button
+social-title
+social-links
+nav
+privacy-menu

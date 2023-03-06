@@ -1,0 +1,575 @@
+
+IFCD0210 Desarrollo web
+Próximas entregas
+¡Yuju! ¡No tienes que entregar nada pronto!
+
+Anuncia algo a tu clase
+
+Anuncio: "Página donde conseguir iconos svg…"
+Carlos Seda
+Fecha de creación: 13:2413:24
+Página donde conseguir iconos svg
+https://pictogrammers.com/library/mdi/
+
+
+Anuncio: "Archivo de normalización"
+Carlos Seda
+Fecha de creación: 13:0513:05
+Archivo de normalización
+
+normalize.css
+Hoja de estilo
+
+
+Anuncio: "Pasos a realizar a la hora de maquetar:…"
+Carlos Seda
+Fecha de creación: 12:4512:45
+Pasos a realizar a la hora de maquetar:
+
+1º Plantilla HTML, creamos las carpetas js (main.js) y style
+(main.css y normalize.css)
+
+2º Colocar las cajas (divs) y ponerles nombre.
+
+3º Colocar los elementos (imágenes, listas, iconos, etc.)
+
+4º Plantilla CSS
+
+    - body .. ancho el body (width), background-color
+    - h1,h2,h3,etc .. tipografia: fuente, tamaño de la fuente, color
+
+5º Separar por secciones el CSS y escribir los nombres de las
+clase de cada sección por orden aparición.
+
+6º Añado los display: flex con su justify-content, y su
+background-color, y sólo si fuera necesario width.
+
+7º Añadir el CSS de todos los elementos de la web.
+
+
+Anuncio: "Estructura html sin contenido"
+Carlos Seda
+Fecha de creación: 11:3811:38
+Estructura html sin contenido
+
+index.html
+HTML
+
+
+Anuncio: "Propuesta de cajas"
+Carlos Seda
+Fecha de creación: 9:509:50
+Propuesta de cajas
+Mostrando contact.png
+contact.png
+
+details.png
+Imagen
+
+featured.png
+Imagen
+
+footer.png
+Imagen
+
+header.png
+Imagen
+
+slider.png
+Imagen
+
+team.png
+Imagen
+
+
+Anuncio: "Plantilla de la que partirá la…"
+Carlos Seda
+Fecha de creación: 27 feb27 feb
+Plantilla de la que partirá la maquetación:
+https://ninetheme.com/themes/proland/homepage-paypal/
+
+
+Anuncio: "Web donde comprar plantillas de…"
+Carlos Seda
+Fecha de creación: 27 feb27 feb
+Web donde comprar plantillas de wordpress:
+
+https://themeforest.net/
+
+
+Anuncio: "Web donde podemos buscar ejemplos de…"
+Carlos Seda
+Fecha de creación: 27 feb27 feb
+Web donde podemos buscar ejemplos de cosas que podemos hacer con html,css y js
+
+https://codepen.io/
+
+
+Anuncio: "Para iconos de la web:…"
+Carlos Seda
+Fecha de creación: 27 feb27 feb
+Para iconos de la web:
+https://pictogrammers.com/library/mdi/?welcome
+
+
+Anuncio: "http://pastie.org/p/2ItOKyA47sip6JQlMBp…"
+Carlos Seda
+Fecha de creación: 27 feb27 feb
+http://pastie.org/p/2ItOKyA47sip6JQlMBpniT
+
+
+Anuncio: "https://www.w3schools.com/html/default.…"
+Carlos Seda
+Fecha de creación: 24 feb24 feb
+https://www.w3schools.com/html/default.asp
+
+
+Anuncio: "<link rel="shortcut icon" href="">…"
+Carlos Seda
+Fecha de creación: 24 feb24 feb
+<link rel="shortcut icon" href="">
+
+        <meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+
+        <meta name="keywords"    content="palabras clave, separadas, por comas">
+
+        <link href="css/app.css" rel="stylesheet">
+
+
+Publicado por miguelangel duque
+miguelangel duque
+Fecha de creación: 24 feb24 feb
+https://github.com/duquerodriguez
+
+
+Anuncio: "Victor https://github.com/Dualvicc…"
+Carlos Seda
+Fecha de creación: 24 feb24 feb (Última modificación: 24 feb)
+Victor https://github.com/Dualvicc
+Marta https://github.com/Somiichan
+Guillem https://github.com/guillemrima
+Daniel https://github.com/Dan13lpa
+Javi https://github.com/Eutarides
+John https://github.com/johnoliverWEB
+Noelia https://github.com/ncoca82
+Arturo https://github.com/ArturoAlmagroMendez
+Miguel https://github.com/mikiribasmas
+Sebastian https://github.com/sebastianrc10
+Miguel Angel Duque https://github.com/duquerodriguez
+
+
+Anuncio: "Instalación del entorno: Para escribir…"
+Carlos Seda
+Fecha de creación: 22 feb22 feb (Última modificación: 22 feb)
+Instalación del entorno:
+
+Para escribir el código de nuestra web:
+
+https://code.visualstudio.com/
+
+Para poder subir y bajar código a nuestro github:
+
+https://git-scm.com/downloads
+
+Para hacer copias de seguridad de nuestro código:
+
+https://github.com/
+
+Para usar la inteligencia artificial dentro de  visual studio codio
+
+https://github.com/features/copilot
+
+Para usar una inteligencia artificial más avanzada:
+
+https://chat.openai.com/
+
+Para poder conectar nuestra web a una inteligencia artificial:
+
+https://openai.com/
+
+Base de datos mysql:
+
+https://dev.mysql.com/downloads/installer/
+
+Para poder utilizar javascript fuera del entorno del navegador:
+
+https://nodejs.org/en/
+
+Sebastian Ramirez24 feb
+https://github.com/sebastianrc10
+
+Tarea: "Enlace a Meet"
+Carlos Seda ha publicado una nueva tarea: Enlace a Meet
+Fecha de creación: 22 feb22 feb (Última modificación: 22 feb)
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+  
+  /* Sections
+     ========================================================================== */
+  
+  /**
+   * Remove the margin in all browsers.
+   */
+  
+  body {
+    margin: 0;
+  }
+  
+  /**
+   * Render the `main` element consistently in IE.
+   */
+  
+  main {
+    display: block;
+  }
+  
+  /**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+  
+  h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0;
+  }
+  
+  /* Grouping content
+     ========================================================================== */
+  
+  /**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+  
+  hr {
+    box-sizing: content-box; /* 1 */
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  pre {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /* Text-level semantics
+     ========================================================================== */
+  
+  /**
+   * Remove the gray background on active links in IE 10.
+   */
+  
+  a {
+    background-color: transparent;
+  }
+  
+  /**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+  
+  abbr[title] {
+    border-bottom: none; /* 1 */
+    text-decoration: underline; /* 2 */
+    text-decoration: underline dotted; /* 2 */
+  }
+  
+  /**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+  
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /**
+   * Add the correct font size in all browsers.
+   */
+  
+  small {
+    font-size: 80%;
+  }
+  
+  /**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+  
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  /* Embedded content
+     ========================================================================== */
+  
+  /**
+   * Remove the border on images inside links in IE 10.
+   */
+  
+  img {
+    border-style: none;
+  }
+  
+  /* Forms
+     ========================================================================== */
+  
+  /**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+  }
+  
+  /**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+  
+  button,
+  input { /* 1 */
+    overflow: visible;
+  }
+  
+  /**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+  
+  button,
+  select { /* 1 */
+    text-transform: none;
+  }
+  
+  /**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+  
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button;
+  }
+  
+  /**
+   * Remove the inner border and padding in Firefox.
+   */
+  
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  
+  /**
+   * Restore the focus styles unset by the previous rule.
+   */
+  
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  
+  /**
+   * Correct the padding in Firefox.
+   */
+  
+  fieldset {
+    padding: 0.35em 0.75em 0.625em;
+  }
+  
+  /**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+  
+  legend {
+    box-sizing: border-box; /* 1 */
+    color: inherit; /* 2 */
+    display: table; /* 1 */
+    max-width: 100%; /* 1 */
+    padding: 0; /* 3 */
+    white-space: normal; /* 1 */
+  }
+  
+  /**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+  
+  progress {
+    vertical-align: baseline;
+  }
+  
+  /**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+  
+  textarea {
+    overflow: auto;
+  }
+  
+  /**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+  
+  [type="checkbox"],
+  [type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+  }
+  
+  /**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+  
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+  
+  /**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+  
+  [type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+  }
+  
+  /**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+  
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  
+  /**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+  
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+  }
+  
+  /* Interactive
+     ========================================================================== */
+  
+  /*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+  
+  details {
+    display: block;
+  }
+  
+  /*
+   * Add the correct display in all browsers.
+   */
+  
+  summary {
+    display: list-item;
+  }
+  
+  /* Misc
+     ========================================================================== */
+  
+  /**
+   * Add the correct display in IE 10+.
+   */
+  
+  template {
+    display: none;
+  }
+  
+  /**
+   * Add the correct display in IE 10.
+   */
+  
+  [hidden] {
+    display: none;
+  }
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+/* List
+==============================================================================*/
+ol, ul {
+    list-style: none;
+    padding-left: 0;
+}

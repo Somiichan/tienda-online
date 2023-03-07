@@ -77,7 +77,6 @@ header{
     color: white;
     cursor: pointer;
     font: 500 16px/40px "Poppins",sans-serif;
-    font-weight: bold;
     height: 40px;
     transition: opacity 1s;
     width: 160px;
@@ -98,12 +97,7 @@ header{
     flex-direction: column;
     padding-top: 190px;
     position: relative;
-    height: 80vh;
-}
-.slider-image img{
-    max-width: 100%;
-    vertical-align: middle;
-    border: 0;
+    height: 100vh;
 }
 .slider-title h2{
     color: #374048;
@@ -123,18 +117,25 @@ header{
     vertical-align: middle;
 }
 .slider-button a{
+    margin-left: 750px;
+    position: relative;
     display: inline-block;
     padding: 0 85px;
     border-radius: 60px;
     font: 500 27px/72px "Poppins",sans-serif;
-    margin-bottom: 77px;
     color: white;
     background-color: #0084ff;
     text-align: center;
-
 }
 .slider-button a:hover{
     background-color: #374048;
+}
+.slider-image img{
+    margin-top: 25px;
+    margin-left: 820px;
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
 }
 .feature{
     background-color: hsl(0, 0%, 87%);

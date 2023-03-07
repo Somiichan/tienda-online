@@ -1,19 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700%7CAbeeZee:400,800,600&subset=latin,latin-ext,latin,latin-ext");
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Golos text';
 }
 
 header{
-    align-items: center;
+    padding: 20px 0 24px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: 0;
+    min-height: 55px;    
+    z-index: 1030;
+}
+
+.header-navbar{
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    padding: 1rem 0;
-    width: 80%;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 1170px;
 }
 
 .header-logo{
@@ -22,25 +33,31 @@ header{
     width: 8%;
 }
 
+.header-menu{
+    margin-left: 50px;
+}
+
 .header-menu ul{
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: center;
     list-style: none;
 }
 
+.header-menu ul li{
+    font: 300 14px/26px "Poppins",sans-serif;
+    color: #82898f;
+    position: relative;
+}
+
 .header-menu ul li a{
     color: #8f969d;
-    display: flex;
     font: 500 14px/40px "Poppins",sans-serif;
-    font-weight: bold;
-    justify-content: center;
     padding: 0 9px;
     text-transform: uppercase;
     text-decoration: none;
     outline: none;
     transition: all .3s linear 0s;
-    
 }
 
 .header-menu a:hover{
@@ -68,31 +85,56 @@ header{
 }
 
 .header-checkout-button button:hover{
-    background-color: #1b233a;
-    opacity: 0.8;
+    background-color: #374048;
 }
 
 .header-checkout-button button:active{
     background-color: #fc8600;
-    opacity: 0.5;
 }
 .slider{
+    background: url(https://ninetheme.com/themes/proland/wp-content/uploads/2016/05/header-background.jpg) no-repeat scroll center bottom;
+    background-size: cover;
     display: flex;
     flex-direction: column;
+    padding-top: 190px;
     position: relative;
     height: 80vh;
 }
-.slider-image{
+.slider-image img{
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+}
+.slider-title h2{
+    color: #374048;
+    font: 600 79px/1 "Poppins",sans-serif;
+    letter-spacing: -3px;
+    margin: 0 0 20px;
+    text-align: center;
 
 }
-.slider-title{
+.slider-description p{
+    color: #8a9095;
+    font: 300 27px/41px "Poppins",sans-serif;
+    letter-spacing: -.2px;
+    max-width: 780px;
+    margin: 0 auto 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+.slider-button a{
+    display: inline-block;
+    padding: 0 85px;
+    border-radius: 60px;
+    font: 500 27px/72px "Poppins",sans-serif;
+    margin-bottom: 77px;
+    color: white;
+    background-color: #0084ff;
+    text-align: center;
 
 }
-.slider-description{
-
-}
-.slider-button{
-
+.slider-button a:hover{
+    background-color: #374048;
 }
 .feature{
     background-color: hsl(0, 0%, 87%);

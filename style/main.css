@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Golos text';
+}
+
 header{
     align-items: center;
     display: flex;
@@ -8,8 +17,9 @@ header{
 }
 
 .header-logo{
-    width: 8%;
+    cursor: pointer;
     height: auto;
+    width: 8%;
 }
 
 .header-menu ul{
@@ -19,20 +29,52 @@ header{
     list-style: none;
 }
 
-.header-menu a{
-    color: red;
+.header-menu ul li a{
+    color: #8f969d;
+    display: flex;
+    font: 500 14px/40px "Poppins",sans-serif;
+    font-weight: bold;
+    justify-content: center;
+    padding: 0 9px;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none;
+    transition: all .3s linear 0s;
+    
+}
+
+.header-menu a:hover{
+    color:hsl(210, 6%, 33%);
+    opacity: 0.8;
+}
+
+.header-menu a:active{
+    color:rgb(0, 162, 255);
+    opacity: 0.8;
 }
 
 .header-checkout-button button{
-    background-color: orange;
+    background-color: #ff6900;
     border-radius: 150px;
     border: none;
     color: white;
+    cursor: pointer;
     font: 500 16px/40px "Poppins",sans-serif;
-    height: 50px;
-    text-transform: uppercase;
-    width: 130px;
+    font-weight: bold;
+    height: 40px;
+    transition: opacity 1s;
+    width: 160px;
 
+}
+
+.header-checkout-button button:hover{
+    background-color: #1b233a;
+    opacity: 0.8;
+}
+
+.header-checkout-button button:active{
+    background-color: #fc8600;
+    opacity: 0.5;
 }
 .slider{
     display: flex;

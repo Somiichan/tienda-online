@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-header{
+.header{
     padding: 20px 0 24px;
     position: fixed;
     right: 0;
@@ -14,6 +14,7 @@ header{
     margin: 0;
     min-height: 55px;    
     z-index: 1030;
+    background-color: white;
 }
 
 .header-navbar{
@@ -90,34 +91,43 @@ header{
 .header-checkout-button button:active{
     background-color: #fc8600;
 }
+
 .slider{
-    background: url(https://ninetheme.com/themes/proland/wp-content/uploads/2016/05/header-background.jpg) no-repeat scroll center bottom;
     background-size: cover;
     display: flex;
+    justify-content:space-evenly;
+    align-items: center;
     flex-direction: column;
-    padding-top: 190px;
     position: relative;
-    height: 100vh;
+    height: 115vh;
+    padding-top: 2rem;
+}
+
+.slider-background-image{
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+.slider-background-image img{
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .slider-title h2{
     color: #374048;
     font: 600 79px/1 "Poppins",sans-serif;
     letter-spacing: -3px;
-    margin: 0 0 20px;
     text-align: center;
-
 }
 .slider-description p{
     color: #8a9095;
     font: 300 27px/41px "Poppins",sans-serif;
     letter-spacing: -.2px;
     max-width: 780px;
-    margin: 0 auto 40px;
     text-align: center;
     vertical-align: middle;
 }
 .slider-button a{
-    margin-left: 750px;
     position: relative;
     display: inline-block;
     padding: 0 85px;
@@ -131,48 +141,71 @@ header{
     background-color: #374048;
 }
 .slider-image img{
-    margin-top: 25px;
-    margin-left: 820px;
     max-width: 100%;
     vertical-align: middle;
     border: 0;
 }
-.feature{
+.featured{
     background-color: hsl(0, 0%, 87%);
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     height: 60vh;
     padding: 5% 15%;
+    border: 1px solid blue;
 }
-.feature-title{
-
+.featured-title{
+    color: #374048;
+    text-transform: uppercase;
+    font: 600 48px/29px "Poppins",sans-serif;
+    padding-top: 5px;
+    margin: 0 0 25px;
 }
-.feature-description{
-
+.featured-description{
+    color: #969da3;
+    max-width: 710px;
+    margin: 0 auto 20px;
+    font: 300 20px/32px "Poppins",sans-serif;
 }
-.feature-content{
-
+.featured-containers{
+    display: flex;
+    flex-direction: row;
 }
-.feature-content-item{
-
+.feature-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
 }
-.feature-content-item-logo{
-
+.container-image{
+    max-width: 100%;
+    vertical-align: middle;
 }
-.feature-content-item-title{
-
+.container-text{
+    color: #374048;
+    font: 600 26px/1 "Poppins",sans-serif;
+    margin: 60px 0 8px;
 }
-.feature-content-item-description{
-
+.container-text-description{
+    color: #8a9095;
+    font: 300 16px/28px "Poppins",sans-serif;
+    letter-spacing: -.2px;
+    max-width: 780px;
+    text-align: center;
+    vertical-align: middle;
 }
 .details{
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 .details-title{
 
 }
-.details-items{
-
+.details-column{
+    display: flex;
+    flex-direction: column;
 }
 
 .details-item{
@@ -184,8 +217,8 @@ header{
 
 .details-item-icon{
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: flex-start;
+    align-items:flex-start
 }
 
 .details-item-icon svg{
@@ -195,7 +228,9 @@ header{
 }
 
 .details-item-text{
-
+    display: flex;
+    justify-content: flex-end;
+    align-items:start
 }
 .details-item-text-title{
 
@@ -289,8 +324,22 @@ header{
 
 }
 .information-footer-container{
+    display:flex;
+    flex-direction: row;
+}
+.information-footer-container ul{
 
 }
-.copyright-footer-container{
-
+.information-footer-container ul li a{
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    line-height: 52px;
+    border-radius: 100%;
+    padding: 0;
+}
+.copyright-footer-container p{
+    color: hsl(206, 13%, 79%);
+    font-size: 0.9rem;
+    text-align: center;
 }

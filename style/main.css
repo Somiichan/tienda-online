@@ -266,59 +266,99 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 5rem;
     background-color: hsl(220, 6%, 90%);
+    padding: 10vh 10%;
 
 }
-.team-title{
+
+.team-maintext-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.title-maintext-container{
     color: hsl(208, 13%, 25%);
     text-transform: uppercase;
     font: 600 48px/29px "Poppins",sans-serif;
     padding-top: 5px;
-    margin: 0 0 25px;
-    word-spacing: 0px;
+    margin: 0 0 50px;
 }
 
-.team-description{
-    color: hsl(208, 7%, 61%);
-    max-width: 710px;
-    margin: 0 auto 20px;
+.description-maintext-container{
     font: 300 20px/32px "Poppins",sans-serif;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    font-size: 1.2rem;
+    padding: 0 10%;
+    color: hsl(208, 7%, 61%);
+    margin: 0 auto 20px;
+    
 }
 
 .team-items{
     display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
 
 }
 
 .team-item{
     display: flex;
     flex-direction: column;
+    position: relative;
+    -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
 }
 
-.team-item-social-networks{
-
+.team-item-social-networks-expand svg{
+    width: 30px; 
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 100%;
+    cursor: pointer;
 }
 
 .team-item-picture{
+    height: 30vh;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+}
 
+.team-item-picture img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .team-item-name{
-
+    background-color: hsl(0, 0%, 100%);
+    padding: 1rem 0;
 }
 
-.team-item-description{
+.team-item-name h4{
+    font: 300 20px/32px "Poppins",sans-serif;
+    padding-left: 3rem;
+}
 
+.team-item-description p{
+    color:hsl(208, 13%, 25%);
+    font: 300 14px/18px "Poppins",sans-serif;
+    padding-left: 5rem;
 }
 
 .contact{
     display: flex;
-
+    justify-content: center;
+    padding: 10vh 0;
+    position: relative;
 }
 
 .contact-map{

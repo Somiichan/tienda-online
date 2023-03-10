@@ -345,7 +345,13 @@
 }
 
 .contact-flipbox-item-icon{
-
+    display: flex;
+    align-items: left;
+}
+.contact-flipbox-item-icon svg{
+    color:hsl(207, 5%, 56%);
+    height: 1rem;
+    width: 1rem;
 }
 
 .contact-flipbox-item-description{

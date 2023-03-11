@@ -4,6 +4,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    position: relative;
 }
 
 .header{
@@ -12,7 +18,7 @@
     right: 0;
     left: 0;
     margin: 0;
-    min-height: 55px;    
+    min-height: 4vh;    
     z-index: 1030;
     background-color: white;
 }
@@ -23,9 +29,8 @@
     align-items: center;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 1170px;
+    padding: 0 15px;
+    width: 60%;
 }
 
 .header-logo{
@@ -156,37 +161,38 @@
 }
 
 .featured{
-    background-color: hsl(0, 0%, 87%);
+    background-color: hsl(0, 0%, 93%);
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 60vh;
-    padding: 5% 15%;
-    border: 1px solid blue;
+    height: 70vh;
+    padding: 0 20%;
+    margin: 9vh 0;
 }
 
 .featured-title{
     color: hsl(208, 13%, 25%);
     text-transform: uppercase;
     font: 600 48px/29px "Poppins",sans-serif;
-    padding-top: 5px;
+    padding-top: 4rem;
     margin: 0 0 25px;
 }
 
 .featured-description{
     color: hsl(208, 7%, 61%);
-    max-width: 710px;
-    margin: 0 auto 20px;
+    text-align: center;
+    margin-top: 20px;
+    height: 10vh;
     font: 300 20px/32px "Poppins",sans-serif;
 }
 
 .featured-containers{
     display: flex;
-    flex-direction: row;
+    margin-top: 20px;
 }
 
-.feature-container{
+.featured-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -196,22 +202,24 @@
 
 .container-image{
     max-width: 100%;
-    vertical-align: middle;
 }
 
 .container-text{
     color: hsl(208, 13%, 25%);
     font: 600 26px/1 "Poppins",sans-serif;
-    margin: 60px 0 8px;
+    margin: 30px 0 8px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
 .container-text-description{
     color: hsl(207, 5%, 56%);
     font: 300 16px/28px "Poppins",sans-serif;
     letter-spacing: -.2px;
-    max-width: 780px;
-    text-align: center;
-    vertical-align: middle;
+    margin-top: 1rem;
+    width: 90%;
 }
 
 .details{

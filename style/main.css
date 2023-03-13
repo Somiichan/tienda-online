@@ -1,91 +1,121 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700%7CAbeeZee:400,800,600&subset=latin,latin-ext,latin,latin-ext");
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+body{
+    background-color: hsl(0, 0%, 100%);
+    display:flex;
+    flex-direction:column;    
+    min-height: 100vh;
+    width: 100%;
 }
 
-body{
-    position: relative;
+main{
+    margin: 1rem 0;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, a, p{
+    color: hsl(208, 13%, 25%);
+}
+
+h1, h2, h3, h4 {
+    font-family: "Poppins",sans-serif;
+}
+
+h5, h6 {
+    font-family: "Poppins",sans-serif;
+}
+
+a, td, th, p, button, span, label, select, input, textarea, li{
+    font-family: "Poppins",sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+h4 {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a {
+    font-weight: 600;
+    text-decoration: none;
+    transition: 300ms;
+}
+
+a:hover, a:focus {
+    outline: none;
+    text-decoration: none;
+    outline-offset: 0;
+}
+
+img{
+    object-fit: cover;
+    max-width: 100%;
+}
+
+video{
+    max-width: 100%;
 }
 
 .header{
-    padding: 20px 0 24px;
+    padding: 1rem 0;
     position: fixed;
     right: 0;
     left: 0;
-    margin: 0;
-    min-height: 4vh;    
-    z-index: 1030;
+    z-index: 1000;
     background-color: white;
+    width: 100%;
 }
 
 .header-navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 0 15px;
-    width: 60%;
+    margin: 0 auto;
+    width: 70%;
 }
 
 .header-logo{
     cursor: pointer;
-    height: auto;
-    width: 8%;
-}
-
-.header-menu{
-    margin-left: 50px;
 }
 
 .header-menu ul{
     display: flex;
-    gap: 1rem;
-    justify-content: center;
+    gap: 1.5rem;
     list-style: none;
-}
-
-.header-menu ul li{
-    color: hsl(208, 5%, 54%);
-    position: relative;
 }
 
 .header-menu ul li a{
     color: hsl(210, 7%, 59%);
-    font: 500 14px/40px "Poppins",sans-serif;
-    padding: 0 9px;
+    font-size: 1rem;
+    font-weight: 500;
     text-transform: uppercase;
-    text-decoration: none;
-    outline: none;
-    transition: all .3s linear 0s;
 }
 
-.header-menu a:hover{
-    color:hsl(210, 6%, 33%);
-    opacity: 0.8;
-}
-
+.header-menu a:hover,
 .header-menu a:active{
-    color:hsl(202, 100%, 50%);
-    opacity: 0.8;
+    color:hsl(210, 6%, 33%);
 }
 
 .header-checkout-button button{
-    background-color: #ff6900;
+    background-color: hsl(18, 100%, 57%);
     border-radius: 150px;
     border: none;
     color: white;
     cursor: pointer;
-    font: 500 16px/40px "Poppins",sans-serif;
-    height: 40px;
-    transition: opacity 1s;
-    width: 160px;
-
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 2rem;
 }
 
 .header-checkout-button button:hover{
@@ -93,7 +123,7 @@ body{
 }
 
 .header-checkout-button button:active{
-    background-color: hsl(32, 100%, 49%);
+    background-color: hsl(35, 84%, 45%);
 }
 
 .slider{
@@ -101,14 +131,16 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 115vh;
-    padding-top: 2rem;
+    gap: 3rem;
+    height: 100vh;
+    position: relative;
+    width: 100%;
 }
 
 .slider-background-image{
     width: 100%;
     position: absolute;
-    z-index: -1;
+    bottom: 0;
 }
 
 .slider-background-image img{
@@ -117,79 +149,106 @@ body{
     background-attachment: fixed;
 }
 
+.slider-title{
+    position: absolute;
+    top: 15%;
+}
+
 .slider-title h2{
     color: hsl(208, 13%, 25%);
-    font: 600 79px/1 "Poppins",sans-serif;
+    font-weight: 600;
+    font-size: 5rem;
     letter-spacing: -3px;
-    text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+}
+
+.slider-description{
+    position: absolute;
+    top: 30%;
+    width: 50%;
 }
 
 .slider-description p{
     color: hsl(207, 5%, 56%);
-    font: 300 27px/41px "Poppins",sans-serif;
+    font-weight: 300;
+    font-size: 1.7rem;
     letter-spacing: -.2px;
-    max-width: 780px;
     text-align: center;
-    vertical-align: middle;
-    margin-bottom: 2rem;
 }
 
-.slider-button a{
+.slider-button{
+    position: absolute;
+    top: 45%;
+}
+
+.slider-button button{
+    border: none;
     position: relative;
     display: inline-block;
-    padding: 0 85px;
+    padding: 1rem 5.5rem;
+    cursor: pointer;
     border-radius: 60px;
-    font: 500 27px/72px "Poppins",sans-serif;
+    font-weight: 500;
+    font-size: 1.7rem;
     color: white;
     background-color: hsl(209, 100%, 50%);
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 1rem;
 }
 
-.slider-button a:hover{
+.slider-button button:hover{
     background-color: hsl(208, 13%, 25%);
 }
 
-.slider-image img{
-    max-width: 100%;
-    vertical-align: middle;
-    border: 0;
-    margin-top: 5rem;
+.slider-image{
+    bottom: 5%;
+    position: absolute;
+    width: max-content;
 }
 
 .featured{
-    background-color: hsl(0, 0%, 93%);
+    background-color:hsl(0, 7%, 97%);
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    padding: 0 20%;
-    margin: 9vh 0;
+    padding: 10vh 10%;
 }
 
 .featured-title{
-    color: hsl(208, 13%, 25%);
+    margin-bottom: 1rem;
+}
+
+.featured-title h2{
+    color: hsl(208, 13%, 23%);
     text-transform: uppercase;
-    font: 600 48px/29px "Poppins",sans-serif;
-    padding-top: 4rem;
-    margin: 0 0 25px;
+    font-weight: 600;
+    font-size: 3rem;
 }
 
 .featured-description{
-    color: hsl(208, 7%, 61%);
+    margin-bottom: 2rem;
+}
+
+.featured-description::after{
+    background-color: rgb(184, 184, 184);
+    content: " ";
+    display: block;
+    height: 0.3rem;
+    margin: 0 auto;
+    width: 10%;
+}
+ 
+.featured-description p{
+    color: hsl(210, 6%, 58%);
     text-align: center;
     margin-top: 20px;
     height: 10vh;
-    font: 300 20px/32px "Poppins",sans-serif;
+    font-weight: 300;
+    font-size: 1.3rem;
 }
 
 .featured-containers{
     display: flex;
-    margin-top: 20px;
+    gap: 1rem;
 }
 
 .featured-container{
@@ -204,22 +263,19 @@ body{
     max-width: 100%;
 }
 
-.container-text{
+.container-text h3{
     color: hsl(208, 13%, 25%);
-    font: 600 26px/1 "Poppins",sans-serif;
-    margin: 30px 0 8px;
-    display: flex;
-    flex-direction: column;
+    font-weight: 600;
+    font-size: 1.7rem;
     text-align: center;
-    align-items: center;
 }
 
-.container-text-description{
-    color: hsl(207, 5%, 56%);
-    font: 300 16px/28px "Poppins",sans-serif;
+.container-text-description p{
+    color: hsl(204, 4%, 53%);
+    font-weight: 300;
+    font-size: 1.1rem;
     letter-spacing: -.2px;
-    margin-top: 1rem;
-    width: 90%;
+    text-align: center;
 }
 
 .details{
@@ -231,6 +287,7 @@ body{
 .details-column{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .details-item{
@@ -423,12 +480,12 @@ body{
 }
 
 .social{
-    width: 100%;
-
-}
-
-.social-title{
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .social-links{
@@ -437,15 +494,19 @@ body{
 }
 
 .social-links svg{
-    fill:hsl(209, 100%, 50%);
+    fill:hsl(209, 100%, 74%);
     height: 4rem;
     width: 4rem;
 }
 
-.nav{
-
+.social-links svg:hover{
+    fill:hsl(209, 100%, 58%);
 }
 
+.nav{
+    display: flex;
+    gap: 2rem;
+}
 
 .information-footer-container{
     border-top: 1px solid  hsla(0, 0%, 54%, 0.226);

@@ -225,7 +225,7 @@ video{
 }
 
 .featured-description{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .featured-description::after{
@@ -236,12 +236,12 @@ video{
     margin: 0 auto;
     width: 10%;
 }
- 
+
 .featured-description p{
     color: hsl(210, 6%, 58%);
     text-align: center;
     margin-top: 20px;
-    height: 10vh;
+    height: 5vh;
     font-weight: 300;
     font-size: 1.3rem;
 }
@@ -249,6 +249,7 @@ video{
 .featured-containers{
     display: flex;
     gap: 1rem;
+    margin-top: 5rem;
 }
 
 .featured-container{
@@ -257,6 +258,15 @@ video{
     justify-content: center;
     align-items: center;
     width: 33%;
+}
+
+.featured-container::after :not(:last-child){
+    background-color: rgb(184, 184, 184);
+    content: " ";
+    display: block;
+    height: 0.3rem;
+    margin: 0 auto;
+    width: 10%;
 }
 
 .container-image{
@@ -284,7 +294,7 @@ video{
     justify-content: space-evenly;
 }
 
-.details-column{
+.details-column-left{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -427,14 +437,23 @@ video{
 }
 
 .contact-map{
+    position: absolute;
+    top: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
+    z-index: -1;
 
 }
 
 .contact-flipbox{
+    background-color: hsl(0, 0%, 100%);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    height: 40vh;
+    padding: 2rem;
+    border-radius: 20px;
 }
 
 .contact-flipbox-front{

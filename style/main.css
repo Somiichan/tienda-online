@@ -215,6 +215,7 @@ video{
 
 .featured-title{
     margin-bottom: 1rem;
+    padding: 0 4rem 0;
 }
 
 .featured-title h2{
@@ -225,7 +226,7 @@ video{
 }
 
 .featured-description{
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
 }
 
 .featured-description::after{
@@ -240,16 +241,17 @@ video{
 .featured-description p{
     color: hsl(210, 6%, 58%);
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     height: 5vh;
     font-weight: 300;
     font-size: 1.3rem;
+    padding: 0 6rem 0;
 }
 
 .featured-containers{
     display: flex;
     gap: 1rem;
-    margin-top: 5rem;
 }
 
 .featured-container{
@@ -260,17 +262,20 @@ video{
     width: 33%;
 }
 
-.featured-container::after :not(:last-child){
-    background-color: rgb(184, 184, 184);
-    content: " ";
+.featured-container:not(:last-child)::after {
+    color: hsl(0, 0%, 22%);
+    content: " > ";
     display: block;
-    height: 0.3rem;
-    margin: 0 auto;
     width: 10%;
 }
 
 .container-image{
+    margin-bottom: 1rem;
     max-width: 100%;
+}
+
+.container-text-title{
+    margin-bottom: 1rem;
 }
 
 .container-text h3{
@@ -278,6 +283,10 @@ video{
     font-weight: 600;
     font-size: 1.7rem;
     text-align: center;
+}
+
+.container-text-description{
+    padding: 0 2rem;
 }
 
 .container-text-description p{
@@ -291,8 +300,10 @@ video{
 .details{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    padding: 4rem 0 4rem;
+    gap: 5rem;
+    justify-content: center;
+    padding: 5rem 0;
+    margin: 2rem 0;
 }
 
 .details-column{
@@ -309,8 +320,6 @@ video{
 
 .details-item-icon{
     display: flex;
-    justify-content: flex-start;
-    align-items:flex-start
 }
 
 .details-item-icon svg{
@@ -350,7 +359,7 @@ video{
     flex-direction: column;
     justify-content: center;
     gap: 3rem;
-    background-color: hsl(220, 6%, 90%);
+    background-color: hsl(210, 8%, 95%);
     padding: 10vh 10%;
 }
 
@@ -361,16 +370,17 @@ video{
 }
 
 .title-maintext-container{
-    color: hsl(208, 13%, 25%);
-    text-transform: uppercase;
-    font: 600 48px/29px "Poppins",sans-serif;
     padding-top: 5px;
     margin: 0 0 2rem;
 }
+
 .title-maintext-container h2{
+    color: hsl(208, 13%, 25%);
     font-weight: 600;
     font-size: 3rem;
+    text-transform: uppercase;
 }
+
 .description-maintext-container{
     padding: 0 10%;
     color: hsl(208, 7%, 61%);
@@ -401,7 +411,7 @@ video{
 
 .team-item-social-networks-expand svg{
     width: 2rem; 
-    height: 3.4vh;
+    height: 2rem;
     background-color: rgb(255, 255, 255);
     color:hsl(207, 13%, 17%);
     position: absolute;
@@ -419,12 +429,6 @@ video{
     overflow: hidden;
 }
 
-.team-item-picture img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .team-item-name{
     background-color: hsl(0, 0%, 100%);
     padding: 1rem 0;
@@ -436,22 +440,20 @@ video{
 .team-item-name h4{
     font-weight: 300;
     font-size: 1.5rem;
-    font-family: "Poppins",sans-serif;
     text-align: center;
 }
 
 .team-item-description{
-    height: 3vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0.5rem 0;
 }
 
 .team-item-description p{
     color:hsl(208, 13%, 25%);
     font-weight: 300;
     font-size: 1rem;
-    font-family: "Poppins",sans-serif;
     text-align: center;
 }
 
@@ -475,7 +477,6 @@ video{
     width: 30%;
     height: 40vh;
     padding: 2rem;
-    border-radius: 0;
     z-index: 2;
 }
 
@@ -493,6 +494,7 @@ video{
 
 .contact-flipbox-title h2{
     text-align: center;
+    text-transform: uppercase;
 }
 
 .contact-flipbox-item{
@@ -512,7 +514,7 @@ video{
 }
 
 .contact-flipbox-item-description p{
-    color: grey;
+    color: hsl(0, 0%, 50%);
 }
 
 .contact-flipbox-front-button{
@@ -520,14 +522,14 @@ video{
     height: 4rem;
 }
 .contact-flipbox-front-button button{
-    background: #0084ff;
-    color: white;
+    background: hsl(209, 100%, 50%);
+    color: hsl(0, 0%, 100%);
     border: none;
     font-weight: 600;
     font-size: 2rem;
+    padding: 1rem 0;
     text-transform: uppercase;
     width: 100%;
-    height: 4rem;
     cursor: pointer;
 }
 
@@ -535,13 +537,15 @@ video{
     background-color: hsla(208, 13%, 25%, 0.534);
 }
 
+.footer{
+    margin-bottom: 1rem;
+}
+
 .social{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .social-links{
@@ -551,8 +555,8 @@ video{
 
 .social-links svg{
     fill:hsl(209, 100%, 74%);
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
 }
 
 .social-links svg:hover{

@@ -1,0 +1,84 @@
+.featured{
+    background-color:hsl(0, 7%, 97%);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vh 10%;
+}
+
+.featured-title{
+    gap: 2rem;
+}
+
+.featured-title h2{
+    color: hsl(208, 13%, 23%);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.featured-description{
+    margin-bottom: 5rem;
+}
+
+.featured-description::after{
+    background-color: hsl(0, 0%, 72%);
+    content: " ";
+    display: block;
+    height: 0.3rem;
+    margin: 0 auto;
+    width: 10%;
+}
+
+.featured-description p{
+    color: hsl(210, 6%, 58%);
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 5vh;
+    font-weight: 300;
+    font-size: 1.3rem;
+    padding: 0 6rem 0;
+}
+
+.featured-containers{
+    display: flex;
+    gap: 1rem;
+}
+
+.featured-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+}
+
+.container-image{
+    margin-bottom: 1rem;
+    max-width: 100%;
+}
+
+.container-text-title{
+    margin-bottom: 1rem;
+}
+
+.container-text h3{
+    color: hsl(208, 13%, 25%);
+    font-weight: 600;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.container-text-description{
+    padding: 0 2rem;
+}
+
+.container-text-description p{
+    color: hsl(204, 4%, 53%);
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: -.2px;
+    text-align: center;
+}

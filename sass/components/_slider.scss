@@ -13,12 +13,15 @@
     width: 100%;
     position: absolute;
     bottom: 0;
+    
+    @include fadeIn (1s, 2s);
 }
 
 .slider-background-image img{
     width: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
 }
 
 .slider-title{

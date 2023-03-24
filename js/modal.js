@@ -1,8 +1,10 @@
 export default (() => {
     
-    const checkButton = document.querySelector('.header-checkout-button');
-        checkButton.addEventListener("click", function(){
-            console.log("Hola");
-        })
-  
+    const modalButtons = document.querySelectorAll('.modal-button');
+
+    modalButtons.forEach((modalButton) => {
+        modalButton.addEventListener('click', () => {
+            console.log('Hola');
+        });
+    });
 })();

@@ -13,22 +13,30 @@
     align-items: center;
 }
 
+.team-maintext-container::after{
+    background-color: hsl(0, 0%, 72%);
+    content: " ";
+    display: block;
+    height: 0.3rem;
+    margin: 0 auto;
+    width: 10%;
+}
+
 .title-maintext-container{
-    padding-top: 5px;
-    margin: 0 0 2rem;
+    top: 5%;
 }
 
 .title-maintext-container h2{
     color: hsl(208, 13%, 23%);
+    text-transform: uppercase;
     font-weight: 600;
     font-size: 3rem;
-    text-transform: uppercase;
+    margin-bottom: 1rem;
 }
 
 .description-maintext-container{
     padding: 0 10%;
-    color: hsl(208, 7%, 61%);
-    margin: 0 auto 2rem;
+    margin-bottom: 1rem;
 }
 
 .description-maintext-container p{
@@ -42,6 +50,7 @@
     justify-content: center;
     gap: 2rem;
     width: 100%;
+    margin-top: 3rem;
 }
 
 .team-item{
@@ -53,17 +62,71 @@
     box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
 }
 
-.team-item-social-networks-expand svg{
-    width: 2rem; 
+.team-item-social-networks{
+    align-items: center;
+    background-color: hsla(212, 7%, 59%, 0.7);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 2rem;
-    background-color: rgb(255, 255, 255);
-    color:hsl(207, 13%, 17%);
     position: absolute;
-    right: 0;
-    margin: 20px;
-    padding: 5px;
-    border-radius: 100%;
+    right: 1rem;
+    top: 1rem;
+    width: 2rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.team-item-social-networks.active{
+    background-color: hsl(210, 7%, 35%);
+    height: max-content;
+    padding-bottom: 0.5rem;
+}
+
+.team-item-social-networks.active svg{
+    fill: hsl(210, 7%, 59%);
+    margin: 0.1rem 0;
+    width: 1.3rem;
+}
+
+.team-item-social-networks.active svg:hover{
+    fill: hsl(210, 6%, 79%);
+}
+
+.hamburger-button {
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    justify-content: center;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 2rem;
+}
+  
+.hamburger-button span {
+    background-color: hsl(0, 0%, 100%);
+    display: block;
+    height: 2px;
+    margin: 0.1rem auto;
+    transition: all 0.3s ease-in-out;
+    width: 50%;
+}
+
+.hamburger-button.active{
+    position: relative;
+}
+
+.hamburger-button.active span:first-of-type {
+    transform: translateY(5px) rotate(45deg);
+}
+  
+.hamburger-button.active span:nth-of-type(2) {
+    opacity: 0;
+}   
+
+.hamburger-button.active span:last-of-type {
+    transform: translateY(-5px) rotate(-45deg);
 }
 
 .team-item-picture{

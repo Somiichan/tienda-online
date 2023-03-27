@@ -17,20 +17,21 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .faqs-title p{
     color: hsl(210, 6%, 58%);
     font-weight: 300;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     letter-spacing: -.2px;
     text-align: center;
-    padding: 0 16rem 2rem;
+    padding: 0 16rem 0;
+    margin-bottom: 1rem;
 }
 
 .faqs-title::after{
-    background-color: rgb(184, 184, 184);
+    background-color: hsl(0, 0%, 72%);
     content: " ";
     display: block;
     height: 0.3rem;

@@ -333,20 +333,21 @@ main {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .faqs-title p {
   color: hsl(210, 6%, 58%);
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   letter-spacing: -0.2px;
   text-align: center;
-  padding: 0 16rem 2rem;
+  padding: 0 16rem 0;
+  margin-bottom: 1rem;
 }
 
 .faqs-title::after {
-  background-color: rgb(184, 184, 184);
+  background-color: hsl(0, 0%, 72%);
   content: " ";
   display: block;
   height: 0.3rem;
@@ -474,22 +475,30 @@ main {
   align-items: center;
 }
 
+.team-maintext-container::after {
+  background-color: hsl(0, 0%, 72%);
+  content: " ";
+  display: block;
+  height: 0.3rem;
+  margin: 0 auto;
+  width: 10%;
+}
+
 .title-maintext-container {
-  padding-top: 5px;
-  margin: 0 0 2rem;
+  top: 5%;
 }
 
 .title-maintext-container h2 {
   color: hsl(208, 13%, 23%);
+  text-transform: uppercase;
   font-weight: 600;
   font-size: 3rem;
-  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .description-maintext-container {
   padding: 0 10%;
-  color: hsl(208, 7%, 61%);
-  margin: 0 auto 2rem;
+  margin-bottom: 1rem;
 }
 
 .description-maintext-container p {
@@ -503,6 +512,7 @@ main {
   justify-content: center;
   gap: 2rem;
   width: 100%;
+  margin-top: 3rem;
 }
 
 .team-item {
@@ -514,17 +524,71 @@ main {
   box-shadow: 10px 10px 71px -37px rgba(0, 0, 0, 0.75);
 }
 
-.team-item-social-networks-expand svg {
-  width: 2rem;
+.team-item-social-networks {
+  align-items: center;
+  background-color: hsla(212, 7%, 59%, 0.7);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 2rem;
-  background-color: rgb(255, 255, 255);
-  color: hsl(207, 13%, 17%);
   position: absolute;
-  right: 0;
-  margin: 20px;
-  padding: 5px;
-  border-radius: 100%;
+  right: 1rem;
+  top: 1rem;
+  width: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.team-item-social-networks.active {
+  background-color: hsl(210, 7%, 35%);
+  height: max-content;
+  padding-bottom: 0.5rem;
+}
+
+.team-item-social-networks.active svg {
+  fill: hsl(210, 7%, 59%);
+  margin: 0.1rem 0;
+  width: 1.3rem;
+}
+
+.team-item-social-networks.active svg:hover {
+  fill: hsl(210, 6%, 79%);
+}
+
+.hamburger-button {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 2rem;
+  justify-content: center;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  width: 2rem;
+}
+
+.hamburger-button span {
+  background-color: hsl(0, 0%, 100%);
+  display: block;
+  height: 2px;
+  margin: 0.1rem auto;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+}
+
+.hamburger-button.active {
+  position: relative;
+}
+
+.hamburger-button.active span:first-of-type {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.hamburger-button.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.hamburger-button.active span:last-of-type {
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .team-item-picture {
@@ -563,9 +627,7 @@ main {
 }
 
 .contact {
-  display: flex;
-  justify-content: center;
-  padding: 10vh 0;
+  height: 60vh;
   position: relative;
 }
 
@@ -574,22 +636,35 @@ main {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -100;
 }
 
-.contact-flipbox {
-  background-color: hsl(0, 0%, 100%);
+.contact-flipbox.flip-card {
   width: 30%;
   height: 40vh;
-  padding: 2rem;
+  position: absolute;
+  left: 35%;
+  top: 10%;
   z-index: 2;
 }
 
 .contact-flipbox-front {
+  background-color: hsl(0, 0%, 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+  height: 100%;
   gap: 3rem;
+  padding: 2rem;
+  position: relative;
+  backface-visibility: hidden;
+  transform: perspective(1000px) rotateY(0deg);
+  transition: 1s;
+}
+
+.contact-flipbox.active .contact-flipbox-front {
+  transform: perspective(1000px) rotateY(180deg);
 }
 
 .contact-flipbox-title {
@@ -641,6 +716,112 @@ main {
 
 .contact-flipbox-front-button button:hover {
   background-color: hsl(0, 0%, 20%);
+}
+
+.contact-flipbox-back {
+  background-color: hsl(0, 0%, 100%);
+  padding: 3rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform: perspective(1000px) rotateY(-180deg);
+  transition: 1s;
+}
+
+.contact-flipbox.active .contact-flipbox-back {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.contact-flipbox-back form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+.contact-flipbox-back .name-email {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-flipbox-back input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(232, 238, 242);
+  background-color: rgb(248, 251, 253);
+  padding: 10px 10px;
+  font-size: 1rem;
+}
+
+.contact-flipbox-backback .message {
+  height: 100%;
+}
+
+.contact-flipbox-back .message input {
+  position: relative;
+}
+
+.contact-flipbox-back input::placeholder {
+  color: rgb(203, 212, 217);
+  position: absolute;
+}
+
+.contact-flipbox-back button {
+  width: 100%;
+  height: 100%;
+  background-color: hsl(209, 100%, 50%);
+  color: white;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.contact-flipbox-back button:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.close-button {
+  cursor: pointer;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+.contact-flipbox-back .close-button svg {
+  fill: hsl(203, 15%, 78%);
+  width: 2rem;
+  height: 2rem;
+}
+
+.contact-flipbox-back .close-button svg:hover {
+  fill: hsl(202, 4%, 61%);
+}
+
+.modal {
+  background-color: hsla(0, 0%, 100%, 0.8);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  z-index: -1;
+}
+
+.modal.active {
+  opacity: 1;
+  z-index: 2000;
 }
 
 img {

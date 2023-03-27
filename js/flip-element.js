@@ -1,10 +1,10 @@
 export default (() => {
 
-    const flipButton = document.querySelector('.contact-flipbox');
+    const flipButtons = document.querySelectorAll('.flip-button');
 
-    flipButton.addEventListener('click', () => {
-        flipButton.classList.toggle('flipped');
-        console.log("hola");
+    flipButtons.forEach((flipButton) => {
+        flipButton?.addEventListener('click', () => {
+            flipButton.closest('.flip-card').classList.toggle('active');
+        });
     });
-  
 })();

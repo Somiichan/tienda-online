@@ -92,7 +92,7 @@
 
 .information-footer-container {
   border-top: 1px solid hsla(0, 0%, 54%, 0.226);
-  width: 100%;
+  width: 70%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -110,11 +110,11 @@
 .information-footer-container ul li a {
   opacity: 50%;
   font-size: 1rem;
-  color: hsl(0, 0%, 25%);
+  color: hsl(0, 0%, 35%);
 }
 
 .information-footer-container ul li a:hover {
-  color: hsl(207, 13%, 17%);
+  color: hsl(0, 0%, 13%);
 }
 
 .copyright-footer-container p {
@@ -643,7 +643,7 @@ main {
   width: 30%;
   height: 40vh;
   position: absolute;
-  left: 35%;
+  left: 33%;
   top: 10%;
   z-index: 2;
 }

@@ -383,19 +383,11 @@ main {
   font-size: 2rem;
   font-weight: 600;
   transform: translateY(-50%);
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .faqs-question.active::before {
   content: "–";
-  color: hsl(200, 2%, 51%);
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: -5px;
-  font-size: 2rem;
-  font-weight: 600;
-  transform: translateY(-50%);
 }
 
 .faqs-question::after {

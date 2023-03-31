@@ -390,15 +390,8 @@ main {
   content: "–";
 }
 
-.faqs-question::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: hsl(0, 0%, 83%);
+.faqs-question {
+  border-bottom: 2px solid hsl(0, 1%, 64%);
 }
 
 .faqs-question h3 {
@@ -864,6 +857,127 @@ main {
 .modal.active {
   opacity: 1;
   z-index: 2000;
+}
+
+.modal-box {
+  position: absolute;
+  height: 70vh;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 62px hsla(0, 0%, 0%, 0.3);
+  display: flex;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+}
+
+.modal-gallery {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.watch-title {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+  margin-bottom: 1rem;
+}
+
+.watch-facture {
+  display: flex;
+  gap: 1rem;
+}
+
+.new-prize h3 {
+  color: hsl(209, 100%, 50%);
+}
+
+.offer-tag h6 {
+  background-color: hsl(18, 100%, 57%);
+  color: hsl(0, 0%, 100%);
+  padding: 0.1rem;
+}
+
+.watch-description {
+  color: hsl(0, 1%, 61%);
+  font-size: 1 rem;
+  line-height: 150%;
+  border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+  margin-bottom: 1rem;
+}
+
+.watch-options {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+  margin-bottom: 1rem;
+}
+
+.watch-option-sold p {
+  color: hsl(209, 100%, 50%);
+}
+
+.watch-option-sizes p {
+  color: hsl(209, 100%, 50%);
+}
+
+.modal-checkout-button button {
+  background: hsl(209, 100%, 50%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem 0;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-checkout-button button:hover {
+  background: hsl(0, 0%, 20%);
+}
+
+.form-button button {
+  background: hsl(209, 100%, 50%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem 0;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-close-button {
+  cursor: pointer;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+.modal-close-button svg {
+  fill: hsl(203, 15%, 78%);
+  width: 2rem;
+  height: 2rem;
+  transition: 0.3s;
+}
+
+.modal-close-button svg:hover {
+  fill: hsl(210, 1%, 33%);
 }
 
 img {

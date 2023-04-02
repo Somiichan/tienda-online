@@ -53,8 +53,9 @@
 .watch-title{
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+    border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
     margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 .watch-name{}
@@ -79,18 +80,20 @@
 }
 
 .watch-description{
-    color: hsl(0, 1%, 61%);
+    color: hsl(0, 1%, 68%);
     font-size: 1 rem;
     line-height: 150%;
-    border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+    border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .watch-options{
     display: flex;
     justify-content: space-around;
-    border-bottom: 1px solid hsla(0, 1%, 61%, 0.747);
+    border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .watch-option-color{}
@@ -139,7 +142,29 @@
 }
 
 .go-back-button button{
-    
+    border-radius: 30px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding: 0.3rem 1.8rem;
+    color: hsl(208, 11%, 74%);
+    border-color: hsla(210, 11%, 89%, 0.89);
+    background-color: transparent;
+}
+
+.go-back-button button:hover{
+    background: $hover-color;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}
+
+.modal-form input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(232,238,242,255);
+    background-color: rgba(248,251,253,255);
+    padding: 10px 10px;
+    font-size: 1rem;
 }
 
 .form-button button{

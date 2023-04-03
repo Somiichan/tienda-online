@@ -8,4 +8,5 @@ export default (() => {
             modal.classList.toggle('active');
         });
     });
+    
 })();

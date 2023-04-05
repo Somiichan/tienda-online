@@ -1,0 +1,28 @@
+.plus-minus-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.plus-minus-button input{
+    max-width: 5rem;
+}
+
+.plus-minus-button input[value]{
+    text-align: center;
+}
+
+.plus-minus-button input, button{
+    outline: none;
+    box-sizing: border-box;
+    border: 0.5px solid hsl(204, 14%, 86%);
+    background-color: hsl(204, 56%, 98%);
+    font-size: 1rem;
+}
+
+.plus-minus-button button:hover{
+    background: $hover-color;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}

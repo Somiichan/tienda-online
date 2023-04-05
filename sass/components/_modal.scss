@@ -29,7 +29,8 @@
 }
 
 .modal-gallery{
-    background-color: hsl(0, 0%, 88%);
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: inset 0 0 62px hsla(0, 0%, 0%, 0.3);
     width: 50%;
     height: 100%;
     display: flex;
@@ -119,62 +120,6 @@
     padding: 0.1rem;
     font-weight: 500;
     font-size: 1rem;
-}
-
-.product-description{
-    border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
-    padding-bottom: 1rem;
-    height: 10vh;
-    width: 100%;
-}
-
-.product-description p{
-    color: hsl(0, 0%, 61%);
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 150%;
-}
-
-.product-options{
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
-    padding-bottom: 1rem;
-    height: 5vh;
-}
-
-.color-title h4{
-    color: hsl(216, 2%, 43%);
-}
-
-.product-option-sold{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.product-option-sold h4{
-    color: hsl(216, 2%, 43%);
-}
-
-.product-option-sold p{
-    color: $primary-color;
-    font-weight: 500;
-}
-
-.product-option-sizes{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.product-option-sizes h4{
-    color: hsl(216, 2%, 43%);
-}
-
-.product-option-sizes p{
-    color: $primary-color;
-    font-weight: 500;
 }
 
 .modal-checkout-button button{

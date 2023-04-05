@@ -1,0 +1,39 @@
+.tabs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid hsl(0, 0%, 80%);
+    padding: 1rem;
+}
+  
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.tab {
+    background-color: hsl(0, 0%, 95%);
+    padding: 0.5rem 1rem;
+    border: 1px solid hsl(0, 0%, 80%);
+    cursor: pointer;
+}
+  
+
+.tab.active {
+    background-color: hsl(0, 0%, 80%);
+}
+  
+.tab-content {
+    margin-top: 10px;
+}
+  
+
+.content p{
+    font-weight: 300;
+    font-size: 1rem;
+}
+  
+
+.content.active {
+    display: block;
+}

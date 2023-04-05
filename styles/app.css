@@ -759,7 +759,7 @@ main {
 .contact-flipbox-back form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
   gap: 1rem;
@@ -771,13 +771,18 @@ main {
 }
 
 .contact-flipbox-back input {
+  outline: none;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  border: 1px solid rgb(232, 238, 242);
-  background-color: rgb(248, 251, 253);
+  border: 0.5px solid hsl(206, 29%, 91%);
+  background-color: hsl(204, 56%, 98%);
   padding: 10px 10px;
   font-size: 1rem;
+}
+
+* input:focus {
+  border: 0.5px solid hsl(209, 100%, 50%);
 }
 
 .contact-flipbox-backback .message {
@@ -859,7 +864,8 @@ main {
 }
 
 .modal-gallery {
-  background-color: hsl(0, 0%, 88%);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 0 62px hsla(0, 0%, 0%, 0.3);
   width: 50%;
   height: 100%;
   display: flex;
@@ -949,62 +955,6 @@ main {
   padding: 0.1rem;
   font-weight: 500;
   font-size: 1rem;
-}
-
-.product-description {
-  border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
-  padding-bottom: 1rem;
-  height: 10vh;
-  width: 100%;
-}
-
-.product-description p {
-  color: hsl(0, 0%, 61%);
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 150%;
-}
-
-.product-options {
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
-  padding-bottom: 1rem;
-  height: 5vh;
-}
-
-.color-title h4 {
-  color: hsl(216, 2%, 43%);
-}
-
-.product-option-sold {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-option-sold h4 {
-  color: hsl(216, 2%, 43%);
-}
-
-.product-option-sold p {
-  color: hsl(209, 100%, 50%);
-  font-weight: 500;
-}
-
-.product-option-sizes {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-option-sizes h4 {
-  color: hsl(216, 2%, 43%);
-}
-
-.product-option-sizes p {
-  color: hsl(209, 100%, 50%);
-  font-weight: 500;
 }
 
 .modal-checkout-button button {
@@ -1145,6 +1095,71 @@ main {
   fill: hsl(210, 1%, 33%);
 }
 
+.plus-minus-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-minus-button input {
+  max-width: 5rem;
+}
+
+.plus-minus-button input[value] {
+  text-align: center;
+}
+
+.plus-minus-button input, button {
+  outline: none;
+  box-sizing: border-box;
+  border: 0.5px solid hsl(204, 14%, 86%);
+  background-color: hsl(204, 56%, 98%);
+  font-size: 1rem;
+}
+
+.plus-minus-button button:hover {
+  background: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid hsl(0, 0%, 80%);
+  padding: 1rem;
+}
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab {
+  background-color: hsl(0, 0%, 95%);
+  padding: 0.5rem 1rem;
+  border: 1px solid hsl(0, 0%, 80%);
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: hsl(0, 0%, 80%);
+}
+
+.tab-content {
+  margin-top: 10px;
+}
+
+.content p {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.content.active {
+  display: block;
+}
+
 img {
   object-fit: cover;
   max-width: 100%;
@@ -1152,6 +1167,12 @@ img {
 
 video {
   max-width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

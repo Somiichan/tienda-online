@@ -1124,9 +1124,9 @@ main {
 }
 
 .tabs {
+  border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
   display: flex;
   flex-direction: column;
-  border: 1px solid hsl(0, 0%, 80%);
   padding: 1rem;
 }
 
@@ -1137,10 +1137,26 @@ main {
 }
 
 .tab {
-  background-color: hsl(0, 0%, 95%);
+  background-color: #ccc;
+  border-radius: 5px 5px 0 0;
+  position: relative;
   padding: 0.5rem 1rem;
-  border: 1px solid hsl(0, 0%, 80%);
   cursor: pointer;
+}
+
+.tab:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
+.tab h3 {
+  display: inline-block;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.tab h3:hover {
+  color: hsl(0, 0%, 100%);
 }
 
 .tab.active {
@@ -1148,15 +1164,27 @@ main {
 }
 
 .tab-content {
-  margin-top: 10px;
+  height: 10vh;
+  padding-top: 1rem;
+  text-align: start;
+  width: 100%;
+}
+
+.tab-content.focus {
+  background-color: hsl(0, 0%, 80%);
+}
+
+.tab-content .content {
+  display: none;
+  overflow: hidden;
 }
 
 .content p {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1rem;
 }
 
-.content.active {
+.tab-content .content.active {
   display: block;
 }
 

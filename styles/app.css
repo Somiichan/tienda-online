@@ -1127,59 +1127,67 @@ main {
   border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 }
 
 .tab-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .tab {
-  background-color: #ccc;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(32, 97%, 61%);
   border-radius: 5px 5px 0 0;
+  border-top-right-radius: 60px 30px;
   position: relative;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
 .tab:hover {
-  background-color: hsl(0, 0%, 80%);
+  background-color: hsla(32, 97%, 61%, 0.822);
 }
 
 .tab h3 {
+  color: hsl(0, 0%, 100%);
   display: inline-block;
   padding: 0.5rem;
   cursor: pointer;
   z-index: 2;
 }
 
-.tab h3:hover {
-  color: hsl(0, 0%, 100%);
+.tab.active {
+  background-color: hsl(32, 97%, 61%);
 }
 
-.tab.active {
-  background-color: hsl(0, 0%, 80%);
+.tab:not(.active) {
+  box-shadow: inset 2px 0 4px hsla(0, 0%, 0%, 0.2);
 }
 
 .tab-content {
+  background-color: hsl(32, 97%, 61%);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   height: 10vh;
   padding-top: 1rem;
+  padding-left: 1rem;
   text-align: start;
   width: 100%;
 }
 
-.tab-content.focus {
-  background-color: hsl(0, 0%, 80%);
-}
-
 .tab-content .content {
-  display: none;
   overflow: hidden;
 }
 
+.tab-content .content:not(.active) {
+  display: none;
+}
+
 .content p {
+  color: hsl(0, 0%, 100%);
   font-weight: 400;
   font-size: 1rem;
 }

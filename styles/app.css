@@ -1159,7 +1159,7 @@ main {
 }
 
 .tab.active {
-  background-color: hsl(32, 97%, 61%);
+  background-color: hsl(251, 97%, 61%);
 }
 
 .tab:not(.active) {
@@ -1167,7 +1167,7 @@ main {
 }
 
 .tab-content {
-  background-color: hsl(32, 97%, 61%);
+  background-color: hsl(251, 97%, 61%);
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

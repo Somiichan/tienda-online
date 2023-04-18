@@ -5,6 +5,7 @@ import './modal.js';
 import './acordeon.js';
 import './plus-minus-button.js';
 import './tabs.js';
+import './notification.js';
 
 let featuredContainers = document.querySelectorAll('.featured-container');
     featuredContainers.forEach(featuredContainer => {

@@ -1,0 +1,37 @@
+#notification{
+    bottom: 1rem;
+    min-height: 2rem;
+    opacity: 0;
+    padding: 2rem;
+    position: fixed;
+    right: 1rem;
+    transition: opacity 0.5s;
+    width: 15%;
+    z-index: -1;
+}
+
+#notification.active{
+    opacity: 1;
+    z-index: 5000;
+}
+
+#notification.add{
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: hsl(160, 60%, 64%);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#notification.remove{
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: hsl(340, 57%, 64%);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#notification span{
+    color: hsl(0, 0%, 100%);
+    font-weight: 600;
+}

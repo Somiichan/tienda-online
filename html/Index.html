@@ -6,7 +6,7 @@
         <link href="../sass/base/_content.scss" rel="stylesheet"/>
         <link href="../sass/base/_typography.scss" rel="stylesheet"/>
         <link href="../sass/base/_normalize.scss" rel="stylesheet"/>
-        <link href="../styles/app.css" rel="stylesheet"/>
+        <link href="../styles/front/app.css" rel="stylesheet"/>
         <script type="module" src="../js/app.js"></script>
     </head>
     <body>
@@ -423,7 +423,8 @@
                                 <input type="text" placeholder="Subject">
                             </div>
                             <div class="message">
-                                <input type="text" placeholder="Message">
+                                <input type="text" class="myInput" placeholder="Message">
+                                <p class="charCount">0/20 char</p>
                             </div>
                             <div class="button">
                                 <button type="submit">SEND MESSAGE</button>
@@ -512,8 +513,14 @@
                                     <input type="text" placeholder="E-mail adress">
                                 </div>
                                 <div class="address">
-                                    <input type="text" placeholder="Address Line 1">
-                                    <input type="text" placeholder="Address Line 2">
+                                    <div class="input-address-line">
+                                        <input type="text" class="myInput" placeholder="Address Line 1">
+                                        <p class="charCount">0/20 char</p>
+                                    </div>
+                                    <div class="input-address-line">
+                                        <input type="text" class="myInput" placeholder="Address Line 2">
+                                        <p class="charCount">0/20 char</p>
+                                    </div>
                                 </div>
                                 <div class="state">
                                     <input type="text" placeholder="State">

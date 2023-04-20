@@ -781,6 +781,17 @@ main {
   font-size: 1rem;
 }
 
+.contact-flipbox-back .charCount {
+  font-size: 14px;
+  color: hsl(206, 29%, 91%);
+  margin-top: 5px;
+}
+
+.contact-flipbox-back .charCount.max-char {
+  color: hsla(0, 100%, 50%, 0.568);
+  font-weight: bold;
+}
+
 * input:focus {
   border: 0.5px solid hsl(209, 100%, 50%);
 }
@@ -796,6 +807,14 @@ main {
 .contact-flipbox-back input::placeholder {
   color: rgb(203, 212, 217);
   position: absolute;
+}
+
+.contact-flipbox-back input:focus::placeholder {
+  color: transparent;
+}
+
+.contact-flipbox-back input:not(:focus)::placeholder {
+  color: rgb(203, 212, 217);
 }
 
 .contact-flipbox-back button {
@@ -1023,6 +1042,11 @@ main {
   gap: 2rem;
 }
 
+.input-address-line {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-form .state {
   display: flex;
   gap: 2rem;
@@ -1037,6 +1061,30 @@ main {
   background-color: hsl(204, 56%, 98%);
   padding: 10px 10px;
   font-size: 1rem;
+}
+
+.modal-form .charCount {
+  font-size: 14px;
+  color: hsl(206, 29%, 91%);
+  margin-top: 5px;
+}
+
+.modal-form .charCount.max-char {
+  color: hsla(0, 100%, 50%, 0.568);
+  font-weight: bold;
+}
+
+.modal-form input::placeholder {
+  color: rgb(203, 212, 217);
+  position: absolute;
+}
+
+.modal-form input:focus::placeholder {
+  color: transparent;
+}
+
+.modal-form input:not(:focus)::placeholder {
+  color: rgb(203, 212, 217);
 }
 
 * input:focus {

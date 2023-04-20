@@ -131,6 +131,17 @@
     font-size: 1rem;
 }
 
+.contact-flipbox-back .charCount{
+    font-size: 14px;
+    color: hsl(206, 29%, 91%);
+    margin-top: 5px;
+}
+
+.contact-flipbox-back .charCount.max-char {
+    color: hsla(0, 100%, 50%, 0.568);
+    font-weight: bold;
+}
+
 *input:focus{
     border: 0.5px solid $primary-color;
 }
@@ -146,6 +157,14 @@
 .contact-flipbox-back input::placeholder {
     color: rgba(203,212,217,255); 
     position: absolute;
+}
+
+.contact-flipbox-back input:focus::placeholder {
+  color: transparent;
+}
+
+.contact-flipbox-back input:not(:focus)::placeholder {
+  color: rgba(203,212,217,255); 
 }
 
 .contact-flipbox-back button {

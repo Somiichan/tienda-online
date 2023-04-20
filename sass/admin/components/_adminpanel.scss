@@ -1,0 +1,47 @@
+body {
+    background-color: hsl(231, 93%, 58%);
+}
+
+.admin-panel{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.panel-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 0 4rem;
+    border: solid red 1px;
+}
+
+.panel-header h2 {
+ color: hsl(0, 0%, 100%);
+}
+
+.header-hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    width: 2rem;
+}
+
+.header-hamburger svg {
+    fill:hsl(0, 0%, 100%);
+}
+
+.panel-filter {
+    margin: 2rem 0;
+    padding: 0 50rem;
+    background-color: white;
+}
+
+.panel-filter svg {
+    fill: hsl(231, 93%, 58%);
+}

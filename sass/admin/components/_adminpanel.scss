@@ -1,47 +1,190 @@
 body {
     background-color: hsl(231, 93%, 58%);
+    max-width: 90%;
+    padding: 0 5%;
+    margin: 5% 0;
 }
 
-.admin-panel{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+svg {
+    width: 2.5rem;
+
 }
 
 .panel-header {
     display: flex;
     justify-content:space-between;
     align-items: center;
-    margin: 2rem 0;
-    padding: 0 4rem;
-    border: solid red 1px;
+    margin-top: 2rem;
+    
 }
 
-.panel-header h2 {
+.panel-header h1 {
  color: hsl(0, 0%, 100%);
-}
-
-.header-hamburger {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    height: 2rem;
-    justify-content: center;
-    transition: all 0.3s ease-in-out;
-    width: 2rem;
 }
 
 .header-hamburger svg {
     fill:hsl(0, 0%, 100%);
 }
 
+.admin-panel{
+    display: flex;
+    flex-direction: column;
+
+}
+
 .panel-filter {
-    margin: 2rem 0;
-    padding: 0 50rem;
     background-color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .panel-filter svg {
-    fill: hsl(231, 93%, 58%);
+    width: 2rem;
+    padding: 0.5rem;
+    fill: hsl(216, 94%, 67%);
+}
+
+.panel-content{
+    display:flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    
+}
+
+.contact-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 30%;
+}
+
+.user-contact{
+    background-color:hsl(216, 94%, 67%);
+}
+
+.contact-edit{
+    display: flex;
+    justify-content: flex-end;
+    background-color: hsl(204, 85%, 69%);
+    z-index: 10;
+}
+
+.contact-edit svg{
+    fill: white;
+}
+
+.contact-info{
+    padding: 0 1rem;
+    
+}
+
+.contact-info ul li{
+    color: white;
+    font-size: 1rem;
+}
+
+.contact-form{
+    width: 70%;
+}
+
+.form-menu{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.form-menu div{
+    height: 3rem;
+}
+
+.form-selector{
+    display: flex;
+    align-items: center;
+}
+
+.form-selector div{
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.principal-tab{
+    background-color: hsl(204, 85%, 69%);
+    cursor: pointer;
+}
+
+.principal-tab h3{
+    color: white;
+    text-align: center;
+}
+
+.image-tab{
+    cursor: pointer;
+}
+
+.image-tab h3{
+    text-align: center;
+}
+
+.form-editor{
+    display:flex;
+    gap: 0.5rem;
+}
+
+.form-editor div{
+    display: flex;
+    align-items: center;
+}
+
+.form-editor svg{
+    fill:hsl(204, 85%, 69%);
+    width: 2.5rem;
+}
+
+.editor-save{
+    padding: 0 0.5rem;
+}
+
+.principal-form{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding-top: 2rem;
+    width: 100%;
+    height: 100%;
+
+}
+
+.user-data{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.user-pwd{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+  
+input[type="text"],
+input[type="password"] {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color:  hsl(216, 94%, 67%);
+    width: 25rem;
+    height: 2.5rem;
 }

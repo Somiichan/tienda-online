@@ -31,6 +31,14 @@
     box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+#notification.error{
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: hsl(0, 60%, 58%);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
 #notification span{
     color: hsl(0, 0%, 100%);
     font-weight: 600;

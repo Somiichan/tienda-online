@@ -1,10 +1,10 @@
 export default (() => {
     
-    document.addEventListener("message", (event =>{
+    document.addEventListener('message', (event =>{
 
         let notification = document.getElementById("notification");
         let notificationText = document.getElementById("notification-message");
-        
+
         notificationText.innerHTML = event.detail.text;
         notification.classList.add(event.detail.type);
         notification.classList.add("active");

@@ -1025,24 +1025,6 @@ main {
   cursor: pointer;
 }
 
-.modal-close-button {
-  cursor: pointer;
-  right: 1rem;
-  top: 1rem;
-  position: absolute;
-}
-
-.modal-close-button svg {
-  fill: hsl(203, 15%, 78%);
-  width: 2rem;
-  height: 2rem;
-  transition: 0.3s;
-}
-
-.modal-close-button svg:hover {
-  fill: hsl(210, 1%, 33%);
-}
-
 .modal-form {
   display: flex;
   flex-direction: column;
@@ -1055,12 +1037,17 @@ main {
   gap: 2rem;
 }
 
-.modal-form .personal-data {
+.modal-form .address {
   display: flex;
   gap: 2rem;
 }
 
-.address-line {
+.modal-form .telephone {
+  display: flex;
+  gap: 2rem;
+}
+
+.input-address-line {
   display: flex;
   flex-direction: column;
 }
@@ -1074,6 +1061,7 @@ main {
   outline: none;
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
   border: 0.5px solid hsl(206, 29%, 91%);
   background-color: hsl(204, 56%, 98%);
   padding: 10px 10px;
@@ -1108,10 +1096,6 @@ main {
   border: 0.5px solid hsl(209, 100%, 50%);
 }
 
-input.invalid {
-  border: 0.5px solid red;
-}
-
 .country select {
   outline: none;
   cursor: pointer;
@@ -1144,6 +1128,24 @@ input.invalid {
 
 .form-button button:hover {
   background: hsl(0, 0%, 20%);
+}
+
+.modal-close-button {
+  cursor: pointer;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+.modal-close-button svg {
+  fill: hsl(203, 15%, 78%);
+  width: 2rem;
+  height: 2rem;
+  transition: 0.3s;
+}
+
+.modal-close-button svg:hover {
+  fill: hsl(210, 1%, 33%);
 }
 
 .plus-minus-button {
@@ -1277,14 +1279,6 @@ input.invalid {
   border: 3px solid black;
   border-radius: 5px;
   background-color: hsl(340, 57%, 64%);
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-#notification.error {
-  text-align: center;
-  border: 3px solid black;
-  border-radius: 5px;
-  background-color: hsl(0, 60%, 58%);
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
 }
 

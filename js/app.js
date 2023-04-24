@@ -7,8 +7,5 @@ import './plus-minus-button.js';
 import './tabs.js';
 import './notification.js';
 import './inputCounter.js';
+import './form.js';
 
-let featuredContainers = document.querySelectorAll('.featured-container');
-    featuredContainers.forEach(featuredContainer => {
-        console.log(featuredContainer);
-    });

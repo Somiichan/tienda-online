@@ -4,111 +4,19 @@
         <meta charset="utf-8">
 		<title>Proland</title>
         <link href="../styles/front/app.css" rel="stylesheet"/>
-        <script type="module" src="../js/app.js"></script>
+        <script type="module" src="../src/index.js"></script>
     </head>
     <body>
         <header class="header">
             <nav class="header-navbar">
-                <div class="header-logo">
-                    <img src="../images/header-logo.webp" alt="Header Logo">
-                </div>
-                <div class="header-menu"> 
-                    <ul>
-                        <li>
-                            <a href="#header">HOME</a>
-                        </li>
-                        <li>
-                            <a href="#product">PRODUCT</a>
-                        </li>
-                        <li>
-                            <a href="#features">FEATURES</a>
-                        </li>
-                        <li>
-                            <a href="#details">DETAILS</a>
-                        </li>
-                        <li>
-                            <a href="#team">TEAM</a>
-                        </li>
-                        <li>
-                            <a href="#contact">CONTACT</a>
-                        </li>
-                        <li>
-                            <a href="#social">SOCIAL</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="header-checkout-button">
-                    <button class="modal-button">BUY IT NOW</button>
-                </div>
+                <logo-component></logo-component>
+                <menu-component></menu-component>
+                <modal-button-component></modal-button-component>
             </nav>
         </header>
         <main>
-            <div class="slider" id="product">
-                <div class="slider-background-image">
-                    <img src="../images/header-background.webp" alt="Slider Background">
-                </div>
-                <div class="slider-title">
-                    <h2>The future of tech is here</h2>
-                </div>
-                <div class="slider-description">
-                    <p>Holisticly incentivize revolutionary collaboration and idea sharing before cost effective users. Actual focused services before highly efficient human capital.</p>
-                </div>
-                <div class="slider-button">
-                    <button class="modal-button">BUY WITH PAYPAL</button>
-                </div>
-                <div class="slider-image">
-                    <img src="../images/slider-image.webp" alt="Slider Image">
-                </div>
-            </div>
-            <div class="featured" id="features">
-                <div class="featured-title">
-                    <h2>HOW IT WORKS</h2>
-                </div>
-                <div class="featured-description">
-                    <p>Everybody loves tech gadgets, But our's is different. Here is how it works. It should be simple. Add how easy is to install your product.</p>
-                </div>
-                <div class="featured-containers">
-                    <div class="featured-container">
-                        <div class="container-image">
-                            <img src="../images/connect-image.webp" alt="Connect Image">
-                        </div>
-                        <div class="container-text">
-                            <div class="container-text-title">
-                                <h3>Connect Device</h3>
-                            </div>
-                            <div class="container-text-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur de elit, sed do tempor incididunt ut labore eta rehenderit in voluptate velit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-container">
-                        <div class="container-image">
-                            <img src="../images/config-image.webp" alt="Config Image">
-                        </div>
-                        <div class="container-text">
-                            <div class="container-text-title">
-                                <h3>Configure it</h3>
-                            </div>
-                            <div class="container-text-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur de elit, sed do tempor incididunt ut labore eta rehenderit in voluptate velit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-container">
-                        <div class="container-image">
-                            <img src="../images/done-image.webp" alt="Done Image">
-                        </div>
-                        <div class="container-text">
-                            <div class="container-text-title">
-                                <h3>Yay! Done.</h3>
-                            </div>
-                            <div class="container-text-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur de elit, sed do tempor incididunt ut labore eta rehenderit in voluptate velit.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <slider-component></slider-component>
+            <featured-component></featured-component>
             <div class="faqs">
                 <div class="faqs-title">
                     <h2>Bootstrap 5 FAQ</h2>

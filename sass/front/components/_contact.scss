@@ -74,7 +74,7 @@
     height: 4rem;
 }
 .contact-flipbox-front-button button{
-    background: $primary-color;
+    background: hsl(209, 100%, 50%);
     color: hsl(0, 0%, 100%);
     border: none;
     font-weight: 600;
@@ -86,7 +86,7 @@
 }
 
 .contact-flipbox-front-button button:hover{
-    background-color: $hover-color;
+    background-color: hsl(0, 0%, 20%);
 }
 
 .contact-flipbox-back{
@@ -143,7 +143,7 @@
 }
 
 *input:focus{
-    border: 0.5px solid $primary-color;
+    border: 0.5px solid hsl(209, 100%, 50%);
 }
 
 .contact-flipbox-backback .message {
@@ -170,10 +170,10 @@
 .contact-flipbox-back button {
     width: 100%;
     height: 100%;
-    background-color: $primary-color;
+    background-color: hsl(209, 100%, 50%);
     color: white;
     border: none;
-    font-family: $font-stack;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.5rem;
     padding: 1rem 2rem;
@@ -182,7 +182,7 @@
 }
 
 .contact-flipbox-back button:hover {
-    background-color: $hover-color;
+    background-color: hsl(0, 0%, 20%);
 }
 
 .close-button{

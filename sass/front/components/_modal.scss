@@ -109,7 +109,7 @@
 }
 
 .new-price h3{
-    color: $primary-color;
+    color: hsl(209, 100%, 50%);
     font-weight: 600;
     font-size: 2rem;
 }
@@ -123,7 +123,7 @@
 }
 
 .modal-checkout-button button{
-    background: $primary-color;
+    background: hsl(209, 100%, 50%);
     color: hsl(0, 0%, 100%);
     border: none;
     border-radius: 5px;
@@ -136,7 +136,7 @@
 }
 
 .modal-checkout-button button:hover{
-    background: $hover-color;
+    background: hsl(0, 0%, 20%);
 }
 
 .modal-personal-info{
@@ -166,7 +166,7 @@
 }
 
 .go-back-button button:hover{
-    background: $hover-color;
+    background: hsl(0, 0%, 20%);
     color: hsl(0, 0%, 100%);
     cursor: pointer;
 }

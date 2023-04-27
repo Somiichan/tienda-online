@@ -12,7 +12,7 @@
 
 .modal-form .personal-data{
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
 }
 
 .address-line{
@@ -40,7 +40,7 @@
     color: hsl(206, 29%, 91%);
     margin-top: 5px;
 }
-  
+
 .modal-form .charCount.max-char {
     color: hsla(0, 100%, 50%, 0.568);
     font-weight: bold;
@@ -52,11 +52,11 @@
 }
 
 .modal-form input:focus::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .modal-form input:not(:focus)::placeholder {
-  color: rgba(203,212,217,255); 
+    color: rgba(203,212,217,255); 
 }
 
 *input:focus{

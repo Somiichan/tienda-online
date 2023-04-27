@@ -26,7 +26,6 @@ class Table extends HTMLElement {
                 flex-direction: column;
                 justify-content: space-between;
                 gap: 2rem;
-                width: 30rem;
             }
             
             .user-contact{

@@ -27,10 +27,6 @@ class Form extends HTMLElement {
                 margin: 0;
                 overflow: visible;
             }
-
-            .contact-form{
-                width: 60.5rem;
-            }
             
             .form-menu{
                 display: flex;

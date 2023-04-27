@@ -138,7 +138,7 @@ main {
 
 body {
   background-color: hsl(231, 93%, 58%);
-  max-width: 90%;
+  width: 90%;
   padding: 0 5%;
   margin: 5% 0;
 }
@@ -170,6 +170,7 @@ svg {
 .admin-panel {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .panel-filter {
@@ -189,6 +190,15 @@ svg {
   display: flex;
   gap: 4rem;
   margin-top: 2rem;
+  width: 100%;
+}
+
+.table-content {
+  width: 30%;
+}
+
+.form-content {
+  width: 70%;
 }
 
 .contact-list {

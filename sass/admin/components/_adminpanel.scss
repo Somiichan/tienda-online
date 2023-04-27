@@ -22,6 +22,11 @@ svg {
  color: hsl(0, 0%, 100%);
 }
 
+.header-logo, 
+.header-title {
+    cursor: pointer;
+}
+
 .header-hamburger svg {
     fill:hsl(0, 0%, 100%);
 }
@@ -34,6 +39,7 @@ svg {
 
 .panel-filter {
     background-color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
 }
@@ -46,7 +52,7 @@ svg {
 
 .panel-content{
     display:flex;
-    gap: 2rem;
+    gap: 4rem;
     margin-top: 2rem;
     
 }
@@ -56,18 +62,17 @@ svg {
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
-    width: 30%;
 }
 
 .user-contact{
     background-color:hsl(216, 94%, 67%);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .contact-edit{
     display: flex;
     justify-content: flex-end;
     background-color: hsl(204, 85%, 69%);
-    z-index: 10;
 }
 
 .contact-edit svg{
@@ -85,13 +90,14 @@ svg {
 }
 
 .contact-form{
-    width: 70%;
+    width: 70rem;
 }
 
 .form-menu{
     display: flex;
     align-items: center;
     background-color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     justify-content: space-between;
 }
 
@@ -102,12 +108,14 @@ svg {
 .form-selector{
     display: flex;
     align-items: center;
+    
 }
 
 .form-selector div{
     display: flex;
     align-items: center;
     padding: 0 1rem;
+    
 }
 
 .principal-tab{
@@ -140,7 +148,6 @@ svg {
 
 .form-editor svg{
     fill:hsl(204, 85%, 69%);
-    width: 2.5rem;
 }
 
 .editor-save{
@@ -185,6 +192,7 @@ input[type="password"] {
     border: none;
     border-bottom: 1px solid white;
     background-color:  hsl(216, 94%, 67%);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     width: 25rem;
     height: 2.5rem;
 }

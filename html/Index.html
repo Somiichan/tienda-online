@@ -25,116 +25,24 @@
                 <contact-info-component slot="front"></contact-info-component>
                 <contact-form-component slot="back"></contact-form-component>
             </flip-card-component>
-            <div class="modal">
-                <div class="modal-box">
-                    <div class="modal-gallery">
-                        <div class="modal-gallery-carrousel">
-                            <img src="../images/the-watch-1.webp" alt="Blue Watch">
-                        </div>
-                    </div>
-                    <div class="modal-details swipeable-element">
-                        <div class="modal-details-info">
-                            <div class="product-title">
-                                <div class="product-name">
-                                    <h4>SMART WATCH</h4>
-                                </div>
-                                <div class="product-edition">
-                                    <h2>WATCH LIMITED EDITION</h2>
-                                </div>
-                                <div class="product-model">
-                                    <h5>MODEL AS1500</h5>
-                                </div>
-                                <div class="product-facture">
-                                    <del class="old-price">
-                                        <h3>$299</h3>
-                                    </del>
-                                    <div class="new-price">
-                                        <h3>$290</h3>
-                                    </div>
-                                    <div class="offer-tag">
-                                        <h6>EARLY BIRD OFFER</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tabs">
-                                <div class="tab-header">
-                                    <div class="tab active">
-                                        <h3>Description</h3>
-                                    </div>
-                                    <div class="tab">
-                                        <h3>Features</h3>
-                                    </div>
-                                    <div class="tab">
-                                        <h3>Opinions</h3>
-                                    </div>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="content active">
-                                        <p>Dolor cum minima, asperiores rerum repellendus officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>Asperiores rerum repellendus officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>Officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="plus-minus-button">
-                                <button class="minus-button">-</button>
-                                <input type="number" value="1"></input>
-                                <button class="plus-button">+</button>
-                            </div>
-                            <div id="checkoutButton" class="modal-checkout-button swipeable-button">
-                                <button>CHECKOUT</button>
-                            </div>
-                        </div>
-                        <div class="modal-personal-info">
-                            <div class="go-back-button swipeable-button">
-                                <button>Go Back</button>
-                            </div>
-                            <form class="modal-form">
-                                <div class="name">
-                                    <input type="text" data-validate="only-letters" placeholder="First Name">
-                                    <input type="text" data-validate="only-letters" placeholder="Last Name">
-                                </div>
-                                <div class="email">
-                                    <input type="text" data-validate="email" placeholder="E-mail adress">
-                                </div>
-                                <div class="personal-data">
-                                    <div class="telephone">
-                                        <input type="text" data-validate="telephone" placeholder="Telephone">
-                                    </div>
-                                    <div class="address-line">
-                                        <input type="text" class="myInput" data-validate="address" placeholder="Address Line">
-                                        <p class="charCount">0/30 char</p>
-                                    </div>
-                                </div>
-                                <div class="state">
-                                    <input type="text" data-validate="only-letters" placeholder="State">
-                                    <input type="text" data-validate="only-numbers" placeholder="Zip Code">
-                                </div>
-                                <div class="country">
-                                    <select name="country" id="country-input">
-                                        <option value="default">-Please choose an option-</option>
-                                        <option value="America">America</option> 
-                                        <option value="England">England</option>
-                                        <option value="Kurdistan">Kurdistan</option>
-                                        <option value="Arabia">Arabia</option>
-                                        <option value="Japan">Japan</option>
-                                    </select>
-                                </div>
-                                <div class="form-button">
-                                    <button class="send-button" type="submit">FINISH PURCHASE</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-close-button modal-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-                    </div>
-                </div>
-            </div>
+            <modal-component>
+                <modal-box-component>
+                    <modal-gallery-component slot="product-gallery"></modal-gallery-component>
+                    <modal-swipeable-element-component slot="product-content">
+                        <modal-details-info-component slot="primary-swipe-content">
+                            <product-title-component slot="product"></product-title-component>
+                            <tabs-component slot="tabs"></tabs-component>
+                            <plus-minus-button-component slot="plus-minus"></plus-minus-button-component>
+                            <modal-checkout-button-component slot="product-checkout"></modal-checkout-button-component>
+                        </modal-details-info-component>
+                        <modal-personal-info-component slot="secondary-swipe-content">
+                            <go-back-button-component slot="back-button"></go-back-button-component>
+                            <modal-form-component slot="form"></modal-form-component>
+                        </modal-personal-info-component>
+                    </modal-swipeable-element-component>
+                    <modal-close-button-component slot="close-button"></modal-close-button-component>
+                </modal-box-component>
+            </modal-component>
             <div id="notification">
                 <span id="notification-message"></span>
             </div>

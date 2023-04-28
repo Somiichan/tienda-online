@@ -60,7 +60,7 @@
 }
 
 *input:focus{
-    border: 0.5px solid $primary-color;
+    border: 0.5px solid hsl(209, 100%, 50%);
 }
 
 input.invalid {
@@ -81,11 +81,11 @@ input.invalid {
 }
 
 *select:focus{
-    border: 0.5px solid $primary-color;
+    border: 0.5px solid hsl(209, 100%, 50%);
 }
 
 .form-button button{
-    background: $primary-color;
+    background: hsl(209, 100%, 50%);
     color: hsl(0, 0%, 100%);
     border: none;
     border-radius: 5px;
@@ -98,5 +98,5 @@ input.invalid {
 }
 
 .form-button button:hover{
-    background: $hover-color;
+    background: hsl(0, 0%, 20%);
 }

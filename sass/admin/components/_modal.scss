@@ -1,0 +1,78 @@
+.modal{
+    background-color: hsla(0, 0%, 100%, 0.541);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    z-index: -1;
+}
+
+.modal.active{
+    opacity: 1;
+    z-index: 2000;
+}
+
+.message-box{
+    position: absolute;
+    height: 15vh;
+    width: 25%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 62px hsla(0, 0%, 0%, 0.3);
+    align-items: center;
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid hsl(34, 91%, 68%);
+}
+
+.message-box h5{
+    position: relative;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+    
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+  
+.buttons button {
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button.yes {
+    background-color: hsl(134, 61%, 41%);
+    color: hsl(0, 0%, 100%);
+}
+
+.buttons button.no {
+    background-color: hsl(354, 70%, 54%);
+    color: hsl(0, 0%, 100%);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close-button svg {
+    fill: hsl(0, 0%, 40%);
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.close-button:hover svg {
+    fill: hsl(0, 0%, 0%);
+}

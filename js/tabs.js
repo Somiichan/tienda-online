@@ -1,6 +1,6 @@
 export default (() => {
 
-  const tabs = document.querySelectorAll('.tab');
+    const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.content');
 
     tabs.forEach((tab, index) => {
@@ -11,4 +11,5 @@ export default (() => {
             contents[index].classList.add('active');
         });
     });
+
 })();

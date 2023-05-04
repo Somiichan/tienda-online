@@ -90,27 +90,18 @@ class Form extends HTMLElement {
             }
             
             .principal-form{
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-evenly;
-                gap: 1rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
                 padding-top: 2rem;
+                width: 100%;
             }
             
-            .user-data{
-                display:flex;
-                flex-direction: column;
-                justify-content: space-around;
-                gap: 2rem;
+            .input-container {
+                border: 1px solid black
+                width: 100%;
             }
-            
-            .user-pwd{
-                display:flex;
-                flex-direction: column;
-                justify-content: space-around;
-                gap: 2rem;
-            }
-            
+
             label {
                 font-size: 1.5rem;
                 font-weight: 500;
@@ -125,7 +116,7 @@ class Form extends HTMLElement {
                 border-bottom: 1px solid white;
                 background-color:  hsl(216, 94%, 67%);
                 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-                width: 25rem;
+                width: 100%;
                 height: 2rem;
                 outline: none;
             }           
@@ -133,7 +124,7 @@ class Form extends HTMLElement {
         <div class="contact-form">
             <div class="form-menu">
                 <div class="form-selector">
-                    <div class="principal-tab">
+                    <div class="principal-tab active">
                         <h3>Principal</h3>
                     </div>
                     <div class="image-tab">
@@ -149,32 +140,35 @@ class Form extends HTMLElement {
                     </div>
                 </div>
             </div>
-            <div class="principal-form">
-                <div class="user-data">
-                    <div class="nombre">
+            <form>
+                <div class="principal-form" data-form="principal">
+                    <div>
                         <label>Nombre</label>
                         <input type="text" />
                     </div>
-                    <div class="email">
+                    <div>
                         <label>E-mail</label>
                         <input type="text" />
                     </div>
-                </div>
-                <div class="user-pwd">
-                    <div class="password">
+                    <div>
                         <label>Contraseña</label>
                         <input type="password" />
                     </div>
-                    <div class="confirm-password">
+                    <div>
                         <label>Confirmar Contraseña</label>
                         <input type="password" />
                     </div>
                 </div>
-            </div>
-            <div class="imagenes-form"></div>
+                <div class="image-form">
+                    <div class="input-image">
+                        <label>Seleccione una imagen</label>
+                        <input type="file" />
+                    </div>
+                </div>
+            </form>
         </div>
         `;
-
+        
     }
 }
 

@@ -6,6 +6,13 @@ class Modal extends HTMLElement {
         this.render();
     }
 
+    connectedCallback() {
+        document.addEventListener('open-modal', event => {
+            const modal = this.shadow.querySelector('.modal');
+            modal.classList.toggle('active');
+        })
+    }
+
     render() {
 
         this.shadow.innerHTML = 
@@ -94,7 +101,7 @@ class Modal extends HTMLElement {
                 fill: hsl(0, 0%, 0%);
             } 
         </style>
-        <div class="modal active">
+        <div class="modal">
             <div class="message-box">
                 <h5>¿Seguro que quieres eliminar los datos?</h5>
                 <div class="buttons">
@@ -108,9 +115,9 @@ class Modal extends HTMLElement {
         </div>
         `;
 
-        const modalButtons = this.shadow.querySelectorAll('.modal-button');
         const modal = this.shadow.querySelector('.modal');
-
+        const modalButtons = this.shadow.querySelectorAll('.modal-button');
+    
         modalButtons.forEach((modalButton) => {
             modalButton.addEventListener('click', () => {
                 modal.classList.toggle('active');

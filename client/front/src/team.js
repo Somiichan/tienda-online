@@ -227,7 +227,7 @@ class Team extends HTMLElement {
                         </div>
                     </div>
                     <div class="team-item-picture">
-                        <img src="../images/team-1.webp" alt="Pepito Avatar">
+                        <img src="images/team-1.webp" alt="Pepito Avatar">
                     </div>
                     <div class="team-item-name">
                         <h4>Jason Voorhees</h4>
@@ -257,7 +257,7 @@ class Team extends HTMLElement {
                         </div>
                     </div>
                     <div class="team-item-picture">
-                        <img src="../images/team-2.webp" alt="Carlos Avatar">
+                        <img src="images/team-2.webp" alt="Carlos Avatar">
                     </div>
                     <div class="team-item-name">
                         <h4>Freddie Krueger</h4>
@@ -287,7 +287,7 @@ class Team extends HTMLElement {
                         </div>
                     </div>
                     <div class="team-item-picture">
-                        <img src="../images/team-3.webp" alt="Paula Avatar">
+                        <img src="images/team-3.webp" alt="Paula Avatar">
                     </div>
                     <div class="team-item-name">
                         <h4>Regan Mcneill</h4>
@@ -317,7 +317,7 @@ class Team extends HTMLElement {
                         </div>
                     </div>
                     <div class="team-item-picture">
-                        <img src="../images/team-4.webp" alt="Manolo Avatar">
+                        <img src="images/team-4.webp" alt="Manolo Avatar">
                     </div>
                     <div class="team-item-name">
                         <h4>John Krammer</h4>

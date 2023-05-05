@@ -114,7 +114,7 @@ class Slider extends HTMLElement {
         </style>
         <div class="slider" id="product">
             <div class="slider-background-image">
-                <img src="../images/header-background.webp" alt="Slider Background">
+                <img src="images/header-background.webp" alt="Slider Background">
             </div>
             <div class="slider-title">
                 <h2>The future of tech is here</h2>
@@ -126,7 +126,7 @@ class Slider extends HTMLElement {
                 <button class="modal-button">BUY WITH PAYPAL</button>
             </div>
             <div class="slider-image">
-                <img src="../images/slider-image.webp" alt="Slider Image">
+                <img src="images/slider-image.webp" alt="Slider Image">
             </div>
         </div>
         `;

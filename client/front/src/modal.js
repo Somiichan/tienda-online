@@ -28,7 +28,7 @@ class Modal extends HTMLElement {
                 z-index: 2000;
             }
         </style>
-        <div class="modal active">
+        <div class="modal">
             <slot></slot>
         </div>
         `;

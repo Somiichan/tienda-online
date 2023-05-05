@@ -134,7 +134,7 @@ class Details extends HTMLElement {
                 </div>
             </div>
             <div class="details-image">
-                <img src="../images/details-image.webp" alt="Details Image">
+                <img src="images/details-image.webp" alt="Details Image">
             </div>
             <div class="details-column">
                 <div class="details-item">

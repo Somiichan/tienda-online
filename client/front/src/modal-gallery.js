@@ -36,7 +36,7 @@ class ModalGallery extends HTMLElement {
         </style>
         <div class="modal-gallery">
             <div class="modal-gallery-carrousel">
-                <img src="../images/the-watch-1.webp" alt="Blue Watch">
+                <img src="images/the-watch-1.webp" alt="Blue Watch">
             </div>
         </div>
         `;

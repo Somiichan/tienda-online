@@ -21,7 +21,7 @@ class Logo extends HTMLElement {
             }
         </style>
         <div class="header-logo">
-            <img src="../images/header-logo.webp" alt="Header Logo">
+            <img src="images/header-logo.webp" alt="Header Logo">
         </div>
         `;
 

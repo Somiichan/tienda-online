@@ -123,7 +123,7 @@ class Featured extends HTMLElement {
             <div class="featured-containers">
                 <div class="featured-container">
                     <div class="container-image">
-                        <img src="../images/connect-image.webp" alt="Connect Image">
+                        <img src="images/connect-image.webp" alt="Connect Image">
                     </div>
                     <div class="container-text">
                         <div class="container-text-title">
@@ -136,7 +136,7 @@ class Featured extends HTMLElement {
                 </div>
                 <div class="featured-container">
                     <div class="container-image">
-                        <img src="../images/config-image.webp" alt="Config Image">
+                        <img src="images/config-image.webp" alt="Config Image">
                     </div>
                     <div class="container-text">
                         <div class="container-text-title">
@@ -149,7 +149,7 @@ class Featured extends HTMLElement {
                 </div>
                 <div class="featured-container">
                     <div class="container-image">
-                        <img src="../images/done-image.webp" alt="Done Image">
+                        <img src="images/done-image.webp" alt="Done Image">
                     </div>
                     <div class="container-text">
                         <div class="container-text-title">

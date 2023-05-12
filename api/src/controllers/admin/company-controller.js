@@ -36,8 +36,7 @@ exports.findAll = (req, res) => {
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    })
-    .then(result => {
+    }).then(result => {
 
         result.meta = {
             total: result.count,

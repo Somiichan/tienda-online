@@ -1,17 +1,23 @@
 const db = require("../../models");
-const User = db.User;
+const PaymentMethod = db.PaymentMethod;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-
-    User.create(req.body).then(data => {
+    
+    PaymentMethod.create(req.body).then(data => {
 
         res.status(200).send(data);
-
+        
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+        if (err.errors) {
+            res.status(422).send({
+                message: err.errors
+            });
+        } else {
+            res.status(500).send({
+                message: "Se ha producido un error al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -22,24 +28,22 @@ exports.findAll = (req, res) => {
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+    let condition =
+        Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
 
-    User.findAndCountAll({
-        where: condition, 
-        attributes: ['id', 'name', 'email'],
+    PaymentMethod.findAndCountAll({
+        where: condition,
+        attributes: ['id', 'name', 'visible'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
     }).then(result => {
-
         result.meta = {
             total: result.count,
             pages: Math.ceil(result.count / limit),
             currentPage: page
         };
-
         res.status(200).send(result);
-
     }).catch(err => {
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
@@ -48,10 +52,9 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    PaymentMethod.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -69,10 +72,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-
     const id = req.params.id;
 
-    User.update(req.body, {
+    PaymentMethod.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -86,21 +88,20 @@ exports.update = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualiazar la id=" + id
+            message: "Algún error ha surgido al actualizar la id=" + id
         });
     });
 };
 
 exports.delete = (req, res) => {
-
     const id = req.params.id;
 
-    User.destroy({
+    PaymentMethod.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {
             res.status(200).send({
-                message: "El elemento ha sido borrado correctamente"
+                message: "El elemento ha sido borrado correctamente."
             });
         } else {
             res.status(404).send({
@@ -109,7 +110,7 @@ exports.delete = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al borrar la id=" + id
+            message: "Se ha producido un error al eliminar la categoría del producto con el id=" + id
         });
     });
-};
+}; 

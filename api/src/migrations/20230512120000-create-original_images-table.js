@@ -1,52 +1,53 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('companies', {
+    await queryInterface.createTable('original_images', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fiscal_name: {
+      path: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      comercial_name: {
+      entity: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      nif: {
+      entityKey: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      languageAlias: {
+        allowNull: false,
+        type: Sequelize.CHAR(2)
+      },
+      fileName: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      comercialAddress: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      fiscalAddress: {
+      content: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      postalCode: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: true,
-        type: Sequelize.STRING,
-        unique: true
-      },
-      web: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      telephone: {
+      mimeType: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      sizeBytes: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED
+      },
+      widthPx: {
+        allowNull: false,
+        type: Sequelize.INTEGER(4).UNSIGNED
+      },
+      heightPx: {
+        allowNull: false,
+        type: Sequelize.INTEGER(4).UNSIGNED
       },
       createdAt: {
         allowNull: false,
@@ -57,12 +58,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       deletedAt: {
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('companies');
+    await queryInterface.dropTable('original_images');
   }
 };

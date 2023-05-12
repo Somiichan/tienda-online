@@ -2,51 +2,42 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('companies', {
+    await queryInterface.createTable('clientes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fiscal_name: {
+      name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255)
       },
-      comercial_name: {
+      surname: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      nif: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      comercialAddress: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      fiscalAddress: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      postalCode: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: true,
-        type: Sequelize.STRING,
-        unique: true
-      },
-      web: {
-        allowNull: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255)
       },
       telephone: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255)
+      },
+      email: {
+        allowNull: true,
+        unique: true,
+        type: Sequelize.STRING(255)
+      },
+      town: {
+        allowNull: true,
+        type: Sequelize.STRING(255)
+      },
+      postal_code: {
+        allowNull: true,
+        type: Sequelize.STRING(255)
+      },
+      address: {
+        allowNull: true,
+        type: Sequelize.STRING(255)
       },
       createdAt: {
         allowNull: false,
@@ -61,8 +52,7 @@ module.exports = {
       }
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('companies');
+    await queryInterface.dropTable('clientes');
   }
 };

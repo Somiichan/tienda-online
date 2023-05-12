@@ -9,7 +9,7 @@ exports.create = (req, res) => {
         res.status(200).send(data);
 
     }).catch(err => {
-        if(err.errors ){
+        if(err.errors){
             res.status(422).send({
             message: err.errors
             });
@@ -36,8 +36,7 @@ exports.findAll = (req, res) => {
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    })
-    .then(result => {
+    }).then(result => {
 
         result.meta = {
             total: result.count,

@@ -1,52 +1,49 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('companies', {
+    await queryInterface.createTable('image_configurations', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fiscal_name: {
+      entity: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      comercial_name: {
+      directory: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      nif: {
+      type: {
+        type: Sequelize.STRING
+      },
+      content: {
+        type: Sequelize.STRING
+      },
+      grid: {
+        allowNull: false,
+        type: Sequelize.ENUM('desktop', 'mobile', 'preview')
+      },
+      contentAccepted: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      comercialAddress: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      fiscalAddress: {
+      extensionConversion: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(4)
       },
-      postalCode: {
-        allowNull: true,
-        type: Sequelize.STRING
+      widthPx: {
+        type: Sequelize.INTEGER(4).UNSIGNED
       },
-      email: {
-        allowNull: true,
-        type: Sequelize.STRING,
-        unique: true
+      heightPx: {
+        type: Sequelize.INTEGER(4).UNSIGNED
       },
-      web: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      telephone: {
+      quality: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER(3).UNSIGNED
       },
       createdAt: {
         allowNull: false,
@@ -57,12 +54,13 @@ module.exports = {
         type: Sequelize.DATE
       },
       deletedAt: {
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('companies');
+    await queryInterface.dropTable('image_configurations');
   }
 };

@@ -1,46 +1,18 @@
-Companies:
-	-id
-	-fiscal_name
-	-comercal_name
-	-nif
-	-comercial_address
-	-fiscal_adress
-	-email
-	-phone
-	-web
-
-Menu: 
-	-id
-	-name
-	-url
-
-Social_networks:
-	-id
-	-name
+Locale
+	-
+	-
 
 Locale_seo (Partes fijas de una ruta)
-	-
-	-
-	-
 	-
 	-
 
 Locale_slug_seo (Partes variables de la ruta: Productos, clientes etc)
 	-
 	-
-	-
-	-
-	-
-	-
-	-
 
 Sitemap (buscar info. Archivo XML donde se registran todas las url de tu pagina web). 
 
 Menu
-	-
-	-
-	-
-	-
 	-
 	-
 
@@ -50,19 +22,6 @@ Items_menu
 	-name
 	-description
 	-custom_url
-
-Locale
-	-
-	-
-	-
-	-
-
-slider
-	-id
-	-name
-	-
-	-
-	-
 
 POR HACER:
 

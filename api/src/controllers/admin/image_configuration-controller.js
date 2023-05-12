@@ -1,10 +1,10 @@
 const db = require("../../models");
-const User = db.User;
+const ImageConfiguration = db.ImageConfiguration;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    User.create(req.body).then(data => {
+    ImageConfiguration.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -24,9 +24,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    User.findAndCountAll({
+    ImageConfiguration.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'entity', 'directory', 'type', 'content', 'grid', 'contentAccepted', 'extensionConversion', 'widthPx', 'heightPx', 'quality'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -51,7 +51,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    ImageConfiguration.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -72,7 +72,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    User.update(req.body, {
+    ImageConfiguration.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -95,7 +95,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    User.destroy({
+    ImageConfiguration.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

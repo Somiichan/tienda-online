@@ -1,17 +1,23 @@
 const db = require("../../models");
-const User = db.User;
+const Client = db.Client;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    User.create(req.body).then(data => {
+    Client.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+        if (err.errors) {
+            res.status(422).send({
+                message: err.errors
+            });
+        } else {
+            res.status(500).send({
+                message: "Algún error ha surgido al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -22,11 +28,11 @@ exports.findAll = (req, res) => {
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+    let condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
 
-    User.findAndCountAll({
-        where: condition, 
-        attributes: ['id', 'name', 'email'],
+    Client.findAndCountAll({
+        where: condition,
+        attributes: ['id', 'name', 'surname', 'telephone', 'email', 'town', 'postal_code', 'address'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -51,7 +57,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    Client.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -72,7 +78,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    User.update(req.body, {
+    Client.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -86,7 +92,7 @@ exports.update = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualiazar la id=" + id
+            message: "Algún error ha surgido al actualizar la id=" + id
         });
     });
 };
@@ -95,7 +101,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    User.destroy({
+    Client.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

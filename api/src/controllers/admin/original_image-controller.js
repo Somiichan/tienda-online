@@ -1,17 +1,23 @@
 const db = require("../../models");
-const User = db.User;
+const OriginalImage = db.OriginalImage;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    User.create(req.body).then(data => {
+    OriginalImage.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+        if(err.errors){
+            res.status(422).send({
+            message: err.errors
+            });
+        }else{
+            res.status(500).send({
+            message: "Algún error ha surgido al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -24,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    User.findAndCountAll({
+    OriginalImage.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'name'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -51,7 +57,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    OriginalImage.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -72,7 +78,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    User.update(req.body, {
+    OriginalImage.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -95,7 +101,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    User.destroy({
+    OriginalImage.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

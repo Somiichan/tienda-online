@@ -2,50 +2,33 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('companies', {
+    await queryInterface.createTable('locales', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fiscal_name: {
+      languageAlias: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      comercial_name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      nif: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      comercialAddress: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      fiscalAddress: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      postalCode: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(2),
         unique: true
       },
-      web: {
-        allowNull: true,
+      entity: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      telephone: {
+      entityKey: {
         allowNull: false,
+        type: Sequelize.STRING
+      },
+      key: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED
+      },
+      value: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -61,8 +44,8 @@ module.exports = {
       }
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('companies');
+    await queryInterface.dropTable('locales');
   }
 };
+

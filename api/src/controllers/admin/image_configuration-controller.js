@@ -1,17 +1,23 @@
 const db = require("../../models");
-const ImageConfiguration = db.ImageConfiguration;
+const Image_configuration = db.ImageConfiguration;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    ImageConfiguration.create(req.body).then(data => {
+    Image_configuration.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+        if(err.errors ){
+            res.status(422).send({
+                message: err.errors
+            });
+        }else{
+            res.status(500).send({
+                message: "Algún error ha surgido al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -24,13 +30,14 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    ImageConfiguration.findAndCountAll({
+    Image_configuration.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'entity', 'directory', 'type', 'content', 'grid', 'contentAccepted', 'extensionConversion', 'widthPx', 'heightPx', 'quality'],
+        attributes: ['id','entity', 'directory', 'type', 'content', 'grid', 'contentAccepted', 'extensionConversion', 'widthPx', 'heightPx', 'quality'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    }).then(result => {
+    })
+    .then(result => {
 
         result.meta = {
             total: result.count,
@@ -51,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    ImageConfiguration.findByPk(id).then(data => {
+    Image_configuration.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -72,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    ImageConfiguration.update(req.body, {
+    Image_configuration.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -95,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    ImageConfiguration.destroy({
+    Image_configuration.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

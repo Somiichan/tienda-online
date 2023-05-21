@@ -4,15 +4,20 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Cart.create(req.body).then((data) => {
+    Cart.create(req.body).then(data => {
 
         res.status(200).send(data);
 
-    }).catch((err) => {
-        res.status(500).send({
-            message:
-            err.errors || "Algún error ha surgido al insertar el dato en el carrito.",
-        });
+    }).catch(err => {
+        if(err.errors ){
+            res.status(422).send({
+                message: err.errors
+            });
+        }else{
+            res.status(500).send({
+                message: "Algún error ha surgido al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -23,47 +28,49 @@ exports.findAll = (req, res) => {
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
+    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
     Cart.findAndCountAll({
-        where: condition,
-        attributes: ["id", "client_id", "fingerprint_Id"],
+        where: condition, 
+        attributes: ['id'],
         limit: limit,
         offset: offset,
-        order: [["createdAt", "DESC"]],
-    }).then((result) => {
+        order: [['createdAt', 'DESC']]
+    })
+    .then(result => {
 
         result.meta = {
             total: result.count,
             pages: Math.ceil(result.count / limit),
-            currentPage: page,
+            currentPage: page
         };
 
         res.status(200).send(result);
 
-    }).catch((err) => {
+    }).catch(err => {
         res.status(500).send({
-            message: err.errors || "Algún error ha surgido al recuperar los datos del carrito.",
+            message: err.errors || "Algún error ha surgido al recuperar los datos."
         });
     });
 };
 
 exports.findOne = (req, res) => {
 
-  const id = req.params.id;
+    const id = req.params.id;
 
-    Cart.findByPk(id).then((data) => {
+    Cart.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
         } else {
             res.status(404).send({
-                message: `No se puede encontrar el carrito con el id=${id}.`,
+                message: `No se puede encontrar el elemento con la id=${id}.`
             });
         }
-    }).catch((err) => {
+
+    }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al recuperar el carrito con el id=" + id,
+            message: "Algún error ha surgido al recuperar la id=" + id
         });
     });
 };
@@ -73,20 +80,20 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Cart.update(req.body, {
-        where: { id: id },
-    }).then((num) => {
+        where: { id: id }
+    }).then(num => {
         if (num == 1) {
             res.status(200).send({
-                message: "El carrito ha sido actualizado correctamente.",
+                message: "El elemento ha sido actualizado correctamente."
             });
         } else {
             res.status(404).send({
-                message: `No se puede actualizar el carrito con el id=${id}. Tal vez no se ha encontrado el carrito o el cuerpo de la petición está vacío.`,
+                message: `No se puede actualizar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento o el cuerpo de la petición está vacío.`
             });
         }
-    }).catch((err) => {
+    }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualizar el carrito con el id=" + id,
+            message: "Algún error ha surgido al actualiazar la id=" + id
         });
     });
 };
@@ -96,20 +103,20 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Cart.destroy({
-        where: { id: id },
-    }).then((num) => {
+        where: { id: id }
+    }).then(num => {
         if (num == 1) {
             res.status(200).send({
-                message: "El carrito ha sido borrado correctamente.",
+                message: "El elemento ha sido borrado correctamente"
             });
         } else {
             res.status(404).send({
-                message: `No se puede borrar el carrito con el id=${id}. Tal vez no se ha encontrado el carrito.`,
+                message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
             });
         }
-    }).catch((err) => {
+    }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al borrar el carrito con el id=" + id,
+            message: "Algún error ha surgido al borrar la id=" + id
         });
     });
 };

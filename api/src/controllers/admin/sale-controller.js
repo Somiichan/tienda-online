@@ -1,44 +1,38 @@
 const db = require("../../models");
-const Client = db.Client;
+const Sale = db.Sale;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-
-    Client.create(req.body).then(data => {
-
+    Sale.create(req.body).then(data => {
         res.status(200).send(data);
-
     }).catch(err => {
-        if(err.errors ){
+        if (err.errors) {
             res.status(422).send({
                 message: err.errors
             });
-        }else{
+        } else {
             res.status(500).send({
-                message: "Algún error ha surgido al recuperar los datos."
+                message: "Algún error ha surgido al crear los datos."
             });
         }
     });
 };
 
 exports.findAll = (req, res) => {
-
     let page = req.query.page || 1;
     let limit = parseInt(req.query.size) || 10;
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+    let condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
 
-    Client.findAndCountAll({
-        where: condition, 
-        attributes: ['id', 'name', 'surname', 'telephone', 'email', 'poblation', 'postal_code', 'address'],
+    Sale.findAndCountAll({
+        where: condition,
+        attributes: ['id', 'cartId', 'customerId', 'paymentMethodId', 'reference', 'totalPrice', 'totalBasePrice', 'totalTaxPrice', 'issueDate', 'issueTime'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    })
-    .then(result => {
-
+    }).then(result => {
         result.meta = {
             total: result.count,
             pages: Math.ceil(result.count / limit),
@@ -46,7 +40,6 @@ exports.findAll = (req, res) => {
         };
 
         res.status(200).send(result);
-
     }).catch(err => {
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
@@ -55,11 +48,9 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-
     const id = req.params.id;
 
-    Client.findByPk(id).then(data => {
-
+    Sale.findByPk(id).then(data => {
         if (data) {
             res.status(200).send(data);
         } else {
@@ -67,7 +58,6 @@ exports.findOne = (req, res) => {
                 message: `No se puede encontrar el elemento con la id=${id}.`
             });
         }
-
     }).catch(err => {
         res.status(500).send({
             message: "Algún error ha surgido al recuperar la id=" + id
@@ -76,10 +66,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-
     const id = req.params.id;
 
-    Client.update(req.body, {
+    Sale.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -93,16 +82,15 @@ exports.update = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualiazar la id=" + id
+            message: "Algún error ha surgido al actualizar la id=" + id
         });
     });
 };
 
 exports.delete = (req, res) => {
-
     const id = req.params.id;
 
-    Client.destroy({
+    Sale.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

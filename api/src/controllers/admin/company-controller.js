@@ -11,11 +11,11 @@ exports.create = (req, res) => {
     }).catch(err => {
         if(err.errors ){
             res.status(422).send({
-            message: err.errors
+                message: err.errors
             });
         }else{
             res.status(500).send({
-            message: "Algún error ha surgido al recuperar los datos."
+                message: "Algún error ha surgido al recuperar los datos."
             });
         }
     });
@@ -36,7 +36,8 @@ exports.findAll = (req, res) => {
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    }).then(result => {
+    })
+    .then(result => {
 
         result.meta = {
             total: result.count,

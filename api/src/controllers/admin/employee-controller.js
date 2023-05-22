@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Cart.findAndCountAll({
+    Employee.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'workPositionId', 'socialNetworksId', 'profileImageId', 'languageId', 'companyId'],
+        attributes: ['id', 'name', 'workPositionId', 'socialNetworksId', 'profileImageId', 'languageId', 'companyId', 'password'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Cart.findByPk(id).then(data => {
+    Employee.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Cart.update(req.body, {
+    Employee.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Cart.destroy({
+    Employee.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

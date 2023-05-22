@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+  
     const Cart = sequelize.define('Cart', {
       id: {
         allowNull: false,

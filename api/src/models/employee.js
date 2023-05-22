@@ -15,52 +15,30 @@ module.exports = function(sequelize, DataTypes) {
         workPositionId: {
             allowNull: false,
             type: DataTypes.INTEGER,
-            references: {
-                model: 'workPositions',
-                key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'SET NULL'
         },
         socialNetworksId: {
             allowNull: true,
             type:DataTypes.INTEGER,
-            references: {
-                model: 'socialNetworksEmployees',
-                key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
         },
         profileImageId: {
             allowNull: true,
             type: DataTypes.INTEGER,
-            references: {
-                model: 'images',
-                key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'SET NULL'
         },
         languageId: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references: {
-                model: 'locale',
-                key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
         },
         companyId: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references: {
-                model: 'Company',
-                key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            set(value) {
+                const hashedPassword = useBcrypt.hashSync(value, 10);
+                this.setDataValue('password', hashedPassword);
+            }
         }
     }, {
         sequelize,

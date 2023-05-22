@@ -6,23 +6,15 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
-            type: Sequelize.INTEGER
+            type: DataTypes.INTEGER
         },
         socialNetworkId: {
             allowNull: false,
             type: DataTypes.INTEGER,
-            references: {
-                model: 'socialNetworks',
-                key: 'id'
-            }
         },
         employeeId: {
             allowNull:false,
             type: DataTypes.INTEGER,
-            references: {
-                model: 'employees',
-                key: 'id'
-            }
         }
     }, {
         sequelize,

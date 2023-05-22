@@ -4,7 +4,7 @@ module.exports = (app, upload) => {
 
     const router = require("express").Router();
     // const authJwt  = require("../middlewares/auth-jwt.js");
-    const controller = require("../controllers/admin/payment-method-controller.js");
+    const controller = require("../controllers/admin/payment_method-controller.js");
   
     app.use(function(req, res, next) {
         res.header(

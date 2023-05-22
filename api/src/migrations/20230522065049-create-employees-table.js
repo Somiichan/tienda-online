@@ -18,52 +18,36 @@ module.exports = {
       workPositionId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'workPositions',
-          key: 'id'
-        },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
       socialNetworksId: {
         allowNull: true,
         type:Sequelize.INTEGER,
-        references: {
-          model: 'socialNetworksEmployees',
-          key: 'id'
-        },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       profileImageId: {
         allowNull: true,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'images',
-          key: 'id'
-        },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
       languageId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'languages',
-          key: 'id'
-        },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       companyId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'companies',
-          key: 'id'
-        },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -83,4 +67,3 @@ module.exports = {
     await queryInterface.dropTable('employees');
   }
 };
-

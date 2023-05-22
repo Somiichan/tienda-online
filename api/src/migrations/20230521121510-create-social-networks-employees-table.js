@@ -14,18 +14,10 @@ module.exports = {
       socialNetworkId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'socialNetworks',
-          key: 'id'
-        }
       },
       employeeId: {
         allowNull:false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'employees',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,

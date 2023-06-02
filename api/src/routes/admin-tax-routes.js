@@ -1,5 +1,3 @@
-const { QueryError } = require("sequelize");
-
 module.exports = (app, upload) => {
 
     const router = require("express").Router();
@@ -20,5 +18,6 @@ module.exports = (app, upload) => {
     router.put("/:id", controller.update);  
     router.delete("/:id", controller.delete);
   
-    app.use('/api/admin/tax', router);
-};
+    app.use('/api/admin/taxes', router);
+  };
+    

@@ -11,51 +11,55 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre".'
+                    msg: 'Por favor, rellena el campo "Language".'
                 }
-            }
-        },
-        abbreviation: {
-            type: DataTypes.STRING(10),
-            allowNull: false,
+            },
             unique: {
                 args: true,
-                msg: 'Ya existe un idioma con esa abreviatura.'
+                msg: 'Ya existe ese lenguaje.'
             },
+        },
+        alias: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Abreviatura".'
+                    msg: 'Por favor, rellena el campo "Alias".'
                 }
-            }
+            },
+            unique: {
+                args: true,
+                msg: 'Ya existe ese alias.'
+            },
         }
     }, {
-      sequelize,
-      tableName: 'languages',
-      timestamps: true,
-      paranoid: true,
-      indexes: [
-        {
-          name: "PRIMARY",
-          unique: true,
-          using: "BTREE",
-          fields: [
-            { name: "id" },
-          ]
-        },
-        {
-          name: "abbreviation",
-          unique: true,
-          using: "BTREE",
-          fields: [
-            { name: "abbreviation" },
-          ]
-        },
-      ]
+        sequelize,
+        tableName: 'languages',
+        timestamps: true,
+        paranoid: true,
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+            {
+                name: "email",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "email" },
+                ]
+            },
+        ]
     });
-  
+
     Language.associate = function(models) {
-      // Define las asociaciones con otros modelos aquí, si es necesario
+        // Define las asociaciones con otros modelos aquí
     };
-  
+
     return Language;
 };

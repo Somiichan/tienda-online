@@ -1,52 +1,67 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
-    const Return = sequelize.define('Return', {
-        saleId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        customerId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        paymentMethodId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        reference: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        totalPrice: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
-        },
-        totalBasePrice: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
-        },
-        totalTaxPrice: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
-        },
-        issueDate: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
-        issueTime: {
-            type: DataTypes.TIME,
-            allowNull: false
-        }
+    const Returns = sequelize.define('Returns', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      saleId: {
+        type: DataTypes.INTEGER
+      },
+      customerId: {
+        type: DataTypes.INTEGER
+      },
+      paymentMethodId: {
+        type: DataTypes.INTEGER
+      },
+      reference: {
+        allowNull: false,
+        type: DataTypes.STRING
+      },
+      totalPrice: {
+        allowNull: false,
+        type: DataTypes.DECIMAL(10, 2)
+      },
+      totalBasePrice: {
+        allowNull: false,
+        type: DataTypes.DECIMAL(10, 2)
+      },
+      totalTaxPrice: {
+        allowNull: false,
+        type: DataTypes.DECIMAL(10, 2)
+      },
+      issueDate: {
+        allowNull: false,
+        type: DataTypes.DATEONLY
+      },
+      issueTime: {
+        allowNull: false,
+        type: DataTypes.TIME
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      deletedAt: {
+        type: DataTypes.DATE
+      }
     }, {
-        sequelize,
-        tableName: 'returns',
-        timestamps: true,
-        paranoid: true,
+      sequelize,
+      tableName: 'returns',
+      timestamps: true,
+      paranoid: true,
+      indexes: []
     });
-
-    Return.associate = function(models) {
+  
+    Returns.associate = function(models) {
+      // Define las asociaciones con otros modelos aquí
     };
-
-    return Return;
-};
+  
+    return Returns;
+  };
+  

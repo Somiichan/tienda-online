@@ -3,36 +3,36 @@ const Sale = db.Sale;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
+
     Sale.create(req.body).then(data => {
+
         res.status(200).send(data);
+
     }).catch(err => {
-        if (err.errors) {
-            res.status(422).send({
-                message: err.errors
-            });
-        } else {
-            res.status(500).send({
-                message: "Algún error ha surgido al crear los datos."
-            });
-        }
+        res.status(500).send({
+            message: err.errors || "Algún error ha surgido al insertar el dato."
+        });
     });
 };
 
 exports.findAll = (req, res) => {
+
     let page = req.query.page || 1;
     let limit = parseInt(req.query.size) || 10;
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
+    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
     Sale.findAndCountAll({
-        where: condition,
+        where: condition, 
         attributes: ['id', 'cartId', 'customerId', 'paymentMethodId', 'reference', 'totalPrice', 'totalBasePrice', 'totalTaxPrice', 'issueDate', 'issueTime'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    }).then(result => {
+    })
+    .then(result => {
+
         result.meta = {
             total: result.count,
             pages: Math.ceil(result.count / limit),
@@ -40,6 +40,7 @@ exports.findAll = (req, res) => {
         };
 
         res.status(200).send(result);
+
     }).catch(err => {
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
@@ -48,9 +49,11 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
+
     const id = req.params.id;
 
     Sale.findByPk(id).then(data => {
+
         if (data) {
             res.status(200).send(data);
         } else {
@@ -58,6 +61,7 @@ exports.findOne = (req, res) => {
                 message: `No se puede encontrar el elemento con la id=${id}.`
             });
         }
+
     }).catch(err => {
         res.status(500).send({
             message: "Algún error ha surgido al recuperar la id=" + id
@@ -66,6 +70,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
+
     const id = req.params.id;
 
     Sale.update(req.body, {
@@ -82,12 +87,13 @@ exports.update = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualizar la id=" + id
+            message: "Algún error ha surgido al actualiazar la id=" + id
         });
     });
 };
 
 exports.delete = (req, res) => {
+
     const id = req.params.id;
 
     Sale.destroy({

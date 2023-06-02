@@ -1,26 +1,26 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "proyecto de clase para tienda online",
+  "description": "proyecto para una tienda online de practica",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start" : "node index.js",
+    "dev" : "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Somiichan/tienda-online.git"
+    "url": "git+https://github.com/Dualvicc/tienda-online.git"
   },
-  "author": "",
+  "author": "Victor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Somiichan/tienda-online/issues"
+    "url": "https://github.com/Dualvicc/tienda-online/issues"
   },
-  "homepage": "https://github.com/Somiichan/tienda-online#readme",
+  "homepage": "https://github.com/Dualvicc/tienda-online#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -39,7 +39,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
-    "sequelize-cli": "^6.6.0",
-    "webpack-cli": "^5.1.1"
+    "sequelize-cli": "^6.6.0"
   }
 }

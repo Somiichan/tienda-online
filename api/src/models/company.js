@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             primaryKey: true
         },
-        fiscal_name: {
+        fiscalName: {
             type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        comercial_name: {
+        comercialName: {
             type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
@@ -33,11 +33,16 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        comercial_address: {
+        comercialAddress: {
             type: DataTypes.STRING(255),
-            allowNull: true,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Dirección Comercial".'
+                }
+            }
         },
-        fiscal_address: {
+        fiscalAddress: {
             type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
@@ -46,34 +51,46 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        postal_code: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-        },
-        email: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-            unique: {
-                args: true,
-                msg: 'Ya existe una empresa con ese correo electrónico.'
-            },
-        },
-        web: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-        },
-        telephone: {
+        postalCode: {
             type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Teléfono".'
+                    msg: 'Por favor, rellena el campo "Código Postal".'
                 }
             }
         },
+        email: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+            unique: {
+                args: true,
+                msg: 'Ya existe una empresa con ese correo electrónico.'
+            },
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Email".'
+                },
+                isEmail: {
+                    msg: 'Por favor, rellena el campo "Email" con un email válido.'
+                }
+            }
+        },
+        web: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Sitio web".'
+                }
+            }
+        },
+        telephone: {
+            type: DataTypes.STRING(255)
+        },
     }, {
         sequelize,
-        tableName: 'companies',
+        tableName: 'Companies',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -85,10 +102,19 @@ module.exports = function(sequelize, DataTypes) {
                     { name: "id" },
                 ]
             },
+            {
+                name: "email",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "email" },
+                ]
+            },
         ]
     });
 
     Company.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
     return Company;

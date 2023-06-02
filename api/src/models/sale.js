@@ -1,68 +1,101 @@
 module.exports = function(sequelize, DataTypes) {
-    const Sale = sequelize.define('Sale', {
+    const Sale = sequelize.define(
+      'Sale',
+      {
         id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: DataTypes.INTEGER
         },
         cartId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-            model: 'Cart',
-            key: 'id'
-            }
+          type: DataTypes.INTEGER
         },
         customerId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-            model: 'Customer',
-            key: 'id'
-            }
+          type: DataTypes.INTEGER
         },
         paymentMethodId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-            model: 'PaymentMethod',
-            key: 'id'
-            }
+          type: DataTypes.INTEGER
         },
         reference: {
-            allowNull: false,
-            type: DataTypes.STRING
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "reference".'
+            }
+          }
         },
         totalPrice: {
-            allowNull: false,
-            type: DataTypes.DECIMAL(10, 2)
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalPrice".'
+            }
+          }
         },
         totalBasePrice: {
-            allowNull: false,
-            type: DataTypes.DECIMAL(10, 2)
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalBasePrice".'
+            }
+          }
         },
         totalTaxPrice: {
-            allowNull: false,
-            type: DataTypes.DECIMAL(10, 2)
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalTaxPrice".'
+            }
+          }
         },
         issueDate: {
-            allowNull: false,
-            type: DataTypes.DATEONLY
+          type: DataTypes.DATEONLY,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "issueDate".'
+            }
+          }
         },
         issueTime: {
-            allowNull: false,
-            type: DataTypes.TIME
+          type: DataTypes.TIME,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "issueTime".'
+            }
+          }
+        },
+        createdAt: {
+          allowNull: false,
+          type: DataTypes.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: DataTypes.DATE
+        },
+        deletedAt: {
+          type: DataTypes.DATE
         }
-    }, {
+      },
+      {
         sequelize,
         tableName: 'sales',
         timestamps: true,
         paranoid: true,
-    });
-
+        indexes: []
+      }
+    );
+  
     Sale.associate = function(models) {
+      // Define las asociaciones con otros modelos aquí
     };
-
+  
     return Sale;
-};
+  };
+  

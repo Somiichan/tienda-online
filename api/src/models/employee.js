@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Employee = sequelize.define('Employee', {
         id: {
@@ -10,55 +8,52 @@ module.exports = function(sequelize, DataTypes) {
         },
         name: {
             allowNull: false,
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "name".'
+                }
+            }
         },
-        workPositionId: {
+        position: {
             allowNull: false,
-            type: DataTypes.INTEGER,
-        },
-        socialNetworksId: {
-            allowNull: true,
-            type:DataTypes.INTEGER,
-        },
-        profileImageId: {
-            allowNull: true,
-            type: DataTypes.INTEGER,
-        },
-        languageId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataTypes.STRING,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "position".'
+                }
+            }
         },
         companyId: {
+            allowNull: false,
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            set(value) {
-                const hashedPassword = useBcrypt.hashSync(value, 10);
-                this.setDataValue('password', hashedPassword);
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "companyId".'
+                }
             }
+        },
+        createdAt: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        deletedAt: {
+            type: DataTypes.DATE
         }
     }, {
         sequelize,
         tableName: 'employees',
         timestamps: true,
         paranoid: true,
-        indexes: [
-            {
-                name: "PRIMARY",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "id" },
-                ]
-            }
-        ]
+        indexes: []
     });
 
-
     Employee.associate = function(models) {
+        Employee.belongsTo(models.Company, { foreignKey: 'companyId' });
     };
 
     return Employee;

@@ -1,24 +1,47 @@
 module.exports = function(sequelize, DataTypes) {
-    const Tax = sequelize.define('Tax', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        vatRate: {
-            type: DataTypes.INTEGER(2).UNSIGNED,
-            allowNull: false
-        },
-        valid: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
+  const Tax = sequelize.define('Tax', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "Tipo".'
         }
-    }, {
-      sequelize,
-      tableName: 'taxes',
-      timestamps: true,
-      paranoid: true
-    });
-  
-    return Tax;
+      }
+    },
+    current: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "Actual".'
+        }
+      }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    deletedAt: {
+      type: DataTypes.DATE
+    }
+  }, {
+    sequelize,
+    tableName: 'taxes',
+    timestamps: true,
+    paranoid: true,
+    indexes: []
+  });
+
+  return Tax;
 };

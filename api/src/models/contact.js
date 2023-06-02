@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Contact = sequelize.define('Contact', {
         id: {
@@ -9,24 +7,50 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Nombre Fiscal".'
+                }
+            }
         },
         email: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Email".'
+                },
+                isEmail: {
+                    msg: 'Por favor, rellena el campo "Email" con un email válido.'
+                }
+            }
         },
-        issue: {
+        subject: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Subject".'
+                }
+            }
         },
         message: {
+            type: DataTypes.TEXT,
             allowNull: false,
-            type: DataTypes.STRING
-        }
+            validate: {
+              notNull: {
+                msg: 'Por favor, rellena el campo "Mensaje".'
+              }
+            }
+        },
+        fingerprintId:{
+            type: DataTypes.INTEGER
+        },
     }, {
         sequelize,
-        tableName: 'contacts',
+        tableName: 'Contacts',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -37,12 +61,20 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            }
+            },
+            {
+                name: "email",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "email" },
+                ]
+            },
         ]
     });
 
-
     Contact.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
     return Contact;

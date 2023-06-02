@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Returns = sequelize.define('Returns', {
+    const Returns = sequelize.define('Return', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -7,13 +7,25 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER
       },
       saleId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Sale',
+          key: 'id'
+        },
       },
       customerId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Customer',
+          key: 'id'
+        },
       },
       paymentMethodId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'PaymentMethod',
+          key: 'id'
+        },
       },
       reference: {
         allowNull: false,
@@ -55,7 +67,16 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'returns',
       timestamps: true,
       paranoid: true,
-      indexes: []
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
     });
   
     Returns.associate = function(models) {

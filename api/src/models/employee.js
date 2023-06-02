@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const Employee = sequelize.define('Employee', {
         id: {
             allowNull: false,
@@ -27,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
         companyId: {
             allowNull: false,
             type: DataTypes.INTEGER,
+            references: {
+                model: 'Company',
+                key: 'id'
+            },
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "companyId".'
@@ -49,7 +54,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'employees',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     Employee.associate = function(models) {

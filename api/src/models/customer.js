@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const Customer = sequelize.define('Customer', {
       id: {
         autoIncrement: true,
@@ -88,7 +89,16 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'customers',
       timestamps: true,
       paranoid: true,
-      indexes: []
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
     });
   
     Customer.associate = function(models) {

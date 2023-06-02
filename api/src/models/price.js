@@ -7,7 +7,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         },
         productId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Product',
+                key: 'id'
+            },
         },
         taxId: {
             type: DataTypes.INTEGER
@@ -34,7 +38,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'prices',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     Price.associate = function(models) {

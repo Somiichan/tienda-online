@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    
+
     const Contact = sequelize.define('Contact', {
         id: {
             autoIncrement: true,
@@ -47,7 +47,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         fingerprintId:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'FingerPrint',
+                key: 'id'
+            },
         },
     }, {
         sequelize,
@@ -75,7 +79,10 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Contact.associate = function(models) {
-        // Define las asociaciones con otros modelos aquí
+        Contact.belongsTo(models.Fingerprint, {
+            foreignKey: 'fingerprintId',
+            as: 'fingerprint'
+        });
     };
 
     return Contact;

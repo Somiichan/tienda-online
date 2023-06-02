@@ -9,13 +9,25 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.INTEGER
         },
         cartId: {
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'Cart',
+            key: 'id'
+          },
         },
         customerId: {
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'Customer',
+            key: 'id'
+          },
         },
         paymentMethodId: {
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'PaymentMethod',
+            key: 'id'
+          },
         },
         reference: {
           type: DataTypes.STRING,

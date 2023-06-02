@@ -8,15 +8,27 @@ module.exports = function(sequelize, DataTypes) {
       },
       paymentMethodId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'PaymentMethod',
+          key: 'id'
+        },
       },
       customerId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Customer',
+          key: 'id'
+        },
       },
       cartId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Cart',
+          key: 'id'
+        },
       },
       errorCode: {
         type: DataTypes.INTEGER,

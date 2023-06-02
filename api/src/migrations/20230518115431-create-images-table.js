@@ -11,7 +11,11 @@ module.exports = {
       },
       imageConfigurationId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'ImageConfiguration',
+          key: 'id'
+        }
       },
       entityId: {
         type: Sequelize.INTEGER

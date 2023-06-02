@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'companies',
+          model: 'Company',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'social_networks', 
+          model: 'SocialNetwork', 
           key: 'id' 
         },
         onUpdate: 'CASCADE',

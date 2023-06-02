@@ -8,13 +8,25 @@ module.exports = function(sequelize, DataTypes) {
         },
         menuId: {
             allowNull: false,
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Menu',
+                key: 'id'
+            },
         },
         localeSeoId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'LocaleSeo',
+                key: 'id'
+            },
         },
-        localeSlugSeoId: {
-            type: DataTypes.INTEGER
+        localeSeoSlugId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'LocaleSeoSlug',
+                key: 'id'
+            },
         },
         parentId: {
             type: DataTypes.INTEGER
@@ -53,7 +65,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'menu_items',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     MenuItem.associate = function(models) {

@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const ProductCategory = sequelize.define('ProductCategory', {
       id: {
         autoIncrement: true,
@@ -35,8 +36,21 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       sequelize,
       tableName: 'product_categories',
-      timestamps: true
+      timestamps: true,
+      paranoid: true,
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
+
     });
+
     ProductCategory.associate = function(models) {
         // Define las asociaciones con otros modelos aquí
     };

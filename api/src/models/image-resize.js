@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const ImageResize = sequelize.define('ImageResize', {
         id: {
             autoIncrement: true,
@@ -6,13 +7,21 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             primaryKey: true
         },
-        imageOriginalId: {
+        imageId: {
             type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'Image',
+                key: 'id'
+            },
         },
         imageConfigurationId: {
             type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'ImageConfiguration',
+                key: 'id'
+            },
         },
         title: {
             type: DataTypes.STRING(150),
@@ -85,7 +94,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'image_resizes',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     ImageResize.associate = function(models) {

@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
       customerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Customer',
+          key: 'id'
+        },
         validate: {
           notNull: {
             msg: 'Por favor, rellena el campo "customerId".'
@@ -18,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
       emailId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Email',
+          key: 'id'
+        },
         validate: {
           notNull: {
             msg: 'Por favor, rellena el campo "emailId".'
@@ -40,7 +48,16 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'sent_emails',
       timestamps: true,
       paranoid: true,
-      indexes: []
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
     });
   
     SentEmail.associate = function(models) {

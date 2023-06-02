@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const Faq = sequelize.define('Faq', {
         id: {
             allowNull: false,
@@ -53,7 +54,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'faqs',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     return Faq;

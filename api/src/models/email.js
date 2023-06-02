@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const Email = sequelize.define('Email', {
         id: {
             allowNull: false,
@@ -25,7 +26,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         fingerprintId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Fingerprint',
+                key: 'id'
+            },
         },
         createdAt: {
             allowNull: false,
@@ -43,7 +48,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'emails',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     Email.associate = function(models) {

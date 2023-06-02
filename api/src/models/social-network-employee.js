@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
         socialNetworkId: {
             allowNull: false,
             type: DataTypes.INTEGER,
+            references: {
+                model: 'SocialNetwork',
+                key: 'id'
+            },
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "socialNetworkId".'
@@ -18,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         employeeId: {
             allowNull: false,
             type: DataTypes.INTEGER,
+            references: {
+                model: 'Employee',
+                key: 'id'
+            },
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "employeeId".'
@@ -49,7 +57,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'social_networks_employees',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     SocialNetworkEmployee.associate = function(models) {

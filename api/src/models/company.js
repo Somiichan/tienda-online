@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     const Company = sequelize.define('Company', {
         id: {
             autoIncrement: true,
@@ -100,14 +101,6 @@ module.exports = function(sequelize, DataTypes) {
                 using: "BTREE",
                 fields: [
                     { name: "id" },
-                ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
                 ]
             },
         ]

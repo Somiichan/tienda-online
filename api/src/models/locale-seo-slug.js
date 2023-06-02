@@ -24,7 +24,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         localeSeoId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'LocaleSeo',
+                key: 'id'
+            },
         },
         parentSlug: {
             type: DataTypes.STRING
@@ -55,7 +59,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'locale_seo_slugs',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+                name: "PRIMARY",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "id" },
+                ]
+            },
+        ]
     });
 
     return LocaleSeoSlug;

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const SocialNetworksCompanies = sequelize.define('SocialNetworksCompanies', {
+    const SocialNetworkCompany = sequelize.define('SocialNetworkCompany', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER,
@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
         companyId: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'Company',
+                key: 'id'
+            },
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "companyId".'
@@ -18,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         socialNetworkId: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'SocialNetwork',
+                key: 'id'
+            },
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "socialNetworkId".'
@@ -49,9 +57,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
     });
 
-    SocialNetworksCompanies.associate = function(models) {
-        // Define las asociaciones con otros modelos aquí
+    SocialNetworkCompany.associate = function(models) {
+        SocialNetworkCompany.belongsTo(models.Company, {
+            foreignKey: 'companyId',
+            as: 'company'
+        });
+
+        SocialNetworkCompany.belongsTo(models.SocialNetwork, {
+            foreignKey: 'socialNetworkId',
+            as: 'socialNetwork'
+        });
     };
 
-    return SocialNetworksCompanies;
+    return SocialNetworkCompany;
 };

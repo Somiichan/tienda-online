@@ -8,7 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       },
       imageConfigurationId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'ImageConfiguration',
+          key: 'id'
+        },
       },
       entityId: {
         type: DataTypes.INTEGER
@@ -80,7 +84,16 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'images',
       timestamps: true,
       paranoid: true,
-      indexes: []
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
     });
   
     Image.associate = function(models) {

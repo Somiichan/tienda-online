@@ -41,7 +41,16 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'sale_errors',
       timestamps: true,
       paranoid: true,
-      indexes: []
+      indexes: [
+        {
+          name: "PRIMARY",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "id" },
+          ]
+        },
+      ]
     });
   
     SaleError.associate = function(models) {

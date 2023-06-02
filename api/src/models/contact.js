@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+    
     const Contact = sequelize.define('Contact', {
         id: {
             autoIncrement: true,
@@ -11,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre Fiscal".'
+                    msg: 'Por favor, rellena el campo "Nombre".'
                 }
             }
         },

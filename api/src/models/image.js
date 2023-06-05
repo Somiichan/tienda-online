@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Image = sequelize.define('Image', {
     id: {
       autoIncrement: true,
@@ -67,17 +67,6 @@ module.exports = function(sequelize, DataTypes) {
           msg: 'Por favor, rellena el campo "Latency Ms".'
         }
       }
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    deletedAt: {
-      type: DataTypes.DATE
     }
   }, {
     sequelize,
@@ -86,29 +75,34 @@ module.exports = function(sequelize, DataTypes) {
     paranoid: true,
     indexes: [
       {
-          name: "PRIMARY",
-          unique: true,
-          using: "BTREE",
-          fields: [
-              { name: "id" },
-          ]
+        name: 'PRIMARY',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'id' }
+        ]
       },
       {
-        name: "foreign_imageConfiguration",
-        unique: true,
-        using: "BTREE",
+        name: 'image_imageConfigurationId_fk',
+        using: 'BTREE',
         fields: [
-            { name: "imageConfigurationId" },
+          { name: 'imageConfigurationId' }
+        ]
+      },
+      {
+        name: 'image_entityId_entity_idx',
+        using: 'BTREE',
+        fields: [
+          { name: 'entityId' },
+          { name: 'entity' }
         ]
       }
     ]
-  });
+  })
 
-  Image.associate = function(models) {
-    Image.belongsTo(models.ImageConfiguration, { foreignKey: 'imageConfigurationId' });
-  };
-  
+  Image.associate = function (models) {
+    Image.belongsTo(models.ImageConfiguration, { as: 'imageConfiguration', foreignKey: 'imageConfigurationId' })
+  }
 
-  return Image;
-};
-  
+  return Image
+}

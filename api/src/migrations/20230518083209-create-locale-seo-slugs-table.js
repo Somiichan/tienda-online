@@ -1,43 +1,49 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sale_errors', {
+    await queryInterface.createTable('locale_seo_slugs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      paymentMethodId: {
+      localeSeoId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'PaymentMethod',
+          model: 'LocaleSeo',
           key: 'id'
         }
       },
-      customerId: {
+      language: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Customer',
-          key: 'id'
-        }
+        type: Sequelize.STRING
       },
-      cartId: {
+      relParent: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Cart',
-          key: 'id'
-        }
+        type: Sequelize.STRING
       },
-      errorCode: {
+      slug: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      key: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      errorMessage: {
+      parentSlug: {
+        type: Sequelize.STRING
+      },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
+      keywords: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -52,12 +58,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('sale_errors', ['cartId']))
-    .then(() => queryInterface.addIndex('sale_errors', ['customerId']))
-    .then(() => queryInterface.addIndex('sale_errors', ['paymentMethodId']))
+    .then(() => queryInterface.addIndex('locale_seo_slugs', ['localeSeoId'],{
+      name: 'localeSeoSlug_localeSeoId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sale_errors');
+    await queryInterface.dropTable('locale_seo_slugs')
   }
-};
+}

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -37,11 +37,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('sent_emails', ['customerId']))
-    .then(() => queryInterface.addIndex('sent_emails', ['emailId']))
+    .then(() => queryInterface.addIndex('sent_emails', ['customerId'],{
+      name: 'sentEmail_customerId_fk'
+    }))
+    .then(() => queryInterface.addIndex('sent_emails', ['emailId'],{
+      name: 'sentEmail_emailId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sent_emails');
+    await queryInterface.dropTable('sent_emails')
   }
-};
+}

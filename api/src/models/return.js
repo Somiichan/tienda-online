@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  const Returns = sequelize.define('Return', {
+module.exports = function (sequelize, DataTypes) {
+  const Return = sequelize.define('Return', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -8,21 +8,21 @@ module.exports = function(sequelize, DataTypes) {
     },
     saleId: {
       type: DataTypes.INTEGER,
-      references: {
+      refence: {
         model: 'Sale',
         key: 'id'
       }
     },
     customerId: {
       type: DataTypes.INTEGER,
-      references: {
+      refence: {
         model: 'Customer',
         key: 'id'
       }
     },
     paymentMethodId: {
       type: DataTypes.INTEGER,
-      references: {
+      refence: {
         model: 'PaymentMethod',
         key: 'id'
       }
@@ -69,69 +69,44 @@ module.exports = function(sequelize, DataTypes) {
     paranoid: true,
     indexes: [
       {
-        name: "PRIMARY",
+        name: 'PRIMARY',
         unique: true,
-        using: "BTREE",
+        using: 'BTREE',
         fields: [
-          { name: "id" },
+          { name: 'id' }
         ]
       },
       {
-        name: "foreign_sale",
-        unique: true,
-        using: "BTREE",
+        name: 'return_saleId_fk',
+        using: 'BTREE',
         fields: [
-          { name: "returnId" },
+          { name: 'saleId' }
         ]
       },
       {
-        name: "foreign_return",
-        unique: true,
-        using: "BTREE",
+        name: 'return_customerId_fk',
+        using: 'BTREE',
         fields: [
-          { name: "saleId" },
+          { name: 'customerId' }
         ]
       },
       {
-        name: "foreign_customer",
-        unique: true,
-        using: "BTREE",
+        name: 'return_paymentMethodId_fk',
+        using: 'BTREE',
         fields: [
-          { name: "customerId" },
-        ]
-      },
-      {
-        name: "foreign_paymentMethod",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "paymentMethodId" },
+          { name: 'paymentMethodId' }
         ]
       }
     ]
-  });
-  
-    Returns.associate = function(models) {
-      Returns.belongsTo(models.Sale, {
-        foreignKey: 'saleId'
-      });
+  })
 
-      Returns.belongsTo(models.Customer, {
-          foreignKey: 'customerId'
-      });
+  Return.associate = function (models) {
+    Return.belongsTo(models.Sale, { as: 'sale', foreignKey: 'saleId' }),
+    Return.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' }),
+    Return.belongsTo(models.PaymentMethod, { as: 'paymentMethod', foreignKey: 'paymentMethodId' })
+    Return.hasMany(models.ReturnDetail, { as: 'details', foreignKey: 'returnId' })
+    Return.belongsToMany(models.Product, { as: 'products', through: 'ReturnDetail', foreignKey: 'returnId' })
+  }
 
-      Returns.belongsTo(models.PaymentMethod, {
-          foreignKey: 'paymentMethodId'
-      });
-
-      Returns.hasMany(models.ReturnDetail, {
-        foreignKey: 'returnId',
-        as: 'returnDetails',
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE'
-      });
-    };
-    
-    return Returns;
-};
-  
+  return Return
+}

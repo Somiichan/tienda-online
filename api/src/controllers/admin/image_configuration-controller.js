@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Menu = db.Menu;
+const Image_configuration = db.ImageConfiguration;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Menu.create(req.body).then(data => {
+    Image_configuration.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Menu.findAndCountAll({
+    Image_configuration.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name'],
+        attributes: ['id','entity', 'directory', 'type', 'content', 'grid', 'contentAccepted', 'extensionConversion', 'widthPx', 'heightPx', 'quality'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.findByPk(id).then(data => {
+    Image_configuration.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.update(req.body, {
+    Image_configuration.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.destroy({
+    Image_configuration.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

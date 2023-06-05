@@ -4,7 +4,7 @@ module.exports = (app, upload) => {
 
     const router = require("express").Router();
     // const authJwt  = require("../middlewares/auth-jwt.js");
-    const controller = require("../controllers/admin/contact-controller.js");
+    const controller = require("../controllers/admin/payment_methods-controller.js");
   
     app.use(function(req, res, next) {
         res.header(
@@ -20,5 +20,5 @@ module.exports = (app, upload) => {
     router.put("/:id", controller.update);  
     router.delete("/:id", controller.delete);
   
-    app.use('/api/admin/contacts', router);
+    app.use('/api/admin/payment_methods', router);
   };

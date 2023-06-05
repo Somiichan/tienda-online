@@ -1,5 +1,6 @@
-module.exports = function(sequelize, DataTypes) {
+const useBcrypt = require('sequelize-bcrypt');
 
+module.exports = function(sequelize, DataTypes) {
     const Contact = sequelize.define('Contact', {
         id: {
             autoIncrement: true,
@@ -8,54 +9,24 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
-            type: DataTypes.STRING(255),
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre".'
-                }
-            }
-        },
+            type: DataTypes.STRING(255)
+          },
         email: {
-            type: DataTypes.STRING(255),
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Email".'
-                },
-                isEmail: {
-                    msg: 'Por favor, rellena el campo "Email" con un email válido.'
-                }
-            }
+            type: DataTypes.STRING
         },
-        subject: {
-            type: DataTypes.STRING(255),
+        issue: {
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Subject".'
-                }
-            }
+            type: DataTypes.STRING
         },
         message: {
-            type: DataTypes.TEXT,
             allowNull: false,
-            validate: {
-              notNull: {
-                msg: 'Por favor, rellena el campo "Mensaje".'
-              }
-            }
-        },
-        fingerprintId:{
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'FingerPrint',
-                key: 'id'
-            },
-        },
+            type: DataTypes.STRING
+          }
     }, {
         sequelize,
-        tableName: 'Contacts',
+        tableName: 'contacts',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -66,23 +37,12 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
+            }
         ]
     });
 
+
     Contact.associate = function(models) {
-        Contact.belongsTo(models.Fingerprint, {
-            foreignKey: 'fingerprintId',
-            as: 'fingerprint'
-        });
     };
 
     return Contact;

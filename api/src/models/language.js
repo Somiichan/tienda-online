@@ -1,3 +1,5 @@
+const useBcrypt = require('sequelize-bcrypt');
+
 module.exports = function(sequelize, DataTypes) {
     const Language = sequelize.define('Language', {
         id: {
@@ -7,31 +9,13 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
-            type: DataTypes.STRING(255),
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Language".'
-                }
-            },
-            unique: {
-                args: true,
-                msg: 'Ya existe ese lenguaje.'
-            },
-        },
-        alias: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.STRING(255)
+          },
+          alias: {
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Alias".'
-                }
-            },
-            unique: {
-                args: true,
-                msg: 'Ya existe ese alias.'
-            },
-        }
+            type: DataTypes.STRING(255)
+          }
     }, {
         sequelize,
         tableName: 'languages',
@@ -45,20 +29,12 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
+            }
         ]
     });
 
+
     Language.associate = function(models) {
-        // Define las asociaciones con otros modelos aquí
     };
 
     return Language;

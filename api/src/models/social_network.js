@@ -1,32 +1,24 @@
 const useBcrypt = require('sequelize-bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
-    const Cart = sequelize.define('Cart', {
+    const Social_network = sequelize.define('Social_network', {
         id: {
-            allowNull: false,
             autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-          },
-          clientId: {
-            allowNull: false,
             type: DataTypes.INTEGER,
-            references: {
-              model: 'client',
-              key: 'id'
-            }
-          },
-          fingerprintId: {
             allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'fingerprint',
-              key: 'id'
-            }
+            primaryKey: true
+        },
+        name: {
+            allowNull: false,
+            type: DataTypes.STRING(255)
+          },
+          baseURL: {
+            allowNull: false,
+            type: DataTypes.STRING(255)
           }
     }, {
         sequelize,
-        tableName: 'Carts',
+        tableName: 'social_networks',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -42,8 +34,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
 
-    Cart.associate = function(models) {
+    Social_network.associate = function(models) {
     };
 
-    return Cart;
+    return Social_network;
 };

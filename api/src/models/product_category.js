@@ -1,7 +1,7 @@
 const useBcrypt = require('sequelize-bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
-    const Menu = sequelize.define('Menu', {
+    const Product_category = sequelize.define('Product_category', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER,
@@ -11,10 +11,14 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             allowNull: false,
             type: DataTypes.STRING(255)
-          }
+          },
+        visible: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        }
     }, {
         sequelize,
-        tableName: 'menus',
+        tableName: 'product_categories',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -30,8 +34,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
 
-    Menu.associate = function(models) {
+    Product_category.associate = function(models) {
     };
 
-    return Menu;
+    return Product_category;
 };

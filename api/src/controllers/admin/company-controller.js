@@ -9,9 +9,15 @@ exports.create = (req, res) => {
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
+      if(err.errors ){
+        res.status(422).send({
+          message: err.errors
         });
+      }else{
+        res.status(500).send({
+          message: "Algún error ha surgido al recuperar los datos."
+        });
+      }
     });
 };
 
@@ -26,7 +32,7 @@ exports.findAll = (req, res) => {
 
     Company.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'fiscalName', 'comercialName', 'nif'],
+        attributes: ['id', 'comercial_name', 'fiscal_name', 'nif', 'comercial_address', 'postal_code', 'email', 'web', 'telephone'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]

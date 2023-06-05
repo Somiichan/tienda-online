@@ -1,3 +1,5 @@
+const { QueryError } = require("sequelize");
+
 module.exports = (app, upload) => {
 
     const router = require("express").Router();
@@ -20,4 +22,3 @@ module.exports = (app, upload) => {
   
     app.use('/api/admin/languages', router);
   };
-    

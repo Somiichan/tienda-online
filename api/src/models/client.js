@@ -1,56 +1,44 @@
 const useBcrypt = require('sequelize-bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
-    const Company = sequelize.define('Company', {
+    const Client = sequelize.define('Client', {
         id: {
+            allowNull: false,
             autoIncrement: true,
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true
-        },
-        fiscal_name: {
-            unique: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+          },
+          name: {
             allowNull: false,
             type: DataTypes.STRING(255)
           },
-          comercial_name: {
-            unique: true,
-            allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          nif: {
-            unique: true,
-            allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          comercial_address: {
-            unique: true,
-            allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          postal_code: {
-            unique: true,
-            allowNull: true,
-            type: DataTypes.STRING(255)
-          },
-          email: {
-            unique: false,
-            allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          web: {
-            unique: true, 
+          surname: {
             allowNull: false,
             type: DataTypes.STRING(255)
           },
           telephone: {
-            unique: true,
+            allowNull: false,
+            type: DataTypes.STRING(10)
+          },
+          email: {
+            allowNull: false,
+            type: DataTypes.STRING(255)
+          },
+          poblation: {
+            allowNull: false,
+            type: DataTypes.STRING(255)
+          },
+          postal_code: {
+            allowNull: false,
+            type: DataTypes.CHAR
+          },
+          address: {
             allowNull: false,
             type: DataTypes.STRING(255)
           }
     }, {
         sequelize,
-        tableName: 'companies',
+        tableName: 'clients',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -66,8 +54,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
 
-    Company.associate = function(models) {
+    Client.associate = function(models) {
     };
 
-    return Company;
+    return Client;
 };

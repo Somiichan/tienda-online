@@ -9,9 +9,15 @@ exports.create = (req, res) => {
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
+      if(err.errors ){
+        res.status(422).send({
+          message: err.errors
         });
+      }else{
+        res.status(500).send({
+          message: "Algún error ha surgido al recuperar los datos."
+        });
+      }
     });
 };
 
@@ -26,7 +32,7 @@ exports.findAll = (req, res) => {
 
     Cart.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'customerId', 'fingerprintId'],
+        attributes: ['id'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]

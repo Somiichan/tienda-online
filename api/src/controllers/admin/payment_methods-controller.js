@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Menu = db.Menu;
+const Payment_method = db.Payment_method;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Menu.create(req.body).then(data => {
+    Payment_method.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Menu.findAndCountAll({
+    Payment_method.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name'],
+        attributes: ['id', 'name', 'visible'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.findByPk(id).then(data => {
+    Payment_method.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.update(req.body, {
+    Payment_method.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Menu.destroy({
+    Payment_method.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

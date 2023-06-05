@@ -24,10 +24,10 @@ module.exports = {
           key: 'id'
         }
       },
-      localeSlugSeoId: {
+      localeSeoSlugId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'LocaleSlugSeo',
+          model: 'LocaleSeoSlug',
           key: 'id'
         }
       },

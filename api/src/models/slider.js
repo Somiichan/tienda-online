@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Slider = sequelize.define('Slider', {
         id: {
@@ -9,9 +7,28 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          }
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Nombre".'
+                }
+            }
+        },
+        visible: {
+            type: DataTypes.BOOLEAN
+        },
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: false
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: false
+        },
+        deletedAt: {
+          type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'sliders',
@@ -28,8 +45,6 @@ module.exports = function(sequelize, DataTypes) {
             }
         ]
     });
-
-
     Slider.associate = function(models) {
     };
 

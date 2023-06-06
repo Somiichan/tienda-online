@@ -159,7 +159,7 @@ class Form extends HTMLElement {
                         <input type="password" />
                     </div>
                 </div>
-                <div class="image-form">
+                <div class="image-form" data-form="images">
                     <div class="input-image">
                         <label>Seleccione una imagen</label>
                         <input type="file" />

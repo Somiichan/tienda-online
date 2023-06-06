@@ -53,11 +53,11 @@ class Menu extends HTMLElement {
         </div>
         `;
         
-        const hamburgerButton = document.querySelector('.hamburger-button');
+        // const hamburgerButton = this.shadow.querySelector('.hamburger-button');
 
-        hamburgerButton.addEventListener('click', () => {
-            hamburgerButton.classList.toggle('active');
-        });
+        // hamburgerButton.addEventListener('click', () => {
+        //     hamburgerButton.classList.toggle('active');
+        // });
     }
 }
 

@@ -9,11 +9,6 @@ module.exports = function (sequelize, DataTypes) {
     companyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "companyId".'
-        }
-      },
       references: {
         model: 'Company',
         key: 'id'
@@ -22,11 +17,6 @@ module.exports = function (sequelize, DataTypes) {
     socialNetworkId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "socialNetworkId".'
-        }
-      },
       references: {
         model: 'SocialNetwork',
         key: 'id'

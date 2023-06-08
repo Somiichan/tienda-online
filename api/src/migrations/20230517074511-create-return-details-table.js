@@ -55,12 +55,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('return_details', ['returnId'],{
-      name: 'returnDetail_returnId_fk'
-    }))
-    .then(() => queryInterface.addIndex('return_details', ['productId'],{
-      name: 'returnDetail_productId_fk'
-    }))
+      .then(() => queryInterface.addIndex('return_details', ['returnId'], {
+        name: 'returnDetail_returnId_fk'
+      }))
+      .then(() => queryInterface.addIndex('return_details', ['productId'], {
+        name: 'returnDetail_productId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

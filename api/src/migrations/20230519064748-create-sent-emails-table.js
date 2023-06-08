@@ -37,12 +37,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('sent_emails', ['customerId'],{
-      name: 'sentEmail_customerId_fk'
-    }))
-    .then(() => queryInterface.addIndex('sent_emails', ['emailId'],{
-      name: 'sentEmail_emailId_fk'
-    }))
+      .then(() => queryInterface.addIndex('sent_emails', ['customerId'], {
+        name: 'sentEmail_customerId_fk'
+      }))
+      .then(() => queryInterface.addIndex('sent_emails', ['emailId'], {
+        name: 'sentEmail_emailId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      entityKey: {
+      entityId: {
         allowNull: false,
         unsigned: true,
         type: Sequelize.INTEGER
@@ -43,9 +43,9 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('locales', ['languageAlias', 'entity', 'entityKey', 'key'],{
-      name: 'locale_languageAlias_entity_entityKey_key_idx'
-    }))
+      .then(() => queryInterface.addIndex('locales', ['languageAlias', 'entity', 'entityId', 'key'], {
+        name: 'locale_languageAlias_entity_entityId_key_idx'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

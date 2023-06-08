@@ -8,51 +8,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     language: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "language".'
-        }
-      }
-    },
-    group: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "group".'
-        }
-      }
-    },
-    key: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "key".'
-        }
-      }
-    },
-    subdomain: {
       type: DataTypes.STRING
     },
     url: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "url".'
-        }
-      }
+      type: DataTypes.STRING
     },
     title: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "title".'
-        }
-      }
+      type: DataTypes.STRING
     },
     description: {
       type: DataTypes.STRING

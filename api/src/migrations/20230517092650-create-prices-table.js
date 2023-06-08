@@ -41,12 +41,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('prices', ['productId'],{
-      name: 'price_productId_fk'
-    }))
-    .then(() => queryInterface.addIndex('prices', ['taxId'],{
-      name: 'price_taxId_fk'
-    }))
+      .then(() => queryInterface.addIndex('prices', ['productId'], {
+        name: 'price_productId_fk'
+      }))
+      .then(() => queryInterface.addIndex('prices', ['taxId'], {
+        name: 'price_taxId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

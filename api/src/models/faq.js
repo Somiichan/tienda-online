@@ -11,25 +11,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "name".'
-        }
-      }
-    },
-    title: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "title".'
-        }
-      }
-    },
-    description: {
-      allowNull: false,
-      type: DataTypes.TEXT,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "description".'
+          msg: 'Por favor, rellena el campo "Nombre".'
         }
       }
     },

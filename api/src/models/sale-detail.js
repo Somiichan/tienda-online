@@ -22,48 +22,23 @@ module.exports = function (sequelize, DataTypes) {
     },
     productName: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "productName".'
-        }
-      }
+      type: DataTypes.STRING
     },
     basePrice: {
       allowNull: false,
-      type: DataTypes.DECIMAL(6, 2),
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "basePrice".'
-        }
-      }
+      type: DataTypes.DECIMAL(6, 2)
     },
     taxPrice: {
       allowNull: false,
-      type: DataTypes.DECIMAL(6, 2),
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "taxPrice".'
-        }
-      }
+      type: DataTypes.DECIMAL(6, 2)
     },
     unitOfMeasurement: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "unitOfMeasurement".'
-        }
-      }
+      type: DataTypes.STRING
     },
     quantity: {
       allowNull: false,
-      type: DataTypes.INTEGER,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "quantity".'
-        }
-      }
+      type: DataTypes.INTEGER
     }
   }, {
     sequelize,

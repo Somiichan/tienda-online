@@ -35,12 +35,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('carts', ['customerId'],{
-      name: 'cart_customerId_fk'
-    }))
-    .then(() => queryInterface.addIndex('carts', ['fingerprintId'],{
-      name: 'cart_fingerprintId_fk'
-    }))
+      .then(() => queryInterface.addIndex('carts', ['customerId'], {
+        name: 'cart_customerId_fk'
+      }))
+      .then(() => queryInterface.addIndex('carts', ['fingerprintId'], {
+        name: 'cart_fingerprintId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

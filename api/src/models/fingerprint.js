@@ -16,12 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     fingerprint: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Fingerprint".'
-        }
-      }
+      allowNull: false
     }
   }, {
     sequelize,

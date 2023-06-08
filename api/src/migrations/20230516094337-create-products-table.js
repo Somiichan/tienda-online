@@ -16,6 +16,10 @@ module.exports = {
           key: 'id'
         }
       },
+      unitOfMeasurement: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       name: {
         allowNull: false,
         type: Sequelize.STRING
@@ -35,9 +39,9 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('products', ['productCategoryId'],{
-      name: 'product_productCategoryId_fk'
-    }))
+      .then(() => queryInterface.addIndex('products', ['productCategoryId'], {
+        name: 'product_productCategoryId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

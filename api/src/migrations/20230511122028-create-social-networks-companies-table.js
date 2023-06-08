@@ -39,12 +39,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('social_networks_companies', ['companyId'],{
-      name: 'socialNetworksCompany_companyId_fk'
-    }))
-    .then(() => queryInterface.addIndex('social_networks_companies', ['socialNetworkId'],{
-      name: 'socialNetworksCompany_socialNetworkId_fk'
-    }))
+      .then(() => queryInterface.addIndex('social_networks_companies', ['companyId'], {
+        name: 'socialNetworksCompany_companyId_fk'
+      }))
+      .then(() => queryInterface.addIndex('social_networks_companies', ['socialNetworkId'], {
+        name: 'socialNetworksCompany_socialNetworkId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

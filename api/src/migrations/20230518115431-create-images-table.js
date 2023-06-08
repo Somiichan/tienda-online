@@ -63,12 +63,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('images', ['imageConfigurationId'],{
-      name: 'image_imageConfigurationId_fk'
-    }))
-    .then(() => queryInterface.addIndex('images', ['entityId', 'entity'],{
-      name: 'image_entityId_entity_idx'
-    }))
+      .then(() => queryInterface.addIndex('images', ['imageConfigurationId'], {
+        name: 'image_imageConfigurationId_fk'
+      }))
+      .then(() => queryInterface.addIndex('images', ['entityId', 'entity'], {
+        name: 'image_entityId_entity_idx'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

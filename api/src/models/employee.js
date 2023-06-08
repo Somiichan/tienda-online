@@ -8,19 +8,14 @@ module.exports = function (sequelize, DataTypes) {
     },
     companyId: {
       allowNull: false,
-      type: DataTypes.INTEGER,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "companyId".'
-        }
-      }
+      type: DataTypes.INTEGER
     },
     name: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "name".'
+          msg: 'Por favor, rellena el campo "Nombre".'
         }
       }
     },
@@ -29,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "position".'
+          msg: 'Por favor, rellena el campo "Puesto".'
         }
       }
     }

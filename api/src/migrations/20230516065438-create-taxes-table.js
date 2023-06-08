@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
+      multiplier: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(10, 2)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

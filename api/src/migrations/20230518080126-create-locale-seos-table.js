@@ -13,17 +13,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      group: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      key: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      subdomain: {
-        type: Sequelize.STRING
-      },
       url: {
         allowNull: false,
         type: Sequelize.STRING

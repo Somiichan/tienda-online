@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "Nombre Fiscal".'
+          msg: 'Por favor, rellena el campo "Nombre".'
         }
       }
     },
@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "Subject".'
+          msg: 'Por favor, rellena el campo "Asunto".'
         }
       }
     },

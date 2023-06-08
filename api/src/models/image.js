@@ -19,12 +19,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     entity: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Entity".'
-        }
-      }
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING
@@ -43,30 +38,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     languageAlias: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Language Alias".'
-        }
-      }
+      allowNull: false
     },
     mediaQuery: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Media Query".'
-        }
-      }
+      allowNull: false
     },
     latencyMs: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Latency Ms".'
-        }
-      }
+      allowNull: false
     }
   }, {
     sequelize,

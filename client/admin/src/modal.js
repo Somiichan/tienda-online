@@ -3,126 +3,104 @@ class Modal extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.render();
+        const width = this.attributes.getNamedItem("width").value;
+        const height = this.attributes.getNamedItem("heigth").value;
+
+        this.render(width, height);
     }
 
-    connectedCallback() {
-        document.addEventListener('open-modal', event => {
-            const modal = this.shadow.querySelector('.modal');
-            modal.classList.toggle('active');
-        })
-    }
-
-    render() {
+    render(width, height) {
 
         this.shadow.innerHTML = 
         `
         <style>
-            .modal{
-                background-color: hsla(0, 0%, 100%, 0.541);
-                height: 100vh;
-                position: fixed;
-                left: 0;
-                opacity: 0;
-                top: 0;
-                transition: all 0.2s ease-in-out;
-                width: 100%;
-                z-index: -1;
-            }
-            
-            .modal.active{
-                opacity: 1;
-                z-index: 2000;
-            }
-            
-            .message-box{
-                position: absolute;
-                height: 15vh;
-                width: 25%;
-                top: 30%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                box-shadow: 0 0 62px hsla(0, 0%, 0%, 0.3);
-                align-items: center;
-                background-color: hsl(0, 0%, 100%);
-                border: 2px solid hsl(34, 91%, 68%);
-            }
-            
-            .message-box h5{
-                position: relative;
-                text-align: center;
-                margin-top: 2rem;
-                font-size: 1rem;
-                font-family: "Poppins", sans-serif;
-                font-weight: 500;
-                
-            }
-            
-            .buttons {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-                margin-top: 2rem;
-            }
-            
-            .buttons button {
-                padding: 0.5rem 2rem;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 1rem;
-                font-family: "Poppins", sans-serif;
-            }
-            
-            .buttons button.yes {
-                background-color: hsl(134, 61%, 41%);
-                color: hsl(0, 0%, 100%);
-            }
-            
-            .buttons button.no {
-                background-color: hsl(354, 70%, 54%);
-                color: hsl(0, 0%, 100%);
-            }
-            
-            .close-button {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                cursor: pointer;
-            }
-            
-            .close-button svg {
-                fill: hsl(0, 0%, 40%);
-                width: 1.5rem;
-                height: 1.5rem;
-            }
-            
-            .close-button:hover svg {
-                fill: hsl(0, 0%, 0%);
-            } 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .modal-section {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-section::after {
+            content: "";
+            position: absolute;
+        }       
+        .modal-section .modal { 
+            background-color: rgb(93, 93, 93);
+            width: ${width};
+            height: ${height};
+            display: grid;
+            grid-template-columns: 50% 50%;
+            box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .close-button {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: 0;
+            top: 0;
+            margin: 10px;
+            cursor: pointer;
+            filter: invert(0.5) sepia(0) saturate(40) hue-rotate(10deg);
+            z-index: 999;
+        }
+        
+        .close-button:hover {
+            filter: invert(0.5) sepia(1) saturate(40) hue-rotate(10deg);
+        }
+
+        .modal-section.active {
+            @include fadeIn(0s,0.5s);
+            display : flex;
+            z-index: 999;       
+        }
+
+        .modal-section.active .modal {
+            z-index: 999;
+        }
+
         </style>
+        <section class="modal-section" id="modal">
         <div class="modal">
-            <div class="message-box">
-                <h5>¿Seguro que quieres eliminar los datos?</h5>
-                <div class="buttons">
-                    <button type="button" class="yes">Sí</button>
-                    <button type="button" class="no">No</button>
-                </div>
-                <div class="close-button modal-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
-                </div>
-            </div>
+            <slot name="image-component-modal"></slot>
+            <slot name="details-component-modal"></slot>
+            
+            <div class="close-button button-close-modal" id="closeButton">
+                <img src="./assets/close.svg" />
+            </div>            
         </div>
+    </section>
         `;
 
-        const modal = this.shadow.querySelector('.modal');
-        const modalButtons = this.shadow.querySelectorAll('.modal-button');
-    
-        modalButtons.forEach((modalButton) => {
-            modalButton.addEventListener('click', () => {
-                modal.classList.toggle('active');
-            });
-        });
+        const closeModal = this.shadow.querySelector("#closeButton");
+        
+        closeModal.addEventListener("click", () => 
+            closeModal.closest(".modal-section").classList.remove("active")
+        )
+
+        document.addEventListener("remove-active", () =>
+            closeModal.closest(".modal-section").classList.remove("active")
+        )   
+
+        document.addEventListener("add-active", () =>
+        closeModal.closest(".modal-section").classList.add("active")
+    )  
     }
 }
 

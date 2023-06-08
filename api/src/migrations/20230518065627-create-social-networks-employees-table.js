@@ -41,12 +41,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('social_networks_employees', ['socialNetworkId'],{
-      name: 'socialNetworksEmployee_socialNetworkId_fk'
-    }))
-    .then(() => queryInterface.addIndex('social_networks_employees', ['employeeId'],{
-      name: 'socialNetworksEmployee_employeeId_fk'
-    }))
+      .then(() => queryInterface.addIndex('social_networks_employees', ['socialNetworkId'], {
+        name: 'socialNetworksEmployee_socialNetworkId_fk'
+      }))
+      .then(() => queryInterface.addIndex('social_networks_employees', ['employeeId'], {
+        name: 'socialNetworksEmployee_employeeId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -10,10 +10,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       customerId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customers',
+          model: 'customers',
           key: 'id'
         }
       },
@@ -33,9 +32,9 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('fingerprints', ['customerId'],{
-      name: 'fingerprint_customerId_fk'
-    }))
+      .then(() => queryInterface.addIndex('fingerprints', ['customerId'], {
+        name: 'fingerprint_customerId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

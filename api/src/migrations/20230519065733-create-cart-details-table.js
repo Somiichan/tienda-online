@@ -25,9 +25,13 @@ module.exports = {
           key: 'id'
         }
       },
-      productName: {
-        type: Sequelize.STRING,
-        allowNull: false
+      localeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'locales',
+          key: 'id'
+        }
       },
       basePrice: {
         type: Sequelize.DECIMAL(6, 2),
@@ -56,12 +60,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('cart_details', ['cartId'], {
-      name: 'cartDetail_cartId_fk'
-    }))
-    .then(() => queryInterface.addIndex('cart_details', ['productId'], {
-      name: 'cartDetail_productId_fk'
-    }))
+      .then(() => queryInterface.addIndex('cart_details', ['cartId'], {
+        name: 'cartDetail_cartId_fk'
+      }))
+      .then(() => queryInterface.addIndex('cart_details', ['productId'], {
+        name: 'cartDetail_productId_fk'
+      }))
+      .then(() => queryInterface.addIndex('cart_details', ['localeId'], {
+        name: 'cartDetail_localeId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

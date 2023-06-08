@@ -31,57 +31,27 @@ module.exports = function (sequelize, DataTypes) {
       },
       reference: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "reference".'
-          }
-        }
+        allowNull: false
       },
       totalPrice: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "totalPrice".'
-          }
-        }
+        allowNull: false
       },
       totalBasePrice: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "totalBasePrice".'
-          }
-        }
+        allowNull: false
       },
       totalTaxPrice: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "totalTaxPrice".'
-          }
-        }
+        allowNull: false
       },
       issueDate: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "issueDate".'
-          }
-        }
+        allowNull: false
       },
       issueTime: {
         type: DataTypes.TIME,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please provide a value for "issueTime".'
-          }
-        }
+        allowNull: false
       }
     }, {
       sequelize,

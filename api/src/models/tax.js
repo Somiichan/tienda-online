@@ -23,6 +23,15 @@ module.exports = function (sequelize, DataTypes) {
           msg: 'Por favor, rellena el campo "Actual".'
         }
       }
+    },
+    multiplier: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "Multiplicador".'
+        }
+      }
     }
   }, {
     sequelize,

@@ -117,6 +117,12 @@ class Modal extends HTMLElement {
 
         const modal = this.shadow.querySelector('.modal');
         const modalButtons = this.shadow.querySelectorAll('.modal-button');
+        // const deleteData = this.shadow.querySelector('.yes');
+
+
+        // deleteData.addEventListener('click', () => {
+        //     document.dispatchEvent(new CustomEvent('refresh-table', {detail: {registroId : id }}));
+        // })
     
         modalButtons.forEach((modalButton) => {
             modalButton.addEventListener('click', () => {

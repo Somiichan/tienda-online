@@ -73,11 +73,11 @@ class Table extends HTMLElement {
                 transform: scale(110%);
             }
             
-            .table-element-info{
+            .table-info{
                 padding: 0 1rem;
             }
             
-            .table-element-info ul li{
+            .table-info ul li{
                 color: white;
                 font-size: 1rem;
             }
@@ -112,26 +112,32 @@ class Table extends HTMLElement {
             deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>`
     
             let tableInfo = document.createElement("div");
-            tableInfo.classList.add("table-element-info");
+            tableInfo.classList.add("table-info");
             tableElement.appendChild(tableInfo);
     
             let tableInfoUl = document.createElement("ul");
             tableInfo.appendChild(tableInfoUl);
 
             for (const [key, value] of Object.entries(element)) {
-                const li = document.createElement("li");
-                li.textContent = `${key}: ${value}`
-                tableInfoUl.appendChild(li)
+
+                if (key !== "id") {
+                    const li = document.createElement("li");
+                    li.textContent = `${key}: ${value}`;
+                    tableInfoUl.appendChild(li);
+                }
             }  
         });
 
-        // let deleteButtons = this.shadow.querySelectorAll('.delete-button');
+        let deleteButtons = this.shadow.querySelectorAll('.delete-button');
 
-        // deleteButtons.forEach(deleteButton => {
-        //     deleteButton.addEventListener('click', function(event) {
-        //         document.dispatchEvent(new CustomEvent('open-modal'));
-        //     });
-        // });
+        deleteButtons.forEach(deleteButton => {
+            deleteButton.addEventListener('click', () => {
+                const id = deleteButton.dataset.id;
+                console.log(id)
+                document.dispatchEvent(new CustomEvent('open-modal', {detail: {registroId : id }}));
+            });
+        });
+
     }
 }
 

@@ -1,15 +1,14 @@
 const db = require("../../models");
-const User = db.User;
+const SaleError = db.SaleError;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    User.create(req.body).then(data => {
+    SaleError.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
-
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al insertar el dato."
         });
@@ -25,7 +24,7 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    User.findAndCountAll({
+    SaleError.findAndCountAll({
         where: condition, 
         attributes: ['id', 'name', 'email'],
         limit: limit,
@@ -53,7 +52,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    SaleError.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -74,7 +73,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    User.update(req.body, {
+    SaleError.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -97,7 +96,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    User.destroy({
+    SaleError.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

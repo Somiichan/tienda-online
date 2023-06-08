@@ -11,11 +11,12 @@ class Form extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
             button {
                 width: 100%;
                 height: 100%;
@@ -23,13 +24,20 @@ class Form extends HTMLElement {
                 background-color: transparent;
                 border: none;
             }
+
             button:hover svg {
                 transform: scale(110%);
             }
+
             svg {
-                width: 100%;
-                height: 100%;
+                width: 2.5rem;
+                cursor: pointer;
             }
+
+            label, input {
+                font-family: "Poppins", sans-serif;
+            }
+
             .form-section {
                 width: 100%;
                 display: flex;
@@ -58,7 +66,9 @@ class Form extends HTMLElement {
             }
             
             .selector div p {
-                color:rgba(133,133,133,255);
+                color: hsl(208, 13%, 25%);
+                font-family: "Poppins", sans-serif;
+                margin: 0;
                 font-size: 1rem;
                 font-weight: 600;
             }
@@ -113,20 +123,31 @@ class Form extends HTMLElement {
             
             form div label {
                 color: white;
-                font-size: 1.5rem;
-                font-weight: 600;
+                font-size: 25px;
+                font-weight: 500;
+                margin-bottom: 1rem;
             }
             
             form div input {
                 width: 100%;
                 background-color: rgba(113,139,224,255);
-                font-size: 1.5rem;
-                color: white;
+                font-size: 20px;
+                color: black;
                 border: none;
                 border-bottom: 1px solid white;
                 padding: 0.2rem;
                 padding-left: 1rem;
             }
+
+            input[type="text"] {
+                border: none;
+                border-bottom: 1px solid white;
+                background-color:  hsl(216, 94%, 67%);
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+                width: 100%;
+                height: 2.5rem;
+                outline: none;
+            }  
         </style>
         
         <section class="form-section">
@@ -193,13 +214,10 @@ class Form extends HTMLElement {
         const formSelector = this.shadow.querySelector('.selector');
         const selectors = formSelector.querySelectorAll("div");
 
-
-        //FUNCIÓN PARA RESETEAR EL FORMULARIO
         resetForm.addEventListener("click",() => {
             form.reset();
         })
 
-        //FUNCIÓN PARA MOSTRAR/OCULTAR LAS DISTINTAS SECCIONES DEL FORMULARIO
         selectors.forEach(selector => {    
             const dataset = selector.dataset.form;
             const event = new CustomEvent('show-form',{detail: dataset});           
@@ -208,17 +226,17 @@ class Form extends HTMLElement {
                 for (let i = 0; i < selectors.length; i++) {
                 selectors[i].classList.remove("active");
             }
+
             selector.classList.add("active")
             forms.forEach(form => {
-                    form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
+                form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
-            })})
 
-        //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
+        })})
 
         const validatePassword = (password, passwordConfirmed) => {
             return password === passwordConfirmed;
-          };
+        };
           
         submitForm.addEventListener("click", () => {
             const formData = Object.fromEntries(new FormData(form));
@@ -234,21 +252,17 @@ class Form extends HTMLElement {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-              })
-              .then(response => response.json())
-              .then(data =>                
-                {
+            }).then(response => response.json()).then(data => {
                 const event = new CustomEvent('refresh-table')
                 document.dispatchEvent(event)
-                })
-                .catch(error => console.error(error));
-              } else {
+            }).catch(error => console.error(error));
+            } else {
                 console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
-              }
-              form.reset();
-            })
-        
-}
+            }
+
+            form.reset();
+        })
+    }
 
 }
 

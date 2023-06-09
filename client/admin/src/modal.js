@@ -10,7 +10,9 @@ class Modal extends HTMLElement {
         document.addEventListener('open-modal', event => {
             const modal = this.shadow.querySelector('.modal');
             modal.classList.toggle('active');
-        })
+
+            this.id = event.detail.id;
+        });
     }
 
     render() {
@@ -106,7 +108,7 @@ class Modal extends HTMLElement {
                 <h5>¿Seguro que quieres eliminar los datos?</h5>
                 <div class="buttons">
                     <button type="button" class="yes">Sí</button>
-                    <button type="button" class="no">No</button>
+                    <button type="button" class="no modal-button">No</button>
                 </div>
                 <div class="close-button modal-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
@@ -117,13 +119,23 @@ class Modal extends HTMLElement {
 
         const modal = this.shadow.querySelector('.modal');
         const modalButtons = this.shadow.querySelectorAll('.modal-button');
-        // const deleteData = this.shadow.querySelector('.yes');
+        const deleteButton = this.shadow.querySelector('.yes');
 
+        deleteButton.addEventListener('click', async () => {
 
-        // deleteData.addEventListener('click', () => {
-        //     document.dispatchEvent(new CustomEvent('refresh-table', {detail: {registroId : id }}));
-        // })
-    
+            try {
+                let response = await fetch(`http://127.0.0.1:8080/api/admin/users/${this.id}`, {
+                    method: 'DELETE'
+                });
+
+                modal.classList.toggle('active');
+                document.dispatchEvent(new CustomEvent('refresh-table'));
+
+            } catch (error) {
+                console.log(`Error al eliminar el registro con ID ${id}.`, error);
+            }
+        });
+
         modalButtons.forEach((modalButton) => {
             modalButton.addEventListener('click', () => {
                 modal.classList.toggle('active');

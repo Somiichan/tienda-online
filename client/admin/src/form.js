@@ -6,6 +6,40 @@ class Form extends HTMLElement {
         this.render();
     }
 
+    async connectedCallback() {
+        await this.render()
+
+        document.addEventListener('loadData', async (event) => {
+            const { id } = event.detail;
+            await this.loadData(id);
+            this.fillFormFields();
+        });
+    } 
+    
+    async loadData(id) {
+        try {
+          const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+      
+          this.data = await response.json();
+          return this.data
+
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+    fillFormFields() {
+        const form = this.shadow.querySelector('#form');
+        const { name, email } = this.data;
+        form.name.value = name;
+        form.email.value = email;
+    }
+
     render() {
 
         this.shadow.innerHTML = 
@@ -52,6 +86,7 @@ class Form extends HTMLElement {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
             }
             
             .form-selector .selector {
@@ -139,7 +174,7 @@ class Form extends HTMLElement {
                 padding-left: 1rem;
             }
 
-            input[type="text"] {
+            input[type="text"], [type="password"] {
                 border: none;
                 border-bottom: 1px solid white;
                 background-color:  hsl(216, 94%, 67%);
@@ -167,33 +202,33 @@ class Form extends HTMLElement {
                 <div class="options">
                     <div>
                         <button type="button" id="resetButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>erase-content</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
                     </div>
                     <div>
                         <button type="submit" id="submitButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>                        </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>save-content</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>                        </button>
                     </div>
                 </div>
             </div>
             <div class="form-container">
                 <form id="form">
                     <div class="profile-form active" data-form="principal" id="form-principal">
-                            <div>
-                                <label>Nombre</label>
-                                <input name="name" type="text"></input>
-                            </div>
-                            <div>
-                                <label>Email</label>
-                                <input name="email" type="text"></input>
-                            </div>
-                            <div>
-                                <label>Contraseña</label>
-                                <input name="password" type="text"></input>
-                            </div>
-                            <div>
-                                <label>Confirme contraseña</label>
-                                <input name="passwordConfirmed" type="text"></input>
-                            </div>
+                        <div>
+                            <label>Nombre</label>
+                            <input name="name" type="text"></input>
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input name="email" type="text"></input>
+                        </div>
+                        <div>
+                            <label>Contraseña</label>
+                            <input name="password" type="password"></input>
+                        </div>
+                        <div>
+                            <label>Confirme contraseña</label>
+                            <input name="passwordConfirmed" type="password"></input>
+                        </div>
                     </div>
                     <div class="profile-form" data-form="image">
                         <div class="input-image">
@@ -241,26 +276,26 @@ class Form extends HTMLElement {
         submitForm.addEventListener("click", () => {
             const formData = Object.fromEntries(new FormData(form));
             const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
-            
+         
             if(isValidPassword) {
+                const method = this.data ? 'PUT' : 'POST'
+                const url = this.data ? `http://localhost:8080/api/admin/users/${this.data.id}` : "http://localhost:8080/api/admin/users"
 
-            delete formData.passwordConfirmed
-
-            fetch('http://localhost:8080/api/admin/users', {
-                method: 'POST',
+            fetch(url, {
+                method: method,
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             }).then(response => response.json()).then(data => {
-                const event = new CustomEvent('refresh-table')
-                document.dispatchEvent(event)
+                document.dispatchEvent(new CustomEvent('refresh-table'))
             }).catch(error => console.error(error));
             } else {
                 console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
             }
 
             form.reset();
+            this.data = null
         })
     }
 

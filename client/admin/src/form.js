@@ -7,7 +7,6 @@ class Form extends HTMLElement {
     }
 
     async connectedCallback() {
-        await this.render()
 
         document.addEventListener('loadData', async (event) => {
             const { id } = event.detail;
@@ -273,15 +272,14 @@ class Form extends HTMLElement {
             return password === passwordConfirmed;
         };
           
-        submitForm.addEventListener("click", (event) => {
-            event.preventDefault();
-
+        submitForm.addEventListener("click", () => {
             const formData = Object.fromEntries(new FormData(form));
             const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
          
             if(isValidPassword) {
                 const method = this.data ? 'PUT' : 'POST'
                 const url = this.data ? `http://localhost:8080/api/admin/users/${this.data.id}` : "http://localhost:8080/api/admin/users"
+                delete formData.id
 
             fetch(url, {
                 method: method,
@@ -293,8 +291,7 @@ class Form extends HTMLElement {
                 document.dispatchEvent(new CustomEvent('refresh-table'))
             }).catch(error => console.error(error));
             } else {
-                const errorMessage = "Las contraseñas no coinciden";
-                showError(errorMessage);
+                console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
             }
 
             form.reset();

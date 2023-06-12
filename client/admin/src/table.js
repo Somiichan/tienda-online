@@ -12,7 +12,7 @@ class Table extends HTMLElement {
 
     async connectedCallback() {
 
-        this.addEventListener('refresh-table', async (event) => {
+        document.addEventListener('refresh-table', async (event) => {
             await this.loadData();
             await this.render();
         });

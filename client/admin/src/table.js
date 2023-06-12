@@ -4,11 +4,14 @@ class Table extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = [];
+        this.currentPage = 1;
     }
 
     static get observedAttributes () { return ['url'] }
 
     async connectedCallback() {
+        await this.loadData();
+        await this.render();
 
         document.addEventListener('refresh-table', async (event) => {
             await this.loadData();
@@ -101,15 +104,14 @@ class Table extends HTMLElement {
             }
 
             .page button:hover {
+                color: hsl(208, 13%, 25%);
                 cursor: pointer;
             }
 
-            .nextPageButton.inactive {
-                opacity: 50%;
-                cursor: default;
-            }
-
-            .prevPageButton.inactive {
+            .nextPageButton.inactive,
+            .prevPageButton.inactive,
+            .firstPageButton.inactive,
+            .lastPageButton.inactive {
                 opacity: 50%;
                 cursor: default;
             }
@@ -125,9 +127,18 @@ class Table extends HTMLElement {
         `;
 
         const table = this.shadow.querySelector('.table');
+        table.innerHTML = '';
 
-    
-        this.data.forEach(element => {
+        
+        const currentPage = this.currentPage || 1; // Set the current page to 1
+        const itemsPerPage = 5; // Define the number of items to display per page
+
+        const startIndex = (currentPage - 1) * itemsPerPage; // Calculate the starting index
+        const endIndex = startIndex + itemsPerPage; // Calculate the ending index
+
+        const currentPageData = this.data.slice(startIndex, endIndex); // Get the data for the current page
+
+        currentPageData.forEach(element => {
 
             let tableElement = document.createElement("div");
             tableElement.classList.add("table-element");
@@ -185,7 +196,81 @@ class Table extends HTMLElement {
             });
         });
 
+        let firstPageButton = this.shadow.querySelector('.firstPageButton');
+        firstPageButton.addEventListener('click', () => this.loadFirstPage());
+
+        let prevPageButton = this.shadow.querySelector('#prevPageButton');
+        prevPageButton.addEventListener('click', () => this.loadPrevPage());
+
+        let nextPageButton = this.shadow.querySelector('#nextPageButton');
+        nextPageButton.addEventListener('click', () => this.loadNextPage());
+
+        let lastPageButton = this.shadow.querySelector('.lastPageButton');
+        lastPageButton.addEventListener('click', () => this.loadLastPage());
+
+        if (currentPage === 1) {
+            firstPageButton.classList.add('inactive');
+            prevPageButton.classList.add('inactive');
+        } else {
+            firstPageButton.classList.remove('inactive');
+            prevPageButton.classList.remove('inactive');
+        }
+
+        const totalPages = Math.ceil(this.data.length / itemsPerPage);
+        if (currentPage === totalPages || totalPages === 0) {
+            nextPageButton.classList.add('inactive');
+            lastPageButton.classList.add('inactive');
+        } else {
+            nextPageButton.classList.remove('inactive');
+            lastPageButton.classList.remove('inactive');
+        }
+
     }
+
+    loadFirstPage = async () => {
+        const currentPage = this.currentPage = 1;
+        const url = `http://127.0.0.1:8080/api/admin/users?page=1`;
+    
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          this.data = data.rows;
+    
+          await this.render();
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+    loadPrevPage = async () => {
+        const currentPage = this.currentPage || 1;
+        const prevPage = currentPage - 1;
+      
+        if (prevPage >= 1) {
+          this.currentPage = prevPage;
+          await this.render();
+        }
+    };
+
+    loadNextPage = async () => {
+        const currentPage = this.currentPage || 1;
+        const nextPage = currentPage + 1;
+      
+        const totalPages = Math.ceil(this.data.length / 5);
+      
+        if (nextPage <= totalPages) {
+          this.currentPage = nextPage;
+          await this.render();
+        }
+    };
+
+    loadLastPage = async () => {
+        const totalPages = Math.ceil(this.data.length / 5);
+        const lastPage = totalPages === 0 ? 1 : totalPages;
+        this.currentPage = lastPage;
+        await this.render();
+    };
+
 }
 
 customElements.define('table-component', Table);

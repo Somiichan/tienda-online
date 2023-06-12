@@ -4,16 +4,15 @@ class Table extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = [];
-        this.currentPage = 1;
+        this.currentPage = 1
+        this.totalPages = null
     }
 
     static get observedAttributes () { return ['url'] }
 
     async connectedCallback() {
-        await this.loadData();
-        await this.render();
 
-        document.addEventListener('refresh-table', async (event) => {
+        this.addEventListener('refresh-table', async (event) => {
             await this.loadData();
             await this.render();
         });
@@ -26,13 +25,46 @@ class Table extends HTMLElement {
 
     loadData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8080/api/admin/users');
-            const data = await response.json();
-            this.data = data.rows;   
+            let response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage}`);
+            let data = await response.json();
+            this.data = data.rows;  
+            this.currentPage = data.meta.currentPage
+            this.totalPages = data.meta.pages
+            console.log(data) 
         } catch (error) {
             console.log(error);
         }
     }
+
+    loadFirstPage = async () => {
+        this.currentPage = 1;
+        await this.loadData()
+        await this.render()
+    };
+
+    loadPrevPage = async () => {
+        if (this.currentPage > 1) {
+            this.currentPage = Number(this.currentPage) - 1;
+        
+            await this.loadData()
+            await this.render()
+        }
+    };
+
+    loadNextPage = async () => {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage = Number(this.currentPage) + 1;
+            await this.loadData()
+            await this.render()
+        }
+    };
+    
+    loadLastPage = async () => {
+        this.currentPage = this.totalPages
+        console.log(this.currentPage)
+        await this.loadData()
+        await this.render()
+    };
 
     render() {
 
@@ -101,19 +133,27 @@ class Table extends HTMLElement {
                 font-family: "Poppins", sans-serif;
                 border: 1px solid hsl(204, 85%, 80%);
                 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-            }
-
-            .page button:hover {
-                color: hsl(208, 13%, 25%);
                 cursor: pointer;
             }
-
+            
+            .page button:hover {
+                color: hsl(208, 13%, 25%);
+            }
+            
             .nextPageButton.inactive,
             .prevPageButton.inactive,
             .firstPageButton.inactive,
             .lastPageButton.inactive {
                 opacity: 50%;
                 cursor: default;
+                pointer-events: none;
+            }
+            
+            .nextPageButton.inactive:hover,
+            .prevPageButton.inactive:hover,
+            .firstPageButton.inactive:hover,
+            .lastPageButton.inactive:hover {
+                transform: none;
             }
         </style>
         <div class="table"></div>
@@ -126,19 +166,12 @@ class Table extends HTMLElement {
 
         `;
 
-        const table = this.shadow.querySelector('.table');
+
+        let table = this.shadow.querySelector('.table');
         table.innerHTML = '';
 
-        
-        const currentPage = this.currentPage || 1; // Set the current page to 1
-        const itemsPerPage = 5; // Define the number of items to display per page
 
-        const startIndex = (currentPage - 1) * itemsPerPage; // Calculate the starting index
-        const endIndex = startIndex + itemsPerPage; // Calculate the ending index
-
-        const currentPageData = this.data.slice(startIndex, endIndex); // Get the data for the current page
-
-        currentPageData.forEach(element => {
+        this.data.forEach(element => {
 
             let tableElement = document.createElement("div");
             tableElement.classList.add("table-element");
@@ -168,12 +201,11 @@ class Table extends HTMLElement {
             let tableInfoUl = document.createElement("ul");
             tableInfo.appendChild(tableInfoUl);
 
-            
 
-            for (const [key, value] of Object.entries(element)) {
+            for (let [key, value] of Object.entries(element)) {
 
                 if (key !== "id") {
-                    const li = document.createElement("li");
+                    let li = document.createElement("li");
                     li.textContent = `${key}: ${value}`;
                     tableInfoUl.appendChild(li);
                 }
@@ -208,7 +240,7 @@ class Table extends HTMLElement {
         let lastPageButton = this.shadow.querySelector('.lastPageButton');
         lastPageButton.addEventListener('click', () => this.loadLastPage());
 
-        if (currentPage === 1) {
+        if (this.currentPage == 1) {
             firstPageButton.classList.add('inactive');
             prevPageButton.classList.add('inactive');
         } else {
@@ -216,8 +248,7 @@ class Table extends HTMLElement {
             prevPageButton.classList.remove('inactive');
         }
 
-        const totalPages = Math.ceil(this.data.length / itemsPerPage);
-        if (currentPage === totalPages || totalPages === 0) {
+        if (this.currentPage == this.totalPages || this.totalPages === 0) {
             nextPageButton.classList.add('inactive');
             lastPageButton.classList.add('inactive');
         } else {
@@ -227,49 +258,6 @@ class Table extends HTMLElement {
 
     }
 
-    loadFirstPage = async () => {
-        const currentPage = this.currentPage = 1;
-        const url = `http://127.0.0.1:8080/api/admin/users?page=1`;
-    
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-          this.data = data.rows;
-    
-          await this.render();
-        } catch (error) {
-          console.log(error);
-        }
-    };
-
-    loadPrevPage = async () => {
-        const currentPage = this.currentPage || 1;
-        const prevPage = currentPage - 1;
-      
-        if (prevPage >= 1) {
-          this.currentPage = prevPage;
-          await this.render();
-        }
-    };
-
-    loadNextPage = async () => {
-        const currentPage = this.currentPage || 1;
-        const nextPage = currentPage + 1;
-      
-        const totalPages = Math.ceil(this.data.length / 5);
-      
-        if (nextPage <= totalPages) {
-          this.currentPage = nextPage;
-          await this.render();
-        }
-    };
-
-    loadLastPage = async () => {
-        const totalPages = Math.ceil(this.data.length / 5);
-        const lastPage = totalPages === 0 ? 1 : totalPages;
-        this.currentPage = lastPage;
-        await this.render();
-    };
 
 }
 

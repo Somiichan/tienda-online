@@ -273,7 +273,9 @@ class Form extends HTMLElement {
             return password === passwordConfirmed;
         };
           
-        submitForm.addEventListener("click", () => {
+        submitForm.addEventListener("click", (event) => {
+            event.preventDefault();
+
             const formData = Object.fromEntries(new FormData(form));
             const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
          
@@ -291,7 +293,8 @@ class Form extends HTMLElement {
                 document.dispatchEvent(new CustomEvent('refresh-table'))
             }).catch(error => console.error(error));
             } else {
-                console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
+                const errorMessage = "Las contraseñas no coinciden";
+                showError(errorMessage);
             }
 
             form.reset();

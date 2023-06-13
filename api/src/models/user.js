@@ -44,10 +44,10 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "password".'
+          msg: 'Por favor, rellena el campo "Contraseña".'
         },
         notEmpty: {
-          msg: 'Por favor, rellena el campo "password".'
+          msg: 'Por favor, rellena el campo "Contraseña".'
         }
       }
     }

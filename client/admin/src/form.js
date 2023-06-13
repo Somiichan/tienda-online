@@ -39,6 +39,18 @@ class Form extends HTMLElement {
         form.email.value = email;
     }
 
+    displayErrorMessages(errors) {
+        const errorContainer = this.shadow.querySelector('#errorContainer');
+        errorContainer.innerHTML = '';
+      
+        errors.forEach((error) => {
+          const errorMessage = document.createElement('p');
+          errorMessage.textContent = error.message;
+          errorMessage.classList.add('error-message');
+          errorContainer.appendChild(errorMessage);
+        });
+    }
+
     render() {
 
         this.shadow.innerHTML = 
@@ -164,7 +176,6 @@ class Form extends HTMLElement {
             
             form div input {
                 width: 100%;
-                background-color: rgba(113,139,224,255);
                 font-size: 20px;
                 color: black;
                 border: none;
@@ -181,7 +192,15 @@ class Form extends HTMLElement {
                 width: 100%;
                 height: 2.5rem;
                 outline: none;
-            }  
+            }
+            
+            .error-message {
+                font-family: "Poppins", sans-serif;
+                color: hsla(0, 100%, 59%, 1);
+                font-size: 1rem;
+                font-weight: 500;
+                margin-top: 5px;
+            }
         </style>
         
         <section class="form-section">
@@ -232,7 +251,6 @@ class Form extends HTMLElement {
                     <div class="profile-form" data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
-                            
                         </div>
                     </div>
                 </form>
@@ -247,6 +265,9 @@ class Form extends HTMLElement {
         const submitForm = this.shadow.querySelector("#submitButton"); 
         const formSelector = this.shadow.querySelector('.selector');
         const selectors = formSelector.querySelectorAll("div");
+        const errorContainer = document.createElement('div');
+        errorContainer.id = 'errorContainer';
+        form.appendChild(errorContainer);
 
         resetForm.addEventListener("click",() => {
             form.reset();
@@ -265,38 +286,45 @@ class Form extends HTMLElement {
             forms.forEach(form => {
                 form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
-
         })})
-
-        const validatePassword = (password, passwordConfirmed) => {
-            return password === passwordConfirmed;
-        };
           
-        submitForm.addEventListener("click", () => {
+        submitForm.addEventListener("click", async () => {
+
             const formData = Object.fromEntries(new FormData(form));
-            const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
-         
-            if(isValidPassword) {
-                const method = this.data ? 'PUT' : 'POST'
-                const url = this.data ? `http://localhost:8080/api/admin/users/${this.data.id}` : "http://localhost:8080/api/admin/users"
-                delete formData.id
+
+            const method = this.data ? 'PUT' : 'POST'
+            const url = this.data ? `http://localhost:8080/api/admin/users/${this.data.id}` : "http://localhost:8080/api/admin/users"
+            delete formData.id
 
             fetch(url, {
                 method: method,
                 headers: {
-                  'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-            }).then(response => response.json()).then(data => {
-                document.dispatchEvent(new CustomEvent('refresh-table'))
-            }).catch(error => console.error(error));
-            } else {
-                console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
-            }
+            })
+            .then(async response => {
+
+                if(response.status == 500){
+                    throw response
+                }
+
+                return response.json()
+            })
+            .then(data => {
+                document.dispatchEvent(new CustomEvent('refresh-table'));
+                this.loadData();
+            })
+            .catch(async error => {
+                if(error.status == 500){
+                    const data = await error.json();
+                    this.displayErrorMessages(data.message);    
+                }  
+            });
 
             form.reset();
             this.data = null
-        })
+        });
     }
 
 }

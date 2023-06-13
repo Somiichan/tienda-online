@@ -127,42 +127,60 @@ class Filter extends HTMLElement {
     }
 
     renderFilter = () => {
-        const filterButton = this.shadow.querySelector(".filter-button")
-
+        const filterButton = this.shadow.querySelector(".filter-button");
+      
         filterButton.addEventListener("click", () => {
-            const filterForm = this.shadow.querySelector(".filter-form")
-
-            filterButton.classList.toggle("active")
-
-            if(filterForm.classList.contains("active")) {
-                    filterForm.classList.remove("active")
-            }
-            else {
+            const filterForm = this.shadow.querySelector(".filter-form");
+        
+            filterButton.classList.toggle("active");
+        
+            if (filterForm.classList.contains("active")) {
+                filterForm.classList.remove("active");
+            } else {
                 setTimeout(() => {
-                    filterForm.classList.add("active")
-                }, 300)
+                filterForm.classList.add("active");
+                }, 300);
+            }
+        
+            if (!filterButton.classList.contains("active")) {
+                const formFilter = this.shadow.querySelector("#filter-form");
+                const formData = Object.fromEntries(new FormData(formFilter));
+                console.log(formData);
+        
+                const params = new URLSearchParams(formData);
+        
+                if (params.toString() === "") {
+                // No search params, reset data and reload page
+                const tableComponent = document.querySelector("table-component");
+                if (tableComponent) {
+                    tableComponent.resetData();
+                }
+                } else {
+                // Fetch filtered data
+                fetch(`http://localhost:8080/api/admin/users?${params}`)
+                    .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error("Error: " + response.status);
+                    }
+                    })
+                    .then((data) => {
+                    console.log(data);
+                    const event = new CustomEvent("filter-results", {
+                        detail: {
+                        data: data,
+                        },
+                    });
+                    document.dispatchEvent(event);
+                    })
+                    .catch((error) => {
+                    console.error(error);
+                    });
+                }
             }
         })
-
-        filterButton.addEventListener("click", () => {
-            if(!filterButton.classList.contains("active")) {
-                const formFilter = this.shadow.querySelector("#filter-form")
-                const formData = Object.fromEntries(new FormData(formFilter))
-                const url = `http://localhost:8080/api/admin/users`
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => response.json())
-                console.log(response)
-            }
-        })
-
-
-    }
+    } 
 
 }
 

@@ -13,6 +13,7 @@ class Tabs extends HTMLElement {
         <style>
             h3, p {
                 font-family: "Poppins", sans-serif;
+                font-weight: 500;
                 margin: 0;
             }
 
@@ -22,7 +23,7 @@ class Tabs extends HTMLElement {
             }
 
             .tabs {
-                border-bottom: 0.5px solid hsla(0, 0%, 72%, 0.747);
+                margin: 5rem;
                 display: flex;
                 flex-direction: column;
                 padding: 0 1rem 1rem;
@@ -36,9 +37,8 @@ class Tabs extends HTMLElement {
             
             .tab {
                 color: hsl(0, 0%, 100%);
-                background-color: hsl(32, 97%, 61%);
-                border-radius: 5px 5px 0 0;
-                border-top-right-radius: 60px 30px;
+                background-color: white;
+                border: 1px solid hsl(216, 94%, 67%);
                 position: relative;
                 padding: 0.5rem 1rem;
                 cursor: pointer;
@@ -49,7 +49,7 @@ class Tabs extends HTMLElement {
             }
             
             .tab h3 {
-                color: hsl(0, 0%, 100%);
+                color: black;
                 display: inline-block;
                 padding: 0.5rem;
                 cursor: pointer;
@@ -57,19 +57,17 @@ class Tabs extends HTMLElement {
             }
             
             .tab.active {
-                background-color: hsl(251, 97%, 61%);
+                background-color: hsl(231, 93%, 58%);
             }
             
             .tab:not(.active) {
-                box-shadow: inset 2px 0 4px hsla(0, 0%, 0%, 0.200);
+                background-color: hsl(216, 94%, 67%);
             }
             
             .tab-content {
-                background-color: hsl(251, 97%, 61%);
-                border-top-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-                border-bottom-right-radius: 20px;
-                height: 10vh;
+                background-color: hsl(231, 93%, 58%);
+                border: 1px solid hsl(216, 94%, 67%);
+                height: 60vh;
                 padding-top: 1rem;
                 padding-left: 1rem;
                 text-align: start;
@@ -97,13 +95,10 @@ class Tabs extends HTMLElement {
         <div class="tabs">
             <div class="tab-header">
                 <div class="tab active">
-                    <h3>Description</h3>
+                    <h3>Imágenes</h3>
                 </div>
                 <div class="tab">
-                    <h3>Features</h3>
-                </div>
-                <div class="tab">
-                    <h3>Opinions</h3>
+                    <h3>Galería</h3>
                 </div>
             </div>
             <div class="tab-content">
@@ -113,15 +108,12 @@ class Tabs extends HTMLElement {
                 <div class="content">
                     <p>Asperiores rerum repellendus officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
                 </div>
-                <div class="content">
-                    <p>Officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
-                </div>
             </div>
         </div>
         `;
 
-        const tabs = document.querySelectorAll('.tab');
-        const contents = document.querySelectorAll('.content');
+        const tabs = this.shadow.querySelectorAll('.tab');
+        const contents = this.shadow.querySelectorAll('.content');
 
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', () => {

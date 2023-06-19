@@ -47,7 +47,7 @@ class Modal extends HTMLElement {
                 box-shadow: 0 0 62px hsla(0, 0%, 0%, 0.3);
                 align-items: center;
                 background-color: hsl(0, 0%, 100%);
-                border: 2px solid hsl(34, 91%, 68%);
+                border: 2px solid hsl(216, 94%, 67%);
             }
             
             .message-box h5{

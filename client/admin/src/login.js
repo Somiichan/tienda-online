@@ -21,51 +21,42 @@ class Login extends HTMLElement {
         }
         
         .login-box {
-            width: 25em;
-            height: 22em;
-            padding: 20px;
+            width: 20%;
+            height: 50%;
+            padding: 2rem;
             background-color: hsla(206, 100%, 50%, 1);
-            border-radius: 1em;
-            box-shadow: 0 0 5px #fff;
-            color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 5px hsl(0, 0%, 100%);
+            color: hsl(0, 0%, 100%);
         }
         
         h2 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            margin-bottom: 45px;
-            font-size: 200%;
-            text-shadow: 0 0 5px #cacaca; 
-        }
-        
-        p {
-            margin-top: 18px;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            margin-bottom: 45px;
-            font-size: 70%;
-            text-shadow: 0 0 5px #cacaca; 
+            margin-bottom: 2.5rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 0 0 5px hsl(0,0%,79.2%); 
         }
         
         .form-group {
             width: 100%;
-            margin-bottom: 10px;
-            margin-top: 0px;
+            margin-bottom: 1rem;
         }
         
         label {
             display: block;
-            font-weight: bold;
+            font-weight: 300;
         }
         
         input[type="text"],
         input[type="password"] {
             display: flex;
             flex-direction: column;
-            width: 90%;
+            width: 88%;
             padding: 15px;
             border-radius: 1em;
-            border: 2px solid #535353;
+            border: 2px solid hsl(0,0%,32.5%);
         }
         
         button {
@@ -74,17 +65,18 @@ class Login extends HTMLElement {
             min-height: 50px;
             margin-top: 40px;
             background-color: hsla(206, 100%, 30%, 1);
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
+            color: hsl(0, 0%, 100%);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             border: none;
             border-radius: 1em;
             cursor: pointer;
-            box-shadow: 0 0 5px #fff; 
+            box-shadow: 0 0 5px hsl(0, 0%, 100%); 
         }
         
         button:hover {
             color: rgb(223, 223, 223);
-            box-shadow: 0 0 5px #fff; 
+            box-shadow: 0 0 5px hsl(0, 0%, 100%); 
         }
         </style>
         <div class="login-container">
@@ -120,15 +112,10 @@ class Login extends HTMLElement {
             body: JSON.stringify(Object.fromEntries(formData)),
             })
             .then((response) => {
-            console.log(response);
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error: ' + response.status);
-            }
+                return response.json()
             })
             .then((data) => {
-            console.log(data);
+                sessionStorage.setItem("accessToken", data.accessToken);
             })
             .catch((error) => {
             console.error('Error:', error);

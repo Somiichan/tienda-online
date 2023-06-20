@@ -4,6 +4,8 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
+    console.log(req.body)
+
     Image.create(req.body).then(data => {
 
         res.status(200).send(data);

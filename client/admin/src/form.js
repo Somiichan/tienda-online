@@ -252,7 +252,6 @@ class Form extends HTMLElement {
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
                             <image-component></image-component>
-                            <image-modal-component></image-modal-component>
                         </div>
                     </div>
                 </form>
@@ -301,7 +300,8 @@ class Form extends HTMLElement {
             fetch(url, {
                 method: method,
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(formData)
             })

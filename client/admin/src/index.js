@@ -9,4 +9,3 @@ import './login.js';
 import './examen.js';
 import './image.js';
 import './imageModal.js';
-import './tabs.js';

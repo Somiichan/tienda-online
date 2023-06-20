@@ -59,7 +59,6 @@ class Image extends HTMLElement {
         const uploadButton = this.shadow.querySelector('.upload-button');
     
         uploadButton.addEventListener('click', () => {
-            console.log('hola')
             document.dispatchEvent(new CustomEvent('openImageModal'));
         });
     };

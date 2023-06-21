@@ -1,7 +1,7 @@
 module.exports = (app, upload) => {
 
   const router = require("express").Router();
-  // const authJwt  = require("../middlewares/auth-jwt.js");
+  const authJwt  = require("../middlewares/auth-jwt.js");
   const controller = require("../controllers/admin/image-controller.js");
 
   app.use(function(req, res, next) {

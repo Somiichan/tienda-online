@@ -36,7 +36,7 @@ class ImageModal extends HTMLElement {
             
             .image-box{
                 position: absolute;
-                height: 90%;
+                height: 80%;
                 width: 80%;
                 top: 50%;
                 left: 50%;
@@ -122,7 +122,7 @@ class ImageModal extends HTMLElement {
             .tab-content {
                 background-color: hsl(231, 93%, 58%);
                 border: 1px solid hsl(216, 94%, 67%);
-                height: 60vh;
+                height: 50vh;
                 padding: 1rem;
                 text-align: start;
                 width: 100%;
@@ -149,7 +149,7 @@ class ImageModal extends HTMLElement {
                 gap: 2rem;
                 width: 100%;
                 height: 100%; 
-                margin-top: 10rem;
+                margin-top: 12.5rem;
             }
 
             .image-form button {
@@ -163,6 +163,10 @@ class ImageModal extends HTMLElement {
                 cursor: pointer;
                 max-width: 60%; 
                 margin: 0; 
+            }
+
+            .file-input {
+                display: none;
             }
         </style>
         <div class="modal">
@@ -183,9 +187,7 @@ class ImageModal extends HTMLElement {
                                 <button>Añadir Imagen</button>
                             </form>
                         </div>
-                        <div class="content">
-                            <p>Asperiores rerum repellendus officia dolorum tempore nostrum hic est amet dicta consequuntur laudantium, laboriosam in dolore assumenda aspernatur ipsam!</p>
-                        </div>
+                        <div class="content"></div>
                     </div>
                 </div>
                 <div class="close-button modal-button">
@@ -217,9 +219,15 @@ class ImageModal extends HTMLElement {
         });
 
         const fileInput = this.shadow.querySelector('.file-input');
+        const addButton = this.shadow.querySelector('button');
+
+        addButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            fileInput.click();
+        });
 
         fileInput.addEventListener('change', (event) => {
-            event.preventDefault
+            event.preventDefault();
             const file = event.target.files[0];
             console.log(file)
             const formData = new FormData();

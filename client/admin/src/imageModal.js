@@ -229,7 +229,6 @@ class ImageModal extends HTMLElement {
         fileInput.addEventListener('change', (event) => {
             event.preventDefault();
             const file = event.target.files[0];
-            console.log(file)
             const formData = new FormData();
             formData.append('file', file);
 
@@ -239,7 +238,19 @@ class ImageModal extends HTMLElement {
             })
             .then(response => response.json())
             .then(data => {
-            console.log(data);
+                console.log(data);
+                const galleryContent = this.shadow.querySelector('.tab-content .content:last-child');
+                
+                data.files.forEach(filename => {
+                    const imageDiv = document.createElement('div');
+                    imageDiv.classList.add('image');
+                    
+                    const imageElement = document.createElement('img');
+                    imageElement.src = 'http://localhost:8080/api/admin/images/' + filename;
+                    
+                    imageDiv.appendChild(imageElement);
+                    galleryContent.prepend(imageDiv);
+                });
             })
             .catch(error => {
             console.error(error);

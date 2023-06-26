@@ -4,16 +4,18 @@ const Op = db.Sequelize.Op;
 const ImageService = require('../../services/image-service')
 
 exports.create = async (req, res) => {
-  try {
-    const result = await new ImageService().uploadImage(req.files)
-
-    res.status(200).send(result)
-  } catch (error) {
-    res.status(500).send({
-      message: error.message || 'Algún error ha surgido al insertar el dato.',
-      errors: error.errors
-    })
-  }
+    try {
+        const result = await new ImageService().uploadImage(req.files)
+        res.status(200).send({
+            message: 'Images uploaded successfully',
+            files: result
+        });
+    } catch (error) {
+        res.status(500).send({
+        message: error.message || 'Algún error ha surgido al insertar el dato.',
+        errors: error.errors
+        })
+    }
 }
 
 exports.findAll = (req, res) => {
@@ -49,26 +51,20 @@ exports.findAll = (req, res) => {
     });
 };
 
-exports.findOne = (req, res) => {
-
-    const id = req.params.id;
-
-    Image.findByPk(id).then(data => {
-
-        if (data) {
-            res.status(200).send(data);
-        } else {
-            res.status(404).send({
-                message: `No se puede encontrar el elemento con la id=${id}.`
-            });
-        }
-
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al recuperar la id=" + id
-        });
-    });
-};
+exports.findOne = async (req, res) => {
+    const fileName = req.params.filename
+  
+    const options = {
+      root: __dirname + '../../../storage/images/gallery/thumbnail/',
+      dotfiles: 'deny',
+      headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+      }
+    }
+  
+    res.sendFile(fileName, options)
+}
 
 exports.update = (req, res) => {
 

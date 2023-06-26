@@ -1,83 +1,80 @@
-const fs = require('fs/promises')
-const path = require('path')
-const sharp = require('sharp')
-const db = require('../models')
-const ImageConfiguration = db.ImageConfiguration
-const Image = db.Image
+const fs = require('fs/promises');
+const path = require('path');
+const sharp = require('sharp');
+const db = require('../models');
+const ImageConfiguration = db.ImageConfiguration;
+const Image = db.Image;
 
 module.exports = class ImageService {
-
     uploadImage = async (images) => {
+        const result = [];
+
         const files = images.file.map((file) => {
-          const filename = file.filename.replace(/[_ ]/g, "-");
-          return { ...file, filename };
+            const filename = file.filename.replace(/[_ ]/g, '-');
+            return { ...file, filename };
         });
-      
-        files.forEach(file => {
-            const fileTmpPath = file.path
-            const fileName = file.filename
-            const extensionName = path.extname(fileName)
-            const fileWithoutExtension = path.basename(fileName, extensionName)
-            const targetPathOriginal = path.join(__dirname, './../storage/images/gallery/original', `${fileWithoutExtension}.webp`)
-            const targetPathThumbnail = path.join(__dirname, './../storage/images/gallery/thumbnail', `${fileWithoutExtension}.webp`)
-        
-            const readFileAsync = async (fileTmpPath) => {
-                try {
-                    const data = await fs.readFile(fileTmpPath);
-                    return data;
-                } catch (err) {
-                    throw err;
-                }
-            };
 
-            const formatFile = async (file) => {
-                const webpBuffer = await sharp(file).toFormat('webp').toBuffer();
-                return webpBuffer;
-            };
+        for (const file of files) {
+            const fileTmpPath = file.path;
+            const fileName = file.filename;
+            const extensionName = path.extname(fileName);
+            const fileWithoutExtension = path.basename(fileName, extensionName);
+            const targetDirectoryOriginal = path.join(__dirname, './../storage/images/gallery/original');
+            const targetDirectoryThumbnail = path.join(__dirname, './../storage/images/gallery/thumbnail');
+            const targetPathOriginal = path.join(targetDirectoryOriginal, `${fileWithoutExtension}.webp`);
+            const targetPathThumbnail = path.join(targetDirectoryThumbnail, `${fileWithoutExtension}.webp`);
 
-            const resizeFile = async (file) => {
-                const resizedBuffer = await sharp(file).toFormat('webp').resize(135,135).toBuffer();
-                return resizedBuffer;
+            let uploadedFileName;
+
+            if (await this.fileExists(targetPathOriginal)) {
+                const currentDateTime = new Date().toISOString().replace(/[-:.]/g, '');
+                const newFileName = `${fileWithoutExtension}-${currentDateTime}`;
+                const newTargetPathOriginal = path.join(targetDirectoryOriginal, `${newFileName}.webp`);
+                const newTargetPathThumbnail = path.join(targetDirectoryThumbnail, `${newFileName}.webp`);
+
+                uploadedFileName = await this.checkAndSaveFile(fileTmpPath, newTargetPathOriginal, newTargetPathThumbnail);
+            } else {
+                uploadedFileName = await this.checkAndSaveFile(fileTmpPath, targetPathOriginal, targetPathThumbnail);
             }
 
-            const writeFileAsync = async (file, targetPath) => {
-                try {
-                await fs.writeFile(targetPath, file);
-                return true;
-                } catch (err) {
-                throw err;
-                }
-            };
+            result.push(uploadedFileName);
+        }
 
-            const deleteTmpFile = async (fileTmpPath) => {
-                try {
-                  await fs.unlink(fileTmpPath);
-                  return true;
-                } catch (err) {
-                  throw err;
-                }
-            };
+        console.log('All images uploaded successfully!');
+        console.log('Uploaded files:', result);
+        return result;
+    };
 
-            (async () => {
-                try {
-                    const file = await readFileAsync (fileTmpPath)
-                    const fileFormat = await formatFile (file)
-                    const resultFormat = await writeFileAsync (fileFormat, targetPathOriginal)
+    checkAndSaveFile = async (fileTmpPath, targetPathOriginal, targetPathThumbnail) => {
+        try {
+            const file = await fs.readFile(fileTmpPath);
+            const fileFormat = await sharp(file).toFormat('webp').toBuffer();
+            const fileResize = await sharp(file).toFormat('webp').resize(135, 135).toBuffer();
 
-                    const fileResize = await resizeFile (file)
-                    const resultResize = await writeFileAsync (fileResize, targetPathThumbnail)
+            await Promise.all([
+                fs.writeFile(targetPathOriginal, fileFormat),
+                fs.writeFile(targetPathThumbnail, fileResize),
+                fs.unlink(fileTmpPath),
+            ]);
 
-                    if (resultFormat && resultResize) {
-                        const tmpFileDeleted = deleteTmpFile(fileTmpPath)
-                        console.log(tmpFileDeleted)
-                    }
+            console.log(`Image ${targetPathOriginal} uploaded successfully!`);
+            
+            const uploadedFileName = path.basename(targetPathOriginal);
+            return uploadedFileName;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            throw error;
+        }
+    };
 
-                } catch (err) {
-                    console.error(err);
-                }
-            })()
-        })
-    }
+    fileExists = async (filePath) => {
+        try {
+            await fs.access(filePath);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    };
 
     resizeImages = async (entity, entityId, images) => {
         

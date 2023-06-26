@@ -70,8 +70,8 @@ module.exports = {
       .then(() => queryInterface.addIndex('menu_items', ['localeSeoId'], {
         name: 'menuItem_localeSeoId_fk'
       }))
-      .then(() => queryInterface.addIndex('menu_items', ['localeSlugSeoId'], {
-        name: 'menuItem_localeSlugSeoId_fk'
+      .then(() => queryInterface.addIndex('menu_items', ['localeSeoSlugId'], {
+        name: 'menuItem_localeSeoSlugId_fk'
       }))
   },
 

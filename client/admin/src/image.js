@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Image extends HTMLElement {
 
     constructor() {

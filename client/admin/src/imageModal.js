@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class ImageModal extends HTMLElement {
 
     constructor() {
@@ -232,7 +234,7 @@ class ImageModal extends HTMLElement {
             const formData = new FormData();
             formData.append('file', file);
 
-            fetch('http://localhost:8080/api/admin/images', {
+            fetch(`${URL}/images`, {
                 method: 'POST',
                 body: formData,
             })
@@ -246,7 +248,7 @@ class ImageModal extends HTMLElement {
                     imageDiv.classList.add('image');
                     
                     const imageElement = document.createElement('img');
-                    imageElement.src = 'http://localhost:8080/api/admin/images/' + filename;
+                    imageElement.src = `${URL}/images/` + filename;
                     
                     imageDiv.appendChild(imageElement);
                     galleryContent.prepend(imageDiv);

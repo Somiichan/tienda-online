@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Filter extends HTMLElement {
 
     constructor() {
@@ -157,7 +159,7 @@ class Filter extends HTMLElement {
                 }
                 } else {
                 // Fetch filtered data
-                fetch(`http://localhost:8080/api/admin/users?${params}`)
+                fetch(`${URL}/users?${params}`)
                     .then((response) => {
                     if (response.ok) {
                         return response.json();

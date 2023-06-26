@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Form extends HTMLElement {
 
     constructor() {
@@ -17,7 +19,7 @@ class Form extends HTMLElement {
     
     async loadData(id) {
         try {
-          const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+          const response = await fetch(`${URL}/users/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -294,7 +296,7 @@ class Form extends HTMLElement {
             const formData = Object.fromEntries(new FormData(form));
 
             const method = this.data ? 'PUT' : 'POST'
-            const url = this.data ? `http://localhost:8080/api/admin/users/${this.data.id}` : "http://localhost:8080/api/admin/users"
+            const url = this.data ? `${URL}/users/${this.data.id}` : `${URL}/users`
             delete formData.id
 
             fetch(url, {

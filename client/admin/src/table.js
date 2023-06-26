@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Table extends HTMLElement {
 
     constructor() {
@@ -35,7 +37,7 @@ class Table extends HTMLElement {
 
     loadData = async () => {
         try {
-            let response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage}`);
+            let response = await fetch(`${URL}/users?page=${this.currentPage}`);
             let data = await response.json();
             this.data = data.rows;  
             this.currentPage = data.meta.currentPage

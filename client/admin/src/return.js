@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Return extends HTMLElement {
 
     constructor() {

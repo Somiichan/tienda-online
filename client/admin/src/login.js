@@ -1,3 +1,5 @@
+import { URL } from '../config/config.js'
+
 class Login extends HTMLElement {
 
     constructor() {

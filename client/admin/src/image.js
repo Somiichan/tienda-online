@@ -24,16 +24,15 @@ class Image extends HTMLElement {
             <style>
                 .image-section {
                     display: flex;
+                    align-items: center;
                     justify-content: center;
-                    position: relative;
-                    width: 5rem;
-                    height: 5rem;
+                    margin: 0 auto;
+                    max-width: 100%;
                 }
 
                 .upload-button {
                     width: 5rem;
                     height: 5rem;
-                    position: absolute;
                     left: 0;
                     cursor: pointer;
                     opacity: 1;
@@ -43,6 +42,7 @@ class Image extends HTMLElement {
                     justify-content: center;
                     align-items: center;
                     font-size: 20px;
+                    margin-right: 2rem;
                 }
                 
                 .plus-symbol {
@@ -55,11 +55,8 @@ class Image extends HTMLElement {
 
                 img.image {
                     border: 2px solid white;
-                    position: fixed;
-                    display: flex;
-                    justify-content: flex-end;
-                    right: 50%;
-                    bottom: 55%;
+                    max-width: 100%;
+                    max-height: 100%;
                 }
             </style>
             
@@ -67,8 +64,8 @@ class Image extends HTMLElement {
                 <button class="upload-button">
                     <span class="plus-symbol">+</span>
                 </button>
+                <img class="image" src="" alt="" />
             </div>
-            <img class="image" src="" alt="" />
             
         `
 

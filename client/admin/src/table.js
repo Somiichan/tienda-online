@@ -42,7 +42,6 @@ class Table extends HTMLElement {
             this.data = data.rows;  
             this.currentPage = data.meta.currentPage
             this.totalPages = data.meta.pages
-            console.log(data) 
         } catch (error) {
             console.log(error);
         }

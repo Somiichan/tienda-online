@@ -10,7 +10,7 @@ class ImageModal extends HTMLElement {
 
     connectedCallback() {
         document.addEventListener('openImageModal', () => {
-            this.shadow.querySelector('.modal').classList.toggle('active');
+          this.shadow.querySelector('.modal').classList.toggle('active');
         });
     }
 
@@ -154,21 +154,51 @@ class ImageModal extends HTMLElement {
                 margin-top: 12.5rem;
             }
 
-            .image-form button {
+            .image-form .custom-file-upload {
+                padding: 0.5rem 0;
+                background-color: hsl(206.87deg 84.81% 69.02%);
+                border: none;
+                font-size: 1rem;
+                color: white;
+                text-align: center
+                font-weight: 500;
+                cursor: pointer;
+                max-width: 60%; 
+                margin: 0; 
+                padding: 0.5rem 1rem;
+            }
+
+            .file-input {
+                display: none;
+            }
+
+            .select {
+                position: absolute;
+                display: flex;
+                margin: 1rem;
+                justify-content: flex-end;
+                bottom: 15%;
+                right: 5%;
+                width: 10rem;
+            }
+
+            .image-select {
                 padding: 0.5rem 0;
                 background-color: hsl(206.87deg 84.81% 69.02%);
                 border: none;
                 font-size: 1rem;
                 color: white;
                 font-weight: 500;
-                width: 50%;
+                width: 100%;
                 cursor: pointer;
-                max-width: 60%; 
-                margin: 0; 
             }
 
-            .file-input {
-                display: none;
+            .image-container img{
+                border: 2px solid lightblue;
+            }
+              
+            .image-container img.selected {
+                border: 3px solid lightgreen;
             }
         </style>
         <div class="modal">
@@ -185,11 +215,17 @@ class ImageModal extends HTMLElement {
                     <div class="tab-content">
                         <div class="content active">
                             <form class="image-form" id="image-form" enctype="multipart/form-data">
-                                <input type="file"  class="file-input" multiple="false" name="image"/>
-                                <button>Añadir Imagen</button>
+                                <label class="custom-file-upload">
+                                    Subir archivo
+                                    <input type="file"  class="file-input" multiple="false" name="image"/>
+                                </label>
                             </form>
                         </div>
-                        <div class="content"></div>
+                        <div class="content">
+                            <div class="select">
+                                <button class="image-select">Elegir Imagen</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="close-button modal-button">
@@ -199,6 +235,77 @@ class ImageModal extends HTMLElement {
         </div>
         `;
 
+        this.renderModalButtons()
+        this.toggleTab()
+        this.uploadImage()
+        this.sendImageToForm()
+    }
+
+    uploadImage(){
+        const fileInput = this.shadow.querySelector('.file-input');
+
+        fileInput.addEventListener('change', (event) => {
+            event.preventDefault();
+            const file = event.target.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+      
+            fetch(`${URL}/images`, {
+              method: 'POST',
+              body: formData,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+            const galleryContent = this.shadow.querySelector(
+                '.tab-content .content:last-child'
+            );
+    
+            data.files.forEach((filename) => {
+                const imageDiv = document.createElement('div');
+                imageDiv.classList.add('image-container');
+    
+                const imageElement = document.createElement('img');
+                imageElement.src = `${URL}/images/` + filename;
+                imageElement.addEventListener('click', () => {
+                this.toggleImageSelection(imageElement);
+                });
+
+                imageElement.classList.add('selected');
+    
+                imageDiv.appendChild(imageElement);
+                galleryContent.prepend(imageDiv);
+            });
+                this.toggleTab();
+                const tabs = this.shadow.querySelectorAll('.tab');
+                const contents = this.shadow.querySelectorAll('.content');
+                tabs.forEach((tab) => {
+                    tab.classList.toggle('active');
+                });
+                contents.forEach((content) => {
+                    content.classList.toggle('active')
+                });
+            })
+            .catch((error) => {
+            console.error(error);
+            });
+        });
+    }
+
+    toggleTab() {
+        const tabs = this.shadow.querySelectorAll('.tab');
+        const contents = this.shadow.querySelectorAll('.content');
+      
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach((tab) => tab.classList.remove('active'));
+            contents.forEach((content) => content.classList.remove('active'));
+            tabs[index].classList.add('active');
+            contents[index].classList.add('active');
+          });
+        });
+    }
+
+    renderModalButtons(){
         const modalButtons = this.shadow.querySelectorAll('.modal-button');
         const modal = this.shadow.querySelector('.modal');
 
@@ -207,57 +314,28 @@ class ImageModal extends HTMLElement {
                 modal.classList.toggle('active');
             });
         });
+    }
 
-        const tabs = this.shadow.querySelectorAll('.tab');
-        const contents = this.shadow.querySelectorAll('.content');
+    sendImageToForm(){
 
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(tab => tab.classList.remove('active'));
-                contents.forEach(content => content.classList.remove('active'));
-                tabs[index].classList.add('active');
-                contents[index].classList.add('active');
-            });
+        const imageSelectButton = this.shadow.querySelector('.image-select');
+
+        imageSelectButton.addEventListener('click', () => {
+
+            this.shadow.querySelector('.modal').classList.toggle('active');
+
+            const image = this.shadow.querySelector('.selected');
+
+            const event = new CustomEvent('imageSelected', { detail: {
+                image: image.src
+            }});
+
+            document.dispatchEvent(event);
         });
+    }
 
-        const fileInput = this.shadow.querySelector('.file-input');
-        const addButton = this.shadow.querySelector('button');
-
-        addButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', (event) => {
-            event.preventDefault();
-            const file = event.target.files[0];
-            const formData = new FormData();
-            formData.append('file', file);
-
-            fetch(`${URL}/images`, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                const galleryContent = this.shadow.querySelector('.tab-content .content:last-child');
-                
-                data.files.forEach(filename => {
-                    const imageDiv = document.createElement('div');
-                    imageDiv.classList.add('image');
-                    
-                    const imageElement = document.createElement('img');
-                    imageElement.src = `${URL}/images/` + filename;
-                    
-                    imageDiv.appendChild(imageElement);
-                    galleryContent.prepend(imageDiv);
-                });
-            })
-            .catch(error => {
-            console.error(error);
-            });
-        });
+    toggleImageSelection(imageElement) {
+        imageElement.classList.toggle('selected');
     }
 }
 

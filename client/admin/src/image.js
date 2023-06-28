@@ -54,7 +54,6 @@ class Image extends HTMLElement {
                 }
 
                 img.image {
-                    border: 2px solid white;
                     max-width: 100%;
                     max-height: 100%;
                 }
@@ -84,6 +83,7 @@ class Image extends HTMLElement {
     imageSelected(imageUrl) {
         const imageElement = this.shadow.querySelector('.image');
         imageElement.setAttribute('src', imageUrl);
+        imageElement.style.border = '2px solid white';
     }
 
 }

@@ -6,6 +6,14 @@ class Modal extends HTMLElement {
         this.render();
     }
 
+    connectedCallback () {
+        document.addEventListener('modal', event => {
+          this.shadow.querySelector('.modal').classList.add('active')
+        })
+    
+        this.render()
+    }
+
     render() {
 
         this.shadow.innerHTML = 

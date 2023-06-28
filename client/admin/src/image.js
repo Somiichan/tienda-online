@@ -55,7 +55,7 @@ class Image extends HTMLElement {
 
                 img.image {
                     border: 2px solid white;
-                    position: absolute;
+                    position: fixed;
                     display: flex;
                     justify-content: flex-end;
                     right: 50%;

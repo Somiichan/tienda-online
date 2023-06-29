@@ -4,6 +4,7 @@ class ImageModal extends HTMLElement {
 
     constructor() {
         super();
+        this.name = null;
         this.shadow = this.attachShadow({mode: 'open'});
         this.render();
     }
@@ -11,6 +12,10 @@ class ImageModal extends HTMLElement {
     connectedCallback() {
         document.addEventListener('openImageModal', () => {
           this.shadow.querySelector('.modal').classList.toggle('active');
+        });
+
+        document.addEventListener('imageSelected', (event) => {
+            this.name = event.detail.name;
         });
     }
 
@@ -121,7 +126,8 @@ class ImageModal extends HTMLElement {
                 background-color: hsl(216, 94%, 67%);
             }
          
-            .tab-content {
+            .tab-content .active{
+                display: flex;
                 background-color: hsl(231, 93%, 58%);
                 border: 1px solid hsl(216, 94%, 67%);
                 height: 50vh;
@@ -172,14 +178,68 @@ class ImageModal extends HTMLElement {
                 display: none;
             }
 
-            .select {
+            .gallery {
+                width: 70%;
+                height: 50vh;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+                grid-template-rows: repeat(auto-fill, minmax(135px, 1fr));
+                gap: 0.5rem;
+                padding: 1rem;
+                overflow: scroll
+            }
+              
+            .image-container {
+                display: block;
+                cursor: pointer;
+                border: 4px solid transparent;
+                overflow: hidden;
+                line-height: 0;
+                align-self: flex-start;
+            }
+
+            .column {
+                background-color: hsl(206.87deg 84.81% 69.02%);
+                width: 20%;
+                height: 50vh;
                 position: absolute;
+                right: 5rem;
                 display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .column label {
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                font-weight: 500;
+                color: white;
+            }
+            
+            .column input {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .column input[type="text"] {
+                text-align: center;
+                font-size: 1rem;
+                border: none;
+                background-color: white;
+            }
+            
+            .column input[type="text"]:focus {
+                outline: none;
+            }
+
+            .select {
+                position: inherit;
                 margin: 1rem;
-                justify-content: flex-end;
-                bottom: 15%;
-                right: 5%;
+                bottom: 0.5rem;
+                right: 2rem;
                 width: 10rem;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             }
 
             .image-select {
@@ -222,8 +282,15 @@ class ImageModal extends HTMLElement {
                             </form>
                         </div>
                         <div class="content">
-                            <div class="select">
-                                <button class="image-select">Elegir Imagen</button>
+                            <div class="gallery"></div>
+                            <div class="column">
+                                <label>Titulo</label>
+                                <input type="text" name="title">
+                                <label>Texto Alternativo</label>
+                                <input type="text" name="alt">
+                                <div class="select">
+                                    <button class="image-select">Elegir Imagen</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -256,9 +323,7 @@ class ImageModal extends HTMLElement {
             })
             .then((response) => response.json())
             .then((data) => {
-            const galleryContent = this.shadow.querySelector(
-                '.tab-content .content:last-child'
-            );
+            const galleryContent = this.shadow.querySelector('.gallery');
     
             data.files.forEach((filename) => {
                 const imageDiv = document.createElement('div');
@@ -324,13 +389,26 @@ class ImageModal extends HTMLElement {
 
             this.shadow.querySelector('.modal').classList.toggle('active');
 
+            const titleInput = this.shadow.querySelector('input[name="title"]');
+            const altInput = this.shadow.querySelector('input[name="alt"]');
             const image = this.shadow.querySelector('.selected');
 
-            const event = new CustomEvent('imageSelected', { detail: {
-                image: image.src
-            }});
-
-            document.dispatchEvent(event);
+            document.dispatchEvent(new CustomEvent('imageSelected', { 
+                detail: {
+                    imageUrl: image.src,
+                    name: this.name
+                }
+            }));
+            
+            document.dispatchEvent(new CustomEvent('sendImageToForm', { 
+                detail: {
+                    title: titleInput.value,
+                    alt: altInput.value,
+                    filename: image.src.split('/').pop(),
+                    imageUrl: image.src,
+                    name: this.name
+                }
+            }));
         });
     }
 

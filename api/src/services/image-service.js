@@ -77,6 +77,8 @@ module.exports = class ImageService {
     };
 
     resizeImages = async (entity, entityId, images) => {
+
+        
         
     }
 

@@ -6,6 +6,7 @@ class Form extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.render();
+        this.images = [];
     }
 
     async connectedCallback() {
@@ -14,6 +15,11 @@ class Form extends HTMLElement {
             const { id } = event.detail;
             await this.loadData(id);
             this.fillFormFields();
+        });
+
+        document.addEventListener('sendImageToForm', async (event) => {
+            const { title, alt, filename, imageUrl, name } = event.detail;
+            this.images.push({ title, alt, filename, imageUrl, name });
         });
     } 
     
@@ -173,7 +179,7 @@ class Form extends HTMLElement {
                 color: white;
                 font-size: 25px;
                 font-weight: 500;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
             }
             
             form div input {
@@ -252,8 +258,8 @@ class Form extends HTMLElement {
                     </div>
                     <div class="profile-form" data-form="image">
                         <div class="input-image">
-                            <label>Seleccione una imagen</label>
-                            <image-component></image-component>
+                            <label>Imagen de avatar</label>
+                            <image-component name="avatar"></image-component>
                         </div>
                     </div>
                 </form>
@@ -294,6 +300,10 @@ class Form extends HTMLElement {
         submitForm.addEventListener("click", async () => {
 
             const formData = Object.fromEntries(new FormData(form));
+
+            if (this.images.length > 0) {
+                formData.images = this.images;
+            }
 
             const method = this.data ? 'PUT' : 'POST'
             const url = this.data ? `${URL}/users/${this.data.id}` : `${URL}/users`

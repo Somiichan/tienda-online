@@ -11,12 +11,25 @@ class Image extends HTMLElement {
 
     imageSelectionListener() {
         document.addEventListener('imageSelected', (event) => {
-            console.log(event.detail.image)
-            this.imageSelected(event.detail.image)
+            if(this.getAttribute('name') == event.detail.name){
+                this.imageSelected(event.detail.imageUrl)
+            }
+        });
+
+        this.shadow.addEventListener('click', (event) => {
+            const button = event.target.closest('button');
+            if (button) {
+                const imageName = this.getAttribute('name');
+                const event = new CustomEvent('imageSelected', {
+                    detail: {
+                        name: imageName
+                    }
+                });
+                document.dispatchEvent(event);
+            }
         });
     }
 
-   
     render() {
 
         this.shadow.innerHTML =
@@ -25,8 +38,7 @@ class Image extends HTMLElement {
                 .image-section {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    margin: 0 auto;
+                    justify-content: flex-start;
                     max-width: 100%;
                 }
 
@@ -74,6 +86,7 @@ class Image extends HTMLElement {
 
     renderImage = () => {
         const uploadButton = this.shadow.querySelector('.image-section .upload-button');
+        uploadButton.setAttribute('data-name', this.getAttribute('name'));
     
         uploadButton.addEventListener('click', () => {
             document.dispatchEvent(new CustomEvent('openImageModal'));

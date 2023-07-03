@@ -77,9 +77,22 @@ module.exports = class ImageService {
     };
 
     resizeImages = async (entity, entityId, images) => {
-
-        
-        
+        for (const image of images) {
+            const configurations = await ImageConfiguration.findAll({
+                where: {
+                name: image.name,
+                entity: entity,
+                },
+            });
+      
+            const jsonConfigurations = configurations.map((configuration) => {
+                const { _previousDataValues, ...jsonConfiguration } = configuration.toJSON();
+                return jsonConfiguration;
+            });
+      
+            const width = jsonConfigurations.map((configuration) => configuration.widthPx);
+            const height = jsonConfigurations.map((configuration) => configuration.heightPx);
+        }
     }
 
     deleteImages = async filename => {

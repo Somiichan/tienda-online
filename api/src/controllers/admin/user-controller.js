@@ -8,7 +8,7 @@ exports.create = (req, res) => {
 
     User.create(req.body).then(async data => {
 
-        const result = await new ImageService().resizeImages('users', data.id, req.body.images)
+        const result = await new ImageService().resizeImages('user', data.id, req.body.images)
 
         res.status(200).send(data);
 

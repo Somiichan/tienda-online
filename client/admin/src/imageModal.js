@@ -179,14 +179,15 @@ class ImageModal extends HTMLElement {
             }
 
             .gallery {
-                width: 70%;
-                height: 50vh;
+                width: 73%;
+                height: 46.5vh;
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
                 grid-template-rows: repeat(auto-fill, minmax(135px, 1fr));
                 gap: 0.5rem;
                 padding: 1rem;
-                overflow: scroll
+                overflow-y: scroll;
+                overflow-x: hidden;
             }
               
             .image-container {

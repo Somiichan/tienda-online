@@ -78,20 +78,59 @@ module.exports = class ImageService {
 
     resizeImages = async (entity, entityId, images) => {
         for (const image of images) {
-            const configurations = await ImageConfiguration.findAll({
+          const startTime = new Date().getTime();
+          
+          try {
+            const imageConfigurations = await ImageConfiguration.findAll({
                 where: {
-                name: image.name,
-                entity: entity,
-                },
+                    entity,
+                    name: image.name
+                }
             });
       
-            const jsonConfigurations = configurations.map((configuration) => {
-                const { _previousDataValues, ...jsonConfiguration } = configuration.toJSON();
-                return jsonConfiguration;
+            const jsonImageConfigurations = imageConfigurations.map(imageConfiguration => {
+                const { _previousDataValues, ...jsonImageConfiguration } = imageConfiguration.toJSON();
+                return jsonImageConfiguration;
             });
       
-            const width = jsonConfigurations.map((configuration) => configuration.widthPx);
-            const height = jsonConfigurations.map((configuration) => configuration.heightPx);
+            for (const jsonImageConfiguration of jsonImageConfigurations) {
+              const { widthPx, heightPx } = jsonImageConfiguration;
+      
+              const originalRoute = path.join(__dirname, "./../storage/images/gallery/original", image.filename);
+              const filenameWithoutExtension = path.parse(image.filename).name;
+      
+              const resizedRoute = path.join(__dirname, "./../storage/images/resized");
+              const resizedCompleteRoute = path.join(resizedRoute, `${filenameWithoutExtension}-${widthPx}px-${heightPx}px.webp`);
+      
+              try {
+                await sharp(originalRoute).resize(widthPx, heightPx).toFile(resizedCompleteRoute);
+                console.log(`Imagen redimensionada correctamente a ${widthPx}px x ${heightPx}px`);
+      
+                const endTime = new Date().getTime()
+                const latencyMs = endTime - startTime;
+      
+                const body = {
+                    imageConfigurationId: jsonImageConfiguration.id,
+                    entityId,
+                    entity,
+                    name: image.name,
+                    originalFilename: image.filename,
+                    resizedFilename: `${filenameWithoutExtension}-${widthPx}px-${heightPx}px.webp`,
+                    title: image.title,
+                    languageAlias: 'es',
+                    alt: image.alt,
+                    mediaQuery: jsonImageConfiguration.mediaQuery,
+                    latencyMs
+                };
+      
+                await Image.create(body);
+              } catch (error) {
+                console.error(error);
+              }
+            }
+          } catch (error) {
+            console.error("Error:", error);
+          }
         }
     }
 
@@ -100,6 +139,12 @@ module.exports = class ImageService {
     }
 
     getThumbnails = async (limit, offset) => {
-
+    
+        try {
+            const images = await Image.findAll({
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

@@ -372,7 +372,7 @@ class ImageModal extends HTMLElement {
             tabs[index].classList.add('active');
             contents[index].classList.add('active');
             if (contents[index].classList.contains('gallery-content') && contents[index].classList.contains('active')) {
-              this.getThumbnails();
+              this.getThumbnailFiles();
             }
           });
         });

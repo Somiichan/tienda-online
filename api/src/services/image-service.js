@@ -139,12 +139,14 @@ module.exports = class ImageService {
     }
 
     getThumbnails = async (limit, offset) => {
-    
-        try {
-            const images = await Image.findAll({
-            });
-        } catch (error) {
-            console.error(error);
-        }
+
+        const targetPathThumbnail = path.join(__dirname, './../storage/images/gallery/thumbnail');
+        const thumbnailFiles = await fs.readdir(targetPathThumbnail);
+        // const startIndex = offset * limit;
+        // const endIndex = startIndex + limit;
+        // const thumbnails = thumbnailFiles.slice(startIndex, endIndex);
+
+
+        return {thumbnailFiles}
     }
 }

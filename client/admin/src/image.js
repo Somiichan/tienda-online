@@ -16,18 +16,18 @@ class Image extends HTMLElement {
             }
         });
 
-        this.shadow.addEventListener('click', (event) => {
-            const button = event.target.closest('button');
-            if (button) {
-                const imageName = this.getAttribute('name');
-                const event = new CustomEvent('imageSelected', {
-                    detail: {
-                        name: imageName
-                    }
-                });
-                document.dispatchEvent(event);
-            }
-        });
+        // this.shadow.addEventListener('click', (event) => {
+        //     const button = event.target.closest('button');
+        //     if (button) {
+        //         const imageName = this.getAttribute('name');
+        //         const event = new CustomEvent('imageSelected', {
+        //             detail: {
+        //                 name: imageName
+        //             }
+        //         });
+        //         document.dispatchEvent(event);
+        //     }
+        // });
     }
 
     render() {

@@ -6,12 +6,15 @@ class ImageModal extends HTMLElement {
         super();
         this.name = null;
         this.shadow = this.attachShadow({mode: 'open'});
+        this.images = [];
         this.render();
     }
 
     connectedCallback() {
         document.addEventListener('openImageModal', () => {
-          this.shadow.querySelector('.modal').classList.toggle('active');
+            this.resetModal();
+            this.shadow.querySelector('.modal').classList.toggle('active');
+            this.getThumbnailFiles();
         });
 
         document.addEventListener('imageSelected', (event) => {
@@ -282,7 +285,7 @@ class ImageModal extends HTMLElement {
                                 </label>
                             </form>
                         </div>
-                        <div class="content">
+                        <div class="content gallery-content">
                             <div class="gallery"></div>
                             <div class="column">
                                 <label>Titulo</label>
@@ -313,6 +316,7 @@ class ImageModal extends HTMLElement {
         const fileInput = this.shadow.querySelector('.file-input');
 
         fileInput.addEventListener('change', (event) => {
+            
             event.preventDefault();
             const file = event.target.files[0];
             const formData = new FormData();
@@ -367,9 +371,13 @@ class ImageModal extends HTMLElement {
             contents.forEach((content) => content.classList.remove('active'));
             tabs[index].classList.add('active');
             contents[index].classList.add('active');
+            if (contents[index].classList.contains('gallery-content') && contents[index].classList.contains('active')) {
+              this.getThumbnails();
+            }
           });
         });
     }
+      
 
     renderModalButtons(){
         const modalButtons = this.shadow.querySelectorAll('.modal-button');
@@ -411,11 +419,54 @@ class ImageModal extends HTMLElement {
                 }
             }));
         });
+        
     }
 
     toggleImageSelection(imageElement) {
         imageElement.classList.toggle('selected');
     }
+
+    async getThumbnailFiles() {
+        const data = await fetch(`${URL}/images`, {
+            headers: {Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')}
+        });
+
+        const result = await data.json();
+    
+        this.images = result.thumbnailFiles;
+        const galleryContent = this.shadow.querySelector('.gallery');
+        galleryContent.innerHTML = "";
+        
+        this.images.forEach((image) => {
+            const imageDiv = document.createElement('div');
+            imageDiv.classList.add('image-container');
+
+            const imageElement = document.createElement('img');
+            imageElement.src = `${URL}/images/` + image;
+            imageElement.addEventListener('click', () => {
+            this.toggleImageSelection(imageElement);
+            });
+        
+            imageDiv.appendChild(imageElement);
+            galleryContent.prepend(imageDiv);
+        });
+    }
+
+    resetModal() {
+        const modal = this.shadow.querySelector('.modal');
+        const tabs = this.shadow.querySelectorAll('.tab');
+        const contents = this.shadow.querySelectorAll('.tab-content .content');
+    
+        tabs.forEach(tab => tab.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+    
+        tabs[0].classList.add('active');
+        contents[0].classList.add('active');
+    
+        modal.classList.remove('active');
+      
+    }
+
 }
 
 customElements.define('image-modal-component', ImageModal);

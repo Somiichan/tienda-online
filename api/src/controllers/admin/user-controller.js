@@ -64,7 +64,16 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    User.findByPk(id, {
+        attributes: ['id', 'name', 'email'],
+        include: [
+            {
+                model: db.Image,
+                as: 'images',
+                where: { mediaQuery: 'xs'}
+            }
+        ]
+    }).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -109,7 +118,14 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     User.destroy({
-        where: { id: id }
+        where: { id: id },
+        include: [
+            {
+                model: db.Image,    
+                as: 'images',
+                where: { mediaQuery: 'xs' },
+            }
+        ]
     }).then(num => {
         if (num == 1) {
             res.status(200).send({

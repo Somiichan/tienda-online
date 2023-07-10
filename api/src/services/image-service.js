@@ -135,6 +135,14 @@ module.exports = class ImageService {
     }
 
     deleteImages = async filename => {
+        // try {
+        //     await fs.unlink(path.join(__dirname, './../storage/images/gallery/original/${filename}'));
+        //     await fs.unlink(path.join(__dirname, './../storage/images/gallery/thumbnail/${filename}'));
+
+        //     return 1
+        // } catch {
+        //     return 0
+        // }
 
     }
 
@@ -142,10 +150,6 @@ module.exports = class ImageService {
 
         const targetPathThumbnail = path.join(__dirname, './../storage/images/gallery/thumbnail');
         const thumbnailFiles = await fs.readdir(targetPathThumbnail);
-        // const startIndex = offset * limit;
-        // const endIndex = startIndex + limit;
-        // const thumbnails = thumbnailFiles.slice(startIndex, endIndex);
-
 
         return {thumbnailFiles}
     }

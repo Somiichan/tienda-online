@@ -42,9 +42,13 @@ class Form extends HTMLElement {
 
     fillFormFields() {
         const form = this.shadow.querySelector('#form');
-        const { name, email } = this.data;
-        form.name.value = name;
-        form.email.value = email;
+        
+        Object.entries(this.data).forEach(([key, value]) => {
+            console.log(key, value);
+            if(this.shadow.querySelector(`[name="${key}"]`)){
+                this.shadow.querySelector(`[name="${key}"]`).value = value;
+            }
+        })
     }
 
     displayErrorMessages(errors) {
@@ -238,20 +242,21 @@ class Form extends HTMLElement {
             </div>
             <div class="form-container">
                 <form id="form">
+                    <input name="id" type="hidden"></input>
                     <div class="profile-form active" data-form="principal" id="form-principal">
-                        <div>
+                        <div class="form-element">
                             <label>Nombre</label>
                             <input name="name" type="text"></input>
                         </div>
-                        <div>
+                        <div class="form-element">
                             <label>Email</label>
                             <input name="email" type="text"></input>
                         </div>
-                        <div>
+                        <div class="form-element">
                             <label>Contraseña</label>
                             <input name="password" type="password"></input>
                         </div>
-                        <div>
+                        <div class="form-element">
                             <label>Confirme contraseña</label>
                             <input name="passwordConfirmed" type="password"></input>
                         </div>
@@ -305,8 +310,9 @@ class Form extends HTMLElement {
                 formData.images = this.images;
             }
 
-            const method = this.data ? 'PUT' : 'POST'
-            const url = this.data ? `${URL}/users/${this.data.id}` : `${URL}/users`
+            const id = formData.id;
+            const method = id ? 'PUT' : 'POST'
+            const url = id ? `${URL}/users/${id}` : `${URL}/users`
             delete formData.id
 
             fetch(url, {

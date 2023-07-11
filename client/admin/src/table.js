@@ -37,7 +37,11 @@ class Table extends HTMLElement {
 
     loadData = async () => {
         try {
-            let response = await fetch(`${URL}/users?page=${this.currentPage}`);
+            let response = await fetch(`${URL}/users?page=${this.currentPage}`, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+                }
+            });
             let data = await response.json();
             this.data = data.rows;  
             this.currentPage = data.meta.currentPage

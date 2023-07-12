@@ -134,17 +134,48 @@ module.exports = class ImageService {
         }
     }
 
-    deleteImages = async filename => {
-        // try {
-        //     await fs.unlink(path.join(__dirname, './../storage/images/gallery/original/${filename}'));
-        //     await fs.unlink(path.join(__dirname, './../storage/images/gallery/thumbnail/${filename}'));
-
-        //     return 1
-        // } catch {
-        //     return 0
-        // }
-
-    }
+    deleteImage = async (filename, confirmation) => {
+        console.log(typeof confirmation);
+        try {
+          const thumbnailFilePath = path.join(__dirname, './../storage/images/gallery/thumbnail');
+          const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
+      
+          const files = await Image.findAll({
+            where: {
+              originalFilename: filename
+            }
+          });
+      
+          for (const thumbnail of thumbnailFiles) {
+            if (thumbnail === filename) {
+              if (files.length > 0 && confirmation === 'false') {
+                return {
+                  success: false,
+                  message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla uevon?"
+                }
+              } else {
+                fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+                return {
+                  success: true,
+                  message: "La imagen ha sido eliminada correctamente y lo sabias cabron"  
+                };
+              }
+            } else {
+              fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+              return {
+                success: true,
+                message: "La imagen ha sido eliminada correctamente"  
+              };
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          return {
+            success: false,
+            message: error
+          };
+        }
+    };
 
     getThumbnails = async (limit, offset) => {
 

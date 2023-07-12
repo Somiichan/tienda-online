@@ -310,6 +310,7 @@ class ImageModal extends HTMLElement {
         this.toggleTab()
         this.uploadImage()
         this.sendImageToForm()
+        this.deleteImage()
     }
 
     uploadImage(){
@@ -465,6 +466,18 @@ class ImageModal extends HTMLElement {
     
         modal.classList.remove('active');
       
+    }
+
+    deleteImage = async () => {
+        const confirmation = this.confirmDeleteImage;
+        const  response = await fetch( `${API_URL}/api/admin/images/${this.currentImage}/?confirmation=${confirmation}`,  
+        {
+          method: 'DELETE',
+           headers: {
+          Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
+          },
+        })
+        return  await response.json()
     }
 
 }
